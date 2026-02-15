@@ -1,0 +1,99 @@
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[square,numbers,sort&compress]{natbib}
+\usepackage[french]{babel}
+\usepackage{bookman}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[dvipsnames, table]{xcolor}
+\usepackage{pifont}
+\usepackage{multicol}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{pstricks}
+\usepackage[most]{tcolorbox}
+% \usepackage{listings}
+\usepackage{stackengine}
+\usepackage{calligra}
+
+\usepackage{hyperref}
+\hypersetup{ % hyperlinks parameters
+    colorlinks=true,                % allow colors
+    breaklinks=true,                % allow to break links when too long
+    urlcolor= blue,                 % colors of the hyperlinks (\url{})
+    linkcolor= black,               % colors of internal links (\label{})
+    citecolor= black                % colors of the bibliography links (\cite{})
+}
+
+\author{Valentin Isaac-{-}Chassande}
+\title{Soutenance de thèse}
+\subtitle{Conception d'un système mémoire pour traitement de données creuses}
+\institute{UGA, CEA List, TIMA}
+\date{11 mai 2026}
+
+% defs
+\def\cmd#1{\texttt{\color{red}\footnotesize $\backslash$#1}}
+\def\env#1{\texttt{\color{blue}\footnotesize #1}}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\definecolor{halfgray}{gray}{0.55}
+
+% \lstset{
+%     basicstyle=\ttfamily\small,
+%     keywordstyle=\bfseries\color{deepblue},
+%     emphstyle=\ttfamily\color{deepred},    % Custom highlighting style
+%     stringstyle=\color{deepgreen},
+%     numbers=left,
+%     numberstyle=\small\color{halfgray},
+%     rulesepcolor=\color{red!20!green!20!blue!20},
+%     frame=shadowbox,
+% }
+
+\newtcolorbox{highlight}[2]{
+	sharp corners,
+	frame hidden,
+	interior hidden,
+	boxrule=0pt,
+	boxsep=0pt,
+	toptitle=6pt,
+	bottomtitle=6pt,
+	left=6pt,
+	right=0pt,
+	bottom=0pt,
+	lower separated=false,
+	fonttitle=\scshape\bfseries\large,
+	title style={draw=none, fill=none, left color=#2!10, right color=white},
+	coltitle=#2,
+	enhanced,
+	colframe=#2,
+	colback=#2!2,
+	borderline west={1mm}{0mm}{#2},
+	title={#1},
+	breakable
+}
+
+\newtcolorbox{notitlebox}[1]{
+    beamer,
+	frame hidden,
+    drop fuzzy shadow,
+	boxrule=0pt,
+	boxsep=0pt,
+	left=5pt,
+	right=5pt,
+    top=5pt,
+	bottom=5pt,
+    arc=5pt,
+    oversize=5pt,
+	colback=#1!70,
+	enhanced,
+    interior style={left color=#1!70, right color=#1!20},
+}
+
+\usetheme{Darmstadt}
+\usecolortheme{crane}
+% \usefonttheme{structuresmallcapsserif}
+\usefonttheme{structurebold}
+
+% \setbeamersize{text margin left=0.5cm, text margin right=0.5cm}

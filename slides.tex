@@ -1,0 +1,139 @@
+\documentclass[aspectratio=169]{beamer}
+
+\input{Configuration}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+    % \begin{figure}[htpb]
+    %     \begin{center}
+    %         % \includegraphics[width=0.2\linewidth]{pic/Tsinghua_University_Logo.eps}
+    %     \end{center}
+    % \end{figure}
+\end{frame}
+
+\begin{frame}
+    \centering
+
+    \begin{minipage}{0.15\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/PDF/LogoUGA.pdf}
+    \end{minipage}
+    \hspace{1cm}
+    \begin{minipage}{0.18\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/PDF/LIST.pdf}
+    \end{minipage}
+    \hspace{1cm}
+    \begin{minipage}{0.35\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/PDF/LogoTIMA.pdf}
+    \end{minipage}
+
+    \vspace{10pt}
+
+    \begin{notitlebox}{Dandelion}%Goldenrod
+        \medskip\centering\LARGE\bfseries
+        Soutenance de thèse
+
+        \smallskip\normalsize
+        Conception d'un système mémoire pour traitement de données creuses
+        \medskip
+    \end{notitlebox}
+
+    \vspace{10pt}
+
+    Valentin Isaac-{-}Chassande
+
+    \vspace{10pt}
+
+    \footnotesize
+
+    11 mai 2026
+
+    \vspace{10pt}
+
+    \scriptsize
+
+    \begin{minipage}{\linewidth}
+        \centering
+    \begin{minipage}[t]{0.40\linewidth}
+        \begin{tabular}{rl}
+            Directeur : & Pr. Fr\'ed\'eric ROUSSEAU \\
+            Tuteurs : & Dr. Adrian EVANS \\
+            & Dr. Yves DURAND
+        \end{tabular}
+    \end{minipage}
+    %
+    \begin{minipage}[t]{0.40\linewidth}
+        \begin{tabular}{rl}
+            Rapporteurs : & Pr. Roselyne CHOTIN \\
+            & Pr. Olivier SENTIEYS \\
+            Examinateurs : & Benoit DUPONT DE DINECHIN \\
+            & Pr. Yves ROBERT \\
+            & Pr. Fr\'ed\'eric ROUSSEAU
+        \end{tabular}
+    \end{minipage}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}
+    \tableofcontents[sectionstyle=show,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
+\end{frame}
+
+\section{AAA}
+
+\begin{frame}
+    aaa
+\end{frame}
+
+\section{Section}
+
+\subsection{Beamer}
+
+\begin{frame}
+    \begin{itemize}
+        \item text \LaTeX{} text
+        \item text
+        \item text \newline \url{https://www.latexstudio.net/archives/4051.html}
+        \item text \href{http://far.tooold.cn/post/latex/beamertsinghua}{\color{purple}{link}} \cite{origin}text
+        \item text ppt:\href{https://github.com/Trinkle23897/oi_slides}{\color{purple}{text}}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{There Is No Largest Prime Number}
+    \framesubtitle{The proof uses \textit{reductio ad absurdum}.}
+    \begin{theorem}
+        There is no largest prime number.
+    \end{theorem}
+    \begin{proof}
+        \begin{enumerate}
+            \item<1-> Suppose $p$ were the largest prime number.
+            \item<2-> Let $q$ be the product of the first $p$ numbers.
+            \item<3-> Then $q + 1$ is not divisible by any of them.
+            \item<1-> But $q + 1$ is greater than $1$, thus divisible by some prime
+            number not in the first $p$ numbers.\qedhere
+        \end{enumerate}
+    \end{proof}
+    \uncover<4->{The proof used \textit{reductio ad absurdum}.}
+\end{frame}
+
+% \section{Bibliography}
+
+\begin{frame}[allowframebreaks]
+    \bibliographystyle{ACM-Reference-Format}
+    % \tiny\bibliographystyle{ACM-Reference-Format}
+    \bibliography{ref}
+\end{frame}
+
+\section{End}
+
+\begin{frame}
+    \begin{center}
+        {\Huge\calligra Thanks!}
+    \end{center}
+\end{frame}
+
+\end{document}
