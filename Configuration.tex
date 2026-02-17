@@ -74,7 +74,7 @@
 	breakable
 }
 
-\newtcolorbox{notitlebox}[1]{
+\newtcolorbox{notitlebox}[2][]{
     beamer,
 	frame hidden,
     drop fuzzy shadow,
@@ -86,14 +86,25 @@
 	bottom=5pt,
     arc=5pt,
     oversize=5pt,
-	colback=#1!70,
+	colback=#2!70,
 	enhanced,
-    interior style={left color=#1!70, right color=#1!20},
+    interior style={left color=#2!70, right color=#2!40},
+	#1
 }
 
 \usetheme{Darmstadt}
 \usecolortheme{crane}
-% \usefonttheme{structuresmallcapsserif}
-\usefonttheme{structurebold}
-
+\usefonttheme{serif}
 % \setbeamersize{text margin left=0.5cm, text margin right=0.5cm}
+
+\def\maincolor{Dandelion}%Goldenrod
+
+% \setbeamertemplate{sections/subsections in toc}[default]
+\setbeamertemplate{section in toc}[sections numbered]
+
+% set the itemize item symbol as a diamond
+\setbeamertemplate{itemize item}{\scriptsize$\diamond$}
+% set the itemize subitem symbol as a triangle
+\setbeamertemplate{itemize subitem}{\scriptsize$\blacktriangleright$}
+% set the itemize subsubitem symbol as a circle with a dot
+\setbeamertemplate{itemize subsubitem}{\scriptsize$\odot$}

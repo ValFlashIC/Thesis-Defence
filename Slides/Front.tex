@@ -1,0 +1,107 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Thesis Defence
+% Front Slide
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{
+    \setbeamertemplate{background canvas}{
+        \begin{tikzpicture}[remember picture, overlay]
+            % \shade[top color=gray!85,bottom color=gray!85,middle color=white]
+            \shade[right color=\maincolor!50, left color=white, middle color=white]
+            ([shift={(3.0cm,-0.0cm)}]current page.north west)
+                rectangle
+            ([shift={(-0.0cm,0.0cm)}]current page.south east);
+        \end{tikzpicture}
+    }
+
+\begin{frame}
+    \begin{columns}
+        \begin{column}{0.66\linewidth}
+            \centering
+
+            \begin{minipage}{0.20\linewidth}
+                \centering
+                \includegraphics[width=\linewidth]{Figures/PDF/LogoUGA.pdf}
+            \end{minipage}
+            \hspace{1cm}
+            \begin{minipage}{0.24\linewidth}
+                \centering
+                \includegraphics[width=\linewidth]{Figures/PDF/LIST.pdf}
+            \end{minipage}
+            \hspace{1cm}
+            \begin{minipage}{0.25\linewidth}
+                \centering
+                \includegraphics[width=\linewidth]{Figures/PDF/LogoTIMA.pdf}
+            \end{minipage}
+
+            \bigskip
+
+            \begin{notitlebox}{\maincolor}
+                \medskip\centering\LARGE\bfseries
+                Soutenance de thèse
+
+                \smallskip\normalsize
+                Conception d'un système mémoire pour traitement de données creuses
+                \medskip
+            \end{notitlebox}
+
+            \bigskip
+
+            \scriptsize
+            Thèse soutenue par
+
+            \normalsize
+            \textbf{Valentin ISAAC-{-}CHASSANDE}
+
+            \bigskip
+
+            \scriptsize
+            le
+            \footnotesize
+            \textit{11 mai 2026}
+
+            \bigskip
+
+            \scriptsize
+            Université Grenoble Alpes, CEA List, TIMA
+        \end{column}
+
+        \begin{column}{0.33\linewidth}
+            \scriptsize\raggedleft
+
+            \textbf{\'Ecole doctorale}
+
+            EEATS, Spécialité NENT
+
+            \bigskip
+            \textbf{Directeur}
+
+            Pr. Frédéric ROUSSEAU
+
+            \bigskip
+            \textbf{Tuteurs}
+
+            Dr. Adrian EVANS
+
+            Dr. Yves DURAND
+
+            \bigskip
+            \textbf{Rapporteurs}
+
+            Pr. Roselyne CHOTIN
+
+            Pr. Olivier SENTIEYS
+
+            \bigskip
+            \textbf{Examinateurs}
+
+            Benoit DUPONT DE DINECHIN
+
+            Pr. Yves ROBERT
+
+            Pr. Frédéric ROUSSEAU
+        \end{column}
+    \end{columns}
+\end{frame}
+
+}
