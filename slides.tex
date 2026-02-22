@@ -8,12 +8,33 @@
 
 \input{Slides/Contents}
 
-\section{Section}
+\begin{frame}{Outline}
+    \tableofcontents[sectionstyle=show,subsectionstyle=show,subsubsectionstyle=hide]
+\end{frame}
+
+\AtBeginSection[ ]
+{
+\begin{frame}{Outline}
+    \tableofcontents[currentsection]
+\end{frame}
+}
+
+\section[Section]{Section Section Section Section Section Section Section Section Section Section Section Section Section Section Section Section Section Section}
+
+\subsection[NON NON]{OUI OUI}
 
 \begin{frame}
     \frametitle{Title}
     \framesubtitle{Subtitle}
     aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa 
+\end{frame}
+
+\begin{frame}
+    aaa
+
+    \begin{enumbox}{\maincolor}
+        aaa
+    \end{enumbox}
 \end{frame}
 
 \section{Section}
@@ -23,6 +44,12 @@
 \begin{frame}
     \begin{itemize}
         \item text \LaTeX{} text
+        \begin{itemize}
+            \item aaa
+            \begin{itemize}
+                \item aaa
+            \end{itemize}
+        \end{itemize}
         \item text
         \item text \newline \url{https://www.latexstudio.net/archives/4051.html}
         \item text \href{http://far.tooold.cn/post/latex/beamertsinghua}{\color{purple}{link}} \cite{origin}text
@@ -51,10 +78,12 @@
 % \section{Bibliography}
 
 \begin{frame}[allowframebreaks]
+    % \frametitle{aaa}
     % \bibliographystyle{ACM-Reference-Format}
-    \bibliographystyle{acm}
+    \bibliographystyle{alpha}
+    % \bibliographystyle{acm}
     % \tiny\bibliographystyle{ACM-Reference-Format}
-    \bibliography{ref}
+    \bibliography{Biblio}
     % \begingroup
     % \renewcommand
     % \refname{}
@@ -62,7 +91,7 @@
     % \endgroup
 \end{frame}
 
-\section{End}
+\section*{End}
 
 \begin{frame}
     \begin{center}

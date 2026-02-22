@@ -1,3 +1,7 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Configuration
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \usepackage[T1]{fontenc}
 \usepackage{textcomp}
 \usepackage[square,numbers,sort&compress]{natbib}
@@ -12,10 +16,14 @@
 \usepackage{booktabs}
 \usepackage{graphicx}
 \usepackage{pstricks}
+\usepackage{MnSymbol}
+\usepackage{tikz}
 \usepackage[most]{tcolorbox}
 % \usepackage{listings}
 \usepackage{stackengine}
 \usepackage{calligra}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{hyperref}
 \hypersetup{ % hyperlinks parameters
@@ -26,11 +34,15 @@
     citecolor= black                % colors of the bibliography links (\cite{})
 }
 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \author{Valentin Isaac-{-}Chassande}
 \title{Soutenance de thèse}
 \subtitle{Conception d'un système mémoire pour traitement de données creuses}
 \institute{UGA, CEA List, TIMA}
 \date{11 mai 2026}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % defs
 \def\cmd#1{\texttt{\color{red}\footnotesize $\backslash$#1}}
@@ -39,6 +51,10 @@
 \definecolor{deepred}{rgb}{0.6,0,0}
 \definecolor{deepgreen}{rgb}{0,0.5,0}
 \definecolor{halfgray}{gray}{0.55}
+
+\def\maincolor{Dandelion} % Goldenrod
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % \lstset{
 %     basicstyle=\ttfamily\small,
@@ -50,6 +66,8 @@
 %     rulesepcolor=\color{red!20!green!20!blue!20},
 %     frame=shadowbox,
 % }
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newtcolorbox{highlight}[2]{
 	sharp corners,
@@ -92,19 +110,97 @@
 	#1
 }
 
+\newtcolorbox{enumbox}[2][]{
+	frame hidden,
+	capture=hbox,
+	size=minimal,
+	nobeforeafter,
+	tcbox raise base,
+	boxrule=0pt,
+	boxsep=0pt,
+	left=40pt,
+	right=0pt,
+    top=2pt,
+	bottom=2pt,
+	toprule=0.4mm,
+	bottomrule=0mm,
+    arc=0pt,
+	outer arc=0pt,
+    oversize=0pt,
+	colframe=white,
+	enhanced,
+    interior style={left color=white, right color=#2},
+    frame style={left color=white, right color=black},
+	#1
+}
+
+\newtcolorbox{tocsecbox}[2][]{
+	frame hidden,
+	% show bounding box,
+	capture=hbox,
+	nobeforeafter,
+	tcbox raise base,
+	boxrule=0pt,
+	boxsep=0pt,
+	left=0pt,
+	right=500pt,
+    top=10pt,
+	bottom=2pt,
+    arc=0pt,
+	outer arc=0pt,
+    oversize=0pt,
+	enhanced,
+    interior style={left color=white, right color=#2, middle color=white},
+	#1
+}
+
+% \NewTotalTCBox{\myverb}{ O{red} v !O{} }{
+% 	fontupper=\ttfamily,
+% 	nobeforeafter,
+% 	tcbox raise base,
+% 	arc=0pt,
+% 	outer arc=0pt,
+% 	top=0pt,
+% 	bottom=0pt,
+% 	left=0mm,
+% 	right=0mm,
+% 	leftrule=0pt,
+% 	rightrule=0pt,
+% 	toprule=0.3mm,
+% 	bottomrule=0.3mm,
+% 	boxsep=0.5mm,
+% 	colback=#1!10!white,
+% 	colframe=#1!50!black,
+% 	#3
+% }{#2}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \usetheme{Darmstadt}
 \usecolortheme{crane}
 \usefonttheme{serif}
 % \setbeamersize{text margin left=0.5cm, text margin right=0.5cm}
 
-\def\maincolor{Dandelion}%Goldenrod
+\defbeamertemplate{section in toc}{sections numbered with box}{
+  	\leavevmode
+	\begin{enumbox}{\maincolor}
+		\bfseries\inserttocsectionnumber.
+	\end{enumbox}
+	\begin{tocsecbox}{\maincolor}
+		%
+	\end{tocsecbox}
+	\inserttocsection\par
+}
 
+% \setbeamertemplate{section in toc}[sections numbered]
+\setbeamertemplate{section in toc}[sections numbered with box]
 % \setbeamertemplate{sections/subsections in toc}[default]
-\setbeamertemplate{section in toc}[sections numbered]
 
-% set the itemize item symbol as a diamond
-\setbeamertemplate{itemize item}{\scriptsize$\diamond$}
+% set the itemize item symbol as a bullet
+\setbeamertemplate{itemize item}{$\bullet$}
 % set the itemize subitem symbol as a triangle
-\setbeamertemplate{itemize subitem}{\scriptsize$\blacktriangleright$}
-% set the itemize subsubitem symbol as a circle with a dot
-\setbeamertemplate{itemize subsubitem}{\scriptsize$\odot$}
+\setbeamertemplate{itemize subitem}{$\filledtriangleright$}
+% set the itemize subsubitem symbol as a dash
+\setbeamertemplate{itemize subsubitem}{-}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
