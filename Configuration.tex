@@ -192,9 +192,14 @@
 	\inserttocsection\par
 }
 
-% \setbeamertemplate{section in toc}[sections numbered]
+\defbeamertemplate{subsection in toc}{subsections with mybullets}{
+  	\leavevmode
+	\qquad$\bullet$\ %
+	\inserttocsubsection\par
+}
+
 \setbeamertemplate{section in toc}[sections numbered with box]
-% \setbeamertemplate{sections/subsections in toc}[default]
+\setbeamertemplate{subsection in toc}[subsections with mybullets]
 
 % set the itemize item symbol as a bullet
 \setbeamertemplate{itemize item}{$\bullet$}
