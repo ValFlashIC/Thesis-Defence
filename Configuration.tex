@@ -181,6 +181,10 @@
 \usefonttheme{serif}
 % \setbeamersize{text margin left=0.5cm, text margin right=0.5cm}
 
+\setbeamertemplate{footline}[text line]{%
+  \parbox{\paperwidth}{\vspace*{-5pt}\hfill\insertframenumber/\inserttotalframenumber\hspace*{1.1cm}}}
+\setbeamertemplate{navigation symbols}{}
+
 \defbeamertemplate{section in toc}{sections numbered with box}{
   	\leavevmode
 	\begin{enumbox}{\maincolor}
