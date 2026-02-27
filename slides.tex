@@ -19,13 +19,41 @@
 \end{frame}
 
 \begin{frame}
+    \scriptsize
+
     Prérequis
+
+    - Début de ASAP ? Jusqu'à SpDC ?
+
+    - OP SpMV seulement ?
+
+    \smallskip
+
+    Cache de reduction
+
+    \smallskip
 
     Utiliser la théorie pour montrer pourquoi on veut exploiter les structures des matrices
 
+    - Matrices creuses, éléments isolés -> cache devient fully associatif ! Mais pas possible, et structure exploitable, de la matrice mais aussi kernel
+
+    - montrer dense spmv dans cache (introduire notion de thrashing) VS bande horizontale dans cache
+
+    - A quoi ressemblent les matrices ?
+
+    - Les matrices bandées
+
+    - On prend une bande, on la met dans un cache, si on choisit correctement la taille c'est ok -> DRC
+
+    \smallskip
+
     SpDCache, fonctionnement + détails RTL
 
+    \smallskip
+
     Evaluations (tout, python + RTL + théorie) Attention comp entre les 3 bancale
+
+    \smallskip
 
     Mettre l'accent sur l'approche plutôt que les résultats ?
 \end{frame}
