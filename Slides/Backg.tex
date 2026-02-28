@@ -1,0 +1,46 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Thesis Defence
+% Section: Background
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section[Prérequis]{Prérequis et Problématique}
+
+\begin{frame}
+    SpMV
+
+    OP
+
+    reductions
+
+    irrégulières
+
+    scatter
+
+    formats creux CSC
+
+    matrices creuses
+
+    correspondance direct vs associatif : 1 schéma pour expliquer les 3 types
+
+    visu du problème dans cache classique (au niveau, voir ASAP)
+\end{frame}
+
+\begin{frame}
+    Cache : mémoire intermédiaire entre le processeur et la mémoire principale -> prérequis
+
+    Fonction : stocker quelques données proche du processeur -> prérequis
+
+    Pourquoi : une transaction en mémoire principale prend du temps ($\sim$100 ns) -> prérequis
+\end{frame}
+
+\begin{frame}
+    Problème :
+
+    Comment traiter efficacement des réductions irrégulières ?
+
+    Deux approches complémentaires :
+
+    Approche 1 : Cache de réduction pour calculer les réductions dans le cache et éviter des transactions inutiles
+
+    Approche 2 : Traiter l'irrégularité en s'appuyant sur la structure des matrices, partitionnement du cache
+\end{frame}

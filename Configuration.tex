@@ -182,24 +182,30 @@
 % \setbeamersize{text margin left=0.5cm, text margin right=0.5cm}
 
 \setbeamertemplate{footline}[text line]{%
-  \parbox{\paperwidth}{\vspace*{-5pt}\hfill\insertframenumber/\inserttotalframenumber\hspace*{1.1cm}}}
+	\begin{beamercolorbox}[wd=\paperwidth,ht=0pt,dp=0pt]{white}%
+		\vspace*{1.5pt}%
+		\hfill%
+		\insertframenumber/\inserttotalframenumber%
+		\;\;%
+	\end{beamercolorbox}%
+}
+
 \setbeamertemplate{navigation symbols}{}
 
-\defbeamertemplate{section in toc}{sections numbered with box}{
-  	\leavevmode
-	\begin{enumbox}{\maincolor}
-		\bfseries\inserttocsectionnumber.
-	\end{enumbox}
-	\begin{tocsecbox}{\maincolor}
-		%
-	\end{tocsecbox}
-	\inserttocsection\par
+\defbeamertemplate{section in toc}{sections numbered with box}{%
+  	\leavevmode%
+	\begin{enumbox}{\maincolor}%
+		\bfseries\inserttocsectionnumber.%
+	\end{enumbox}%
+	\begin{tocsecbox}{\maincolor}%
+	\end{tocsecbox}%
+	\ \inserttocsection\par%
 }
 
 \defbeamertemplate{subsection in toc}{subsections with mybullets}{
-  	\leavevmode
+  	\leavevmode%
 	\qquad$\bullet$\ %
-	\inserttocsubsection\par
+	\inserttocsubsection\par%
 }
 
 \setbeamertemplate{section in toc}[sections numbered with box]

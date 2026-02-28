@@ -1,0 +1,103 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Thesis Defence
+% Section: Reduction Cache
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section[Réductions]{Approche 1 : Cache de réduction}
+
+\begin{frame}
+    Cache générique, fonctionnement (rapide)
+
+    Réduction dans cache générique
+
+    Cache de réduction, qu'est ce qu'il y a en plus
+
+    Réduction dans cache de réduction VS générique
+
+    Diminution du nombre de transactions mémoires / Non bloquant (RED envoyée et oubliée) / Transactions mémoires du haut vers le bas
+\end{frame}
+
+\subsection{Cache générique}
+
+\begin{frame}
+    \frametitle{Cache générique}
+    \framesubtitle{Fonctionnement \& Réduction dans un cache générique}
+
+    \begin{columns}
+        \column{0.48\linewidth}
+
+        Cache classique : set-associatif, plusieurs voies
+
+        Granularité : ligne de cache (64 o)
+
+        Transactions mémoires : lecture et écriture de ligne de 64 o
+
+        Réduction : lecture dans le cache (avec hit, miss ou évincement), accumulation dans le processeur, écriture dans le cache
+
+        % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        \column{0.48\linewidth}
+
+        \begin{figure}
+            \centering
+            \includegraphics[width=\linewidth]{Figures/PDF/LIST.pdf}
+        \end{figure}
+
+        <schéma d'une réduction dans un cache générique>
+
+    \end{columns}
+\end{frame}
+
+\subsection{Cache de réduction}
+
+\begin{frame}
+    \frametitle{Cache de réduction}
+    \framesubtitle{Qu'est-ce ?}
+
+    Même caractéristiques que cache : set-associatif, plusieurs voies, lignes de cache
+
+    Traite des instructions de réduction RED
+
+    Accumulation sur place, ajout d'un accumulateur
+
+    Style write-back
+\end{frame}
+
+\begin{frame}
+    \frametitle{Cache de réduction}
+    \framesubtitle{Une réduction dans un cache de réduction}
+
+    \begin{columns}
+        \column{0.48\linewidth}
+
+        \begin{figure}
+            \centering
+            \includegraphics[width=\linewidth]{Figures/PDF/LIST.pdf}
+        \end{figure}
+
+        <schéma d'une réduction dans un cache générique>
+
+        \column{0.48\linewidth}
+
+        \begin{figure}
+            \centering
+            \includegraphics[width=\linewidth]{Figures/PDF/LIST.pdf}
+        \end{figure}
+
+        <schéma d'une réduction dans un cache de réduction>
+
+    \end{columns}
+
+    \bigskip
+
+    Comparaison du nombre d'instruction / le processeur n'attend pas les REDs
+\end{frame}
+
+\subsection{Conclusion}
+
+\begin{frame}
+    \frametitle{Conclusion}
+
+    Notre cache doit supporter les réductions
+
+    Note : existant, PHI, SortCache, ASA le font déjà
+\end{frame}

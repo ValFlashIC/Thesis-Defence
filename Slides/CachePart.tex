@@ -1,0 +1,46 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Thesis Defence
+% Section: Cache Partitioning
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section[Irrégularités]{Approche 2 : Partitionnement du cache}
+
+\begin{frame}
+    (Reintro apres red section) (cette section: aspect irrégulier)
+
+    grosse matrice dans le cache -> thrashing (anim?)
+
+    2 cas triviaux ou cache ok -> petite matrice ou bande horizontal (rappeler relation entre c et cache du spmv)
+
+    Pas en pratique
+
+    Matrices creuses, éléments isolés -> Idée naive: cache devient fully associatif !
+    
+    Mais pas possible, et structure exploitable, de la matrice x kernel
+\end{frame}
+
+\begin{frame}
+    Montrer des matrices
+
+    discuter de leur structures à gros grain et grain fin
+
+    uniform bandée parfaitement bandée
+
+    dcd
+\end{frame}
+
+\begin{frame}
+    On prend une bande, on la met dans un cache, si on choisit correctement la taille c'est ok -> DRC
+
+    Qu'est ce que ca donne apres étude sur le mem traffic -> 2 ordres de grandeur
+\end{frame}
+
+\begin{frame}
+    le reste -> SRT fully associatif
+
+    Avec modèle -> ok
+\end{frame}
+
+\begin{frame}
+    text
+\end{frame}
