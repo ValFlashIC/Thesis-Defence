@@ -5,42 +5,158 @@
 
 \section[Irrégularités]{Approche 2 : Partitionnement du cache}
 
+% \begin{frame}
+%     (Reintro apres red section) (cette section: aspect irrégulier)
+
+%     grosse matrice dans le cache -> thrashing (anim?)
+
+%     2 cas triviaux ou cache ok -> petite matrice ou bande horizontal (rappeler relation entre c et cache du spmv)
+
+%     Pas en pratique
+
+%     Matrices creuses, éléments isolés -> Idée naive: cache devient fully associatif !
+    
+%     Mais pas possible, et structure exploitable, de la matrice x kernel
+% \end{frame}
+
 \begin{frame}
-    (Reintro apres red section) (cette section: aspect irrégulier)
+    \frametitle{aaa}
 
-    grosse matrice dans le cache -> thrashing (anim?)
+    Figure, thrashing
 
-    2 cas triviaux ou cache ok -> petite matrice ou bande horizontal (rappeler relation entre c et cache du spmv)
+    Pour éviter, et cache fonctionne bien, petite matrice, ou bande horizontale (montrer sur la figure)
 
     Pas en pratique
 
-    Matrices creuses, éléments isolés -> Idée naive: cache devient fully associatif !
-    
-    Mais pas possible, et structure exploitable, de la matrice x kernel
-\end{frame}
+    Mais cas proche existe, bandée (montrer sur la figure)
 
-\begin{frame}
-    Montrer des matrices
+    Si juste bandée, pas ok, change rien
 
-    discuter de leur structures à gros grain et grain fin
-
-    uniform bandée parfaitement bandée
-
-    dcd
-\end{frame}
-
-\begin{frame}
-    On prend une bande, on la met dans un cache, si on choisit correctement la taille c'est ok -> DRC
+    Si parfaitement bandée -> cache ok, moyennant une formule
 
     Qu'est ce que ca donne apres étude sur le mem traffic -> 2 ordres de grandeur
+
+    Idée : isoler une bande diagonale de la matrice -> DRC
 \end{frame}
 
 \begin{frame}
-    le reste -> SRT fully associatif
+    \frametitle{Multiplication Matrice-Vecteur dans un cache générique :}
+    \small
 
-    Avec modèle -> ok
+    \begin{minipage}{0.48\linewidth}
+        \raggedright
+
+        \pause[1]%
+        Matrice quelconque :
+
+        $\bullet$ \ Évincements répétés dans le cache
+
+        \faArrowRight \ Le cache n'est pas utile %Rouge
+
+        \bigskip
+
+        \pause[2]%
+        Petite matrice%
+        \pause[3]%
+        , bande horizontale :
+
+        \pause[4]%
+        $\bullet$ \ Tiens dans le cache, pas d'évincement
+
+        \faArrowRight \ Le cache est utile %Vert
+
+        \faArrowRight \ Cas peu intéressants %Rouge
+
+        \bigskip
+
+        \pause[5]%
+        Matrice bandée :%ici, 2 anims(?) pour montrer ce qu'est une matrice bandée
+
+        $\bullet$ \ Évincements répétés dans le cache
+
+        \pause[6]%
+        \faArrowRight \ Le cache n'est pas utile %Rouge
+
+        \faArrowRight \ Structure très courante %Vert
+
+        \bigskip
+
+        \pause[7]%
+        Matrice parfaitement bandée :
+
+        $\bullet$ \ Nombre d'évincements limité
+
+        \faArrowRight \ Le cache est utile %Vert
+
+        \faArrowRight \ Structure peu courante %Rouge
+
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.48\linewidth}
+
+        % \begin{overprint}
+        %     \onslide<1>
+        %     aaaa
+        %     % \begin{figure}
+        %     %     \centering
+        %     %     
+        %     % \end{figure}
+
+        %     \onslide<2>
+        %     bbb
+        %     % \begin{figure}
+        %     %     \centering
+        %     %     
+        %     % \end{figure}
+        % \end{overprint}
+
+        \includegraphics<1>[width=\linewidth]{Figures/PDF/LIST.pdf}
+        \includegraphics<2>[width=\linewidth]{Figures/PDF/LogoUGA.pdf}
+
+    \end{minipage}%minipage casse surement FIX
+
 \end{frame}
 
 \begin{frame}
-    text
+    \frametitle{aaa}
+
+    \includegraphics<1>[width=\linewidth]{Figures/PDF/LIST.pdf}
+    \includegraphics<2>[width=\linewidth]{Figures/PDF/LogoUGA.pdf}
+
+\end{frame}
+
+% \begin{frame}
+%     Montrer des matrices
+
+%     discuter de leur structures à gros grain et grain fin
+
+%     uniform bandée parfaitement bandée
+
+%     (dcd)
+% \end{frame}
+
+% \begin{frame}
+%     On prend une bande, on la met dans un cache, si on choisit correctement la taille c'est ok -> DRC
+
+%     Qu'est ce que ca donne apres étude sur le mem traffic -> 2 ordres de grandeur
+% \end{frame}
+
+\begin{frame}
+    Que fait on du reste ?
+
+    Question de la granularité
+
+    Éléments isolés, pas compatible avec ligne de cache, il faut cache par éléments
+
+    le reste -> SRT fully associatif, taille modeste
+
+    Sur graphe, montrer aussi qu'il faut des transactions mémoire adaptées
+\end{frame}
+
+\begin{frame}
+    Conclusion
+
+    Deux régions pour traiter le dense et le creux
+
+    C'est ma contribution
 \end{frame}
