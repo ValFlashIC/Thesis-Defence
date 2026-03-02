@@ -39,7 +39,7 @@
     Idée : isoler une bande diagonale de la matrice -> DRC
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]
     \frametitle{Multiplication Matrice-Vecteur dans un cache générique :}
     \small
 
@@ -67,21 +67,38 @@
 
         \faArrowRight \ Cas peu intéressants %Rouge
 
-        \bigskip
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.48\linewidth}
 
-        \pause[5]%
+        \pause[1]%
+        \includegraphics<1>[width=\linewidth]{Figures/PDF/LIST.pdf}
+        \includegraphics<2->[width=\linewidth]{Figures/PDF/LogoUGA.pdf}
+
+    \end{minipage}
+
+\end{frame}
+
+\begin{frame}[t]
+    \frametitle{Multiplication Matrice-Vecteur dans un cache générique :}
+    \small
+
+    \begin{minipage}{0.48\linewidth}
+        \raggedright
+
+        \pause[1]%
         Matrice bandée :%ici, 2 anims(?) pour montrer ce qu'est une matrice bandée
 
         $\bullet$ \ Évincements répétés dans le cache
 
-        \pause[6]%
+        \pause[2]%
         \faArrowRight \ Le cache n'est pas utile %Rouge
 
         \faArrowRight \ Structure très courante %Vert
 
         \bigskip
 
-        \pause[7]%
+        \pause[3]%
         Matrice parfaitement bandée :
 
         $\bullet$ \ Nombre d'évincements limité
@@ -94,34 +111,11 @@
     \hfill
     \begin{minipage}{0.48\linewidth}
 
-        % \begin{overprint}
-        %     \onslide<1>
-        %     aaaa
-        %     % \begin{figure}
-        %     %     \centering
-        %     %     
-        %     % \end{figure}
-
-        %     \onslide<2>
-        %     bbb
-        %     % \begin{figure}
-        %     %     \centering
-        %     %     
-        %     % \end{figure}
-        % \end{overprint}
-
+        \pause[1]%
         \includegraphics<1>[width=\linewidth]{Figures/PDF/LIST.pdf}
-        \includegraphics<2>[width=\linewidth]{Figures/PDF/LogoUGA.pdf}
+        \includegraphics<2->[width=\linewidth]{Figures/PDF/LogoUGA.pdf}
 
-    \end{minipage}%minipage casse surement FIX
-
-\end{frame}
-
-\begin{frame}
-    \frametitle{aaa}
-
-    \includegraphics<1>[width=\linewidth]{Figures/PDF/LIST.pdf}
-    \includegraphics<2>[width=\linewidth]{Figures/PDF/LogoUGA.pdf}
+    \end{minipage}
 
 \end{frame}
 
@@ -135,11 +129,30 @@
 %     (dcd)
 % \end{frame}
 
-% \begin{frame}
-%     On prend une bande, on la met dans un cache, si on choisit correctement la taille c'est ok -> DRC
+\begin{frame}[t]
+    \frametitle{Bande}
+    \small
 
-%     Qu'est ce que ca donne apres étude sur le mem traffic -> 2 ordres de grandeur
-% \end{frame}
+    \begin{minipage}{0.48\linewidth}
+        \raggedright
+
+        On prend une bande, on la met dans un cache, si on choisit correctement la taille c'est ok -> DRC
+        
+        Qu'est ce que ca donne apres étude sur le mem traffic -> 2 ordres de grandeur
+
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.48\linewidth}
+
+        \pause[1]%
+        \includegraphics<1>[width=\linewidth]{Figures/PDF/LIST.pdf}
+        \includegraphics<2->[width=\linewidth]{Figures/PDF/LogoUGA.pdf}
+
+        (graph avec courbes qui apparaissent au bon moment)
+
+    \end{minipage}
+
+\end{frame}
 
 \begin{frame}
     Que fait on du reste ?
