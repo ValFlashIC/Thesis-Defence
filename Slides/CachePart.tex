@@ -49,9 +49,9 @@
         \pause[1]%
         Matrice quelconque :
 
-        $\bullet$ \ Évincements répétés dans le cache
+        \point{Évincements répétés dans le cache}
 
-        \faArrowRight \ Le cache n'est pas utile %Rouge
+        \arrow{Le cache n'est pas utile} %Rouge
 
         \bigskip
 
@@ -61,11 +61,11 @@
         , bande horizontale :
 
         \pause[4]%
-        $\bullet$ \ Tiens dans le cache, pas d'évincement
+        \point{Tiens dans le cache, pas d'évincement}
 
-        \faArrowRight \ Le cache est utile %Vert
+        \arrow{Le cache est utile} %Vert
 
-        \faArrowRight \ Cas peu intéressants %Rouge
+        \arrow{Cas peu intéressants} %Rouge
 
     \end{minipage}
     \hfill
@@ -89,23 +89,23 @@
         \pause[1]%
         Matrice bandée :%ici, 2 anims(?) pour montrer ce qu'est une matrice bandée
 
-        $\bullet$ \ Évincements répétés dans le cache
+        \point{Évincements répétés dans le cache}
 
         \pause[2]%
-        \faArrowRight \ Le cache n'est pas utile %Rouge
+        \arrow{Le cache n'est pas utile} %Rouge
 
-        \faArrowRight \ Structure très courante %Vert
+        \arrow{Structure très courante} %Vert
 
         \bigskip
 
         \pause[3]%
         Matrice parfaitement bandée :
 
-        $\bullet$ \ Nombre d'évincements limité
+        \point{Nombre d'évincements limité}
 
-        \faArrowRight \ Le cache est utile %Vert
+        \arrow{Le cache est utile} %Vert
 
-        \faArrowRight \ Structure peu courante %Rouge
+        \arrow{Structure peu courante} %Rouge
 
     \end{minipage}
     \hfill
@@ -130,21 +130,34 @@
 % \end{frame}
 
 \begin{frame}[t]
-    \frametitle{Bande}
+    \frametitle{Traffic mémoire théorique avec des matrices bandée}
     \small
 
-    \begin{minipage}{0.48\linewidth}
+    \begin{minipage}{0.38\linewidth}
         \raggedright
-
-        On prend une bande, on la met dans un cache, si on choisit correctement la taille c'est ok -> DRC
         
-        Qu'est ce que ca donne apres étude sur le mem traffic -> 2 ordres de grandeur
+        % Qu'est ce que ca donne apres étude sur le mem traffic -> 2 ordres de grandeur
+
+        Graphe : Traffic mémoire du vecteur de sortie $c$ VS densité en dehors de la bande, pour différentes tailles de cache
+
+        \point{densité dans la bande fixe (10\textsuperscript{-2})}
+
+        \point{..}
+
+        \pause[2]%
+        \begin{highlight}{Conclusion}{Red}
+            On sélectionne une bande diagonale de la matrice et on la met dans un cache set-associatif
+
+            \point{}{<relation>}
+        \end{highlight}
 
     \end{minipage}
     \hfill
-    \begin{minipage}{0.48\linewidth}
+    \begin{minipage}{0.58\linewidth}
 
         \pause[1]%
+        <étiquette model C>
+
         \includegraphics<1>[width=\linewidth]{Figures/PDF/LIST.pdf}
         \includegraphics<2->[width=\linewidth]{Figures/PDF/LogoUGA.pdf}
 
@@ -157,9 +170,17 @@
 \begin{frame}
     Que fait on du reste ?
 
-    Question de la granularité
+    Granularité
 
-    Éléments isolés, pas compatible avec ligne de cache, il faut cache par éléments
+    Éléments isolés
+    
+    \point{Pas compatible avec ligne de cache}
+    
+    \arrow{Il faut cache par éléments}
+
+    Pas de structure, hit imprévisible -> augmenter le hit rate dans espace de cache modeste : complètement associatif
+
+    Transaction par éléments
 
     le reste -> SRT fully associatif, taille modeste
 

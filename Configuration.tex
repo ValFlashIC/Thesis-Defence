@@ -55,6 +55,9 @@
 
 \def\maincolor{Dandelion} % Goldenrod
 
+\newcommand{\point}[2][\footnotesize]{{#1\ $\bullet$ \ #2}}
+\newcommand{\arrow}[2][\footnotesize]{{#1\ \faArrowRight \ #2}}
+
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % \lstset{
@@ -76,13 +79,14 @@
 	interior hidden,
 	boxrule=0pt,
 	boxsep=0pt,
-	toptitle=6pt,
-	bottomtitle=6pt,
+	toptitle=3pt,
+	bottomtitle=3pt,
 	left=6pt,
 	right=0pt,
 	bottom=0pt,
+	oversize=0pt,
 	lower separated=false,
-	fonttitle=\scshape\bfseries\large,
+	fonttitle=\scshape\bfseries\small,
 	title style={draw=none, fill=none, left color=#2!10, right color=white},
 	coltitle=#2,
 	enhanced,
