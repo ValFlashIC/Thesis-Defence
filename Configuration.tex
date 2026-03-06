@@ -55,8 +55,14 @@
 
 \def\maincolor{Dandelion} % Goldenrod
 
-\newcommand{\point}[2][\footnotesize]{{#1\ $\bullet$ \ #2}}
-\newcommand{\arrow}[2][\footnotesize]{{#1\ \faArrowRight \ #2}}
+\newcommand{\point}[2][\small]{{#1\ $\bullet$ \ #2}}
+\newcommand{\subpt}[2][\small]{{#1\ \ $\filledtriangleright$ \ #2}}
+\newcommand{\ssbpt}[2][\small]{{#1\ \ \ - \ #2}}
+\newcommand{\arrow}[2][\small]{{#1\ \faArrowRight \ #2}}
+\newcommand{\tab}[2][\small]{{#1 \qquad #2}}
+
+\def\ck{\textcolor{Green}{\faCheck}}
+\def\cr{\textcolor{Red}{\faClose}}
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -184,7 +190,15 @@
 \usetheme{Darmstadt}
 \usecolortheme{crane}
 \usefonttheme{serif}
-% \setbeamersize{text margin left=0.5cm, text margin right=0.5cm}
+\setbeamersize{text margin left=0.5cm, text margin right=0.5cm}
+
+\setbeamertemplate{frametitle}[default]
+
+\useoutertheme[subsection=false]{miniframes}
+
+\setbeamercolor{normal text}{bg=,fg=black}
+\setbeamercolor{section in head/foot}{use=normal text,bg=\maincolor!60!Yellow!80!white,fg=normal text.fg}
+\setbeamercolor{frametitle}{use=normal text,bg=\maincolor!50!Yellow!50!white,fg=normal text.fg}
 
 \setbeamertemplate{footline}[text line]{%
 	\begin{beamercolorbox}[wd=\paperwidth,ht=0pt,dp=0pt]{white}%
@@ -199,10 +213,10 @@
 
 \defbeamertemplate{section in toc}{sections numbered with box}{%
   	\leavevmode%
-	\begin{enumbox}{\maincolor}%
+	\begin{enumbox}{\maincolor!70!white}%
 		\bfseries\inserttocsectionnumber.%
 	\end{enumbox}%
-	\begin{tocsecbox}{\maincolor}%
+	\begin{tocsecbox}{\maincolor!50!white}%
 	\end{tocsecbox}%
 	\ \inserttocsection\par%
 }

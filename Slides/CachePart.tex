@@ -41,9 +41,8 @@
 
 \begin{frame}[t]
     \frametitle{Multiplication Matrice-Vecteur dans un cache générique :}
-    \small
 
-    \begin{minipage}{0.48\linewidth}
+    \begin{minipage}[t]{0.48\linewidth}
         \raggedright
 
         \pause[1]%
@@ -51,9 +50,9 @@
 
         \point{Évincements répétés dans le cache}
 
-        \arrow{Le cache n'est pas utile} %Rouge
+        \arrow{Le cache n'est pas utile \cr}
 
-        \bigskip
+        \medskip
 
         \pause[2]%
         Petite matrice%
@@ -63,53 +62,36 @@
         \pause[4]%
         \point{Tiens dans le cache, pas d'évincement}
 
-        \arrow{Le cache est utile} %Vert
+        \arrow{Le cache est utile \ck}
 
-        \arrow{Cas peu intéressants} %Rouge
+        \arrow{Cas peu intéressants \cr}
 
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.48\linewidth}
+        \medskip
 
-        \pause[1]%
-        \includegraphics<1>[width=\linewidth]{Figures/PDF/LIST.pdf}
-        \includegraphics<2->[width=\linewidth]{Figures/PDF/LogoUGA.pdf}
-
-    \end{minipage}
-
-\end{frame}
-
-\begin{frame}[t]
-    \frametitle{Multiplication Matrice-Vecteur dans un cache générique :}
-    \small
-
-    \begin{minipage}{0.48\linewidth}
-        \raggedright
-
-        \pause[1]%
+        \pause[5]%
         Matrice bandée :%ici, 2 anims(?) pour montrer ce qu'est une matrice bandée
 
         \point{Évincements répétés dans le cache}
 
-        \pause[2]%
-        \arrow{Le cache n'est pas utile} %Rouge
+        \pause[6]%
+        \arrow{Le cache n'est pas utile \cr}
 
-        \arrow{Structure très courante} %Vert
+        \arrow{Structure très courante \ck}
 
-        \bigskip
+        \medskip
 
-        \pause[3]%
+        \pause[7]%
         Matrice parfaitement bandée :
 
         \point{Nombre d'évincements limité}
 
-        \arrow{Le cache est utile} %Vert
+        \arrow{Le cache est utile \ck}
 
-        \arrow{Structure peu courante} %Rouge
+        \arrow{Structure peu courante \cr}
 
     \end{minipage}
     \hfill
-    \begin{minipage}{0.48\linewidth}
+    \begin{minipage}[t]{0.48\linewidth}
 
         \pause[1]%
         \includegraphics<1>[width=\linewidth]{Figures/PDF/LIST.pdf}
@@ -131,60 +113,118 @@
 
 \begin{frame}[t]
     \frametitle{Traffic mémoire théorique avec des matrices bandée}
-    \small
 
-    \begin{minipage}{0.38\linewidth}
+    \begin{minipage}[t]{0.38\linewidth}
         \raggedright
         
         % Qu'est ce que ca donne apres étude sur le mem traffic -> 2 ordres de grandeur
 
-        Graphe : Traffic mémoire du vecteur de sortie $c$ VS densité en dehors de la bande, pour différentes tailles de cache
+        Traffic mémoire du vecteur de sortie
 
-        \point{densité dans la bande fixe (10\textsuperscript{-2})}
+        \tab{\textit{versus}}
+        
+        densité en dehors de la bande,
+        
+        pour différentes tailles de cache
 
-        \point{..}
+        \medskip
 
-        \pause[2]%
-        \begin{highlight}{Conclusion}{Red}
-            On sélectionne une bande diagonale de la matrice et on la met dans un cache set-associatif
+        \point{Densité dans la bande fixe (10\textsuperscript{-2})}
 
-            \point{}{<relation>}
-        \end{highlight}
+        \point{}
+
+        \medskip
+
+        \arrow{Réduction de deux ordres de grandeur}
+
+        \subpt{\parbox[t]{5mm}{SI} Matrice parfaitement bandée}
+
+        \subpt{\parbox[t]{5mm}{ET} Largeur de bande suffisamment petite par rapport à la taille du cache}
+
+        \medskip
+
+        \tab{<relation>}
 
     \end{minipage}
     \hfill
-    \begin{minipage}{0.58\linewidth}
+    \begin{minipage}[t]{0.58\linewidth}
 
         \pause[1]%
-        <étiquette model C>
-
         \includegraphics<1>[width=\linewidth]{Figures/PDF/LIST.pdf}
-        \includegraphics<2->[width=\linewidth]{Figures/PDF/LogoUGA.pdf}
+        % \includegraphics<2->[width=\linewidth]{Figures/PDF/LogoUGA.pdf}
 
         (graph avec courbes qui apparaissent au bon moment)
 
     \end{minipage}
 
+    % \pause[2]%
+    \medskip%
+    \begin{highlight}{Conclusion}{Red}
+        On sélectionne une bande diagonale de la matrice, qu'on traite avec un cache set-associatif
+
+        \point{<relation>}
+    \end{highlight}
+
+    \pause[1]%
+    \begin{tikzpicture}[remember picture, overlay]
+        \node [shift={(-1cm, -1.3cm)}, rotate=5] at (current page.north east)
+            { \includegraphics[width=0.08\linewidth]{Figures/PDF/Sticker_C.pdf} };
+    \end{tikzpicture}
+
 \end{frame}
 
 \begin{frame}
-    Que fait on du reste ?
+    \frametitle{Que faire du reste, hors de la bande ?}
 
-    Granularité
+    \begin{minipage}[t]{0.38\linewidth}
+        \raggedright
 
-    Éléments isolés
-    
-    \point{Pas compatible avec ligne de cache}
-    
-    \arrow{Il faut cache par éléments}
+        Granularité : Éléments isolés
+        
+        \point{Incompatible avec les lignes de cache}
+        
+        \arrow{Pas de ligne de cache :}
+        
+        \tab{64o (8 mots) $\rightarrow$ 8o (1 mot)}
 
-    Pas de structure, hit imprévisible -> augmenter le hit rate dans espace de cache modeste : complètement associatif
+        \medskip
 
-    Transaction par éléments
+        Absence de structure claire
+        
+        \point{Nombre de \textit{hits} bas}
+        
+        \arrow{Pour augmenter la quantité de \textit{hits} dans un espace de cache modeste :}
+        
+        \tab{Cache complètement associatif}
 
-    le reste -> SRT fully associatif, taille modeste
+        \medskip
 
-    Sur graphe, montrer aussi qu'il faut des transactions mémoire adaptées
+        Transactions mémoires inadaptées
+        
+        \point{Lectures et écritures sur 64o (8 mots)}
+        
+        \arrow{Transactions mémoires "par éléments"}
+
+        \tab{RMW atomique sur 8o (1 mot)}
+
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.58\linewidth}
+
+        \pause[1]%
+        \includegraphics<1>[width=\linewidth]{Figures/PDF/LIST.pdf}
+        % \includegraphics<2->[width=\linewidth]{Figures/PDF/LogoUGA.pdf}
+
+        (graph avec courbes qui apparaissent au bon moment)
+
+    \end{minipage}
+
+    % \pause[2]%
+    \medskip%
+    \begin{highlight}{Conclusion}{Red}
+        \small
+        On traite les éléments hors-bande de la matrice avec un cache \og par élément \fg{}, complétement associatif, avec des transactions mémoires \og par élément \fg{} (RMW)
+    \end{highlight}
 \end{frame}
 
 \begin{frame}
