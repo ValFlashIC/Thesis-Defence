@@ -20,6 +20,71 @@
 \subsection{Cache générique}
 
 \begin{frame}
+    \frametitle{Contexte}
+
+    \begin{minipage}[t]{0.48\linewidth}
+        \raggedright
+
+        Noyau de calcul : SpMV (multiplication matrice creuse-vecteur)
+
+        \smallskip
+
+        Algorithme : OP (\textit{Outer-Product})
+
+        \bigskip
+        %%%% ici, colone 2 apparaît avant !!! %%%%
+
+        Avec OP SpMV, les accès \og aléatoires \fg{} se produisent sur le vecteur de sortie et sont des réductions
+
+        \arrow{Réductions \og aléatoires \fg{}}
+
+        \bigskip
+
+        Une réduction sur un vecteur $v$ : $v_{indice} +\!\!= valeur$
+
+        \point{Une lecture en mémoire de $v_{indice}$}
+
+        \point{Une accumulation pour mettre à jour $v_{indice}$ avec $valeur$}
+
+        \point{Une écriture en mémoire de $v_{indice}$ mis à jour}
+
+        Cette opération est noté RED : $\mathit{RED}(indice, valeur)$
+
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\linewidth}
+
+        SpMV : $A \times b = c$
+
+        Avec $A$ une matrice creuse de taille $(M, N)$,
+
+        $b$ et $c$ des vecteurs denses de taille $N$ et $M$
+
+        \bigskip
+
+        OP (Outer-Product)
+
+        $for \, n \in [0, N-1]$
+
+        $for \, m \in [0, M-1]$
+
+        $c_m +\!\!= A_{m, n} \times b_n$
+
+        $end$
+
+        $end$
+
+        \bigskip
+
+        \arrow{Accès séquentiels sur les entrées $A$ et $b$}
+
+        \arrow{Accès \og aléatoire \fg{} sur le vecteur de sortie $c$}
+
+    \end{minipage}
+    
+\end{frame}
+
+\begin{frame}
     \frametitle{Cache générique}
     \framesubtitle{Fonctionnement \& Réduction dans un cache générique}
 
@@ -28,11 +93,25 @@
 
         % Cache classique : set-associatif, plusieurs voies
 
-        Granularité : ligne de cache (64 o)
+        Granularité : ligne de cache (64 octets)
 
-        Transactions mémoires : lecture et écriture de ligne de 64 o
+        \bigskip
 
-        Réduction : lecture dans le cache (avec hit, miss ou évincement), accumulation dans le processeur, écriture dans le cache
+        Transactions mémoires : lecture et écriture de ligne de 64 octets
+
+        \bigskip
+
+        Réduction : $c_{indice} +\!\!= valeur$
+
+        \smallskip
+
+        \point{lecture dans le cache}
+
+        \subpt{avec hit, miss ou évincement}
+        
+        \point{accumulation dans le processeur}
+        
+        \point{écriture dans le cache}
 
         % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         \column{0.48\linewidth}
@@ -60,6 +139,8 @@
     Accumulation sur place, ajout d'un accumulateur
 
     Style write-back
+
+    Figure comme SpDCache (voir ASAP) ou on montre ce qu'il y a en plus
 \end{frame}
 
 \begin{frame}
