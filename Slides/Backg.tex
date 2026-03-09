@@ -50,7 +50,50 @@
 \begin{frame}
     \frametitle{Les modèles développés pour étudier et évaluer SpDCache}
 
-    Très rapide comparaison, étiquettes pour les identifier
+    Trois modèles :
+
+    \bigskip\bigskip\bigskip\bigskip
+
+    \begin{tblr}{
+            width = {\linewidth},
+            colspec = {X[1.2,c] *{3}{X[2,c]}}, % rowspec
+            rows = {m},
+            colsep = {4pt},
+            row{1-Z} = {rowsep=2pt, black!2},
+            row{1} = {c, font=\bfseries, black!5},
+            hspan = {minimal},
+            % hlines, vlines,
+            % rulesep = {-1pt},
+            hline{1,Z} = {2pt}, % Z for last
+            hline{2} = {1pt},
+            % hline{Z} = {1pt, dashed},
+            vline{2-Y} = {1-Z}{0.5pt},
+        }
+        %
+        Modèle & Modèle analytique & Modèle de simulation & Implémentation RTL \\
+        Langage & C & Python & SystemVerilog \\
+        Entrées & Distributions de densités & Matrices réelles et synthétiques & Matrices réelles et synthétiques \\
+        Niveau de paramétrisation & Très élevé +++ & \'Elevé ++ & Moyen + \\
+        Vitesse de simulation & $\sim$10\textsuperscript{5} $nnz/s$ +++ & $\sim$10\textsuperscript{3} $nnz/s$ ++ & $\sim$10 $nnz/s$ + \\
+        Précision & Probabilité + & Transaction ++ & Cycle +++ \\
+        Design & Approximatif & Exact & Exact avec contraintes matérielles \\
+        %
+    \end{tblr}
+
+    \begin{tikzpicture}[remember picture, overlay]
+        \node [shift={(-4.7cm, 1.70cm)}, rotate=5] at (current page.center)
+            { \includegraphics[width=0.08\linewidth]{Figures/PDF/Sticker_C.pdf} };
+    \end{tikzpicture}
+
+    \begin{tikzpicture}[remember picture, overlay]
+        \node [shift={(-0.7cm, 1.80cm)}, rotate=-5] at (current page.center)
+            { \includegraphics[width=0.08\linewidth]{Figures/PDF/Sticker_Py.pdf} };
+    \end{tikzpicture}
+
+    \begin{tikzpicture}[remember picture, overlay]
+        \node [shift={(3.5cm, 1.73cm)}, rotate=7] at (current page.center)
+            { \includegraphics[width=0.08\linewidth]{Figures/PDF/Sticker_RTL.pdf} };
+    \end{tikzpicture}
 
 \end{frame}
 
