@@ -27,3 +27,39 @@
     Quelques détails sur l'implem RTL
 
 \end{frame}
+
+\begin{frame}
+    \frametitle{La redirection des sets du cache}
+
+    Objectifs :
+
+    \point{3 régions indépendantes (toutes les adresses peuvent mapper sur chacunes des trois régions)}
+
+    \point{N'utiliser que la mémoire cache disponible}
+
+    \point{Changer dynamiquement de taille de région}
+
+    <figure set redirect>
+
+    adresse (-> set\_global) + region => set\_region
+
+    Mux set global, set region en fct mode <schéma>
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{La région complétement associative}
+
+    CAM -> retient les adresses (comme champs TAG)
+
+    Ligne de cache -> 8 éléments sur des adresses quelconques
+
+    CAM 1024 entrées max
+
+    \bigskip
+
+    On s'assure de décoréler évincements et mise à jour du cache -> table d'accumulation
+
+    Permet de ne pas bloquer la pipeline du cache pendant évincement, lecture acc écriture (on profite de la propriété des REDs)
+    
+\end{frame}

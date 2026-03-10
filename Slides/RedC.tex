@@ -36,7 +36,7 @@
 
         Avec OP SpMV, les accès \og aléatoires \fg{} se produisent sur le vecteur de sortie et sont des réductions
 
-        \arrow{Réductions \og aléatoires \fg{}}
+        \arrow[\normalsize]{Réductions \og aléatoires \fg{}}
 
         \bigskip
 
@@ -47,6 +47,8 @@
         \point{Une accumulation pour mettre à jour $v_{indice}$ avec $valeur$}
 
         \point{Une écriture en mémoire de $v_{indice}$ mis à jour}
+
+        \medskip
 
         Cette opération est noté RED : $\mathit{RED}(indice, valeur)$
 
@@ -64,21 +66,25 @@
 
         OP (Outer-Product)
 
-        $for \, n \in [0, N-1]$
+        \textcolor{purple}{$for \, n \in [0, N-1]$}
 
-        $for \, m \in [0, M-1]$
+        \tab[\normalsize\color{purple}]{$for \, m \in [0, M-1]$}
 
-        $c_m +\!\!= A_{m, n} \times b_n$
+        \tab{\tab[\normalsize\color{purple}]{$c_m +\!\!= A_{m, n} \times b_n$}}
 
-        $end$
+        \tab[\normalsize\color{purple}]{$end$}
 
-        $end$
+        \textcolor{purple}{$end$}
 
         \bigskip
 
-        \arrow{Accès séquentiels sur les entrées $A$ et $b$}
+        \arrow[\normalsize]{Accès séquentiels sur les entrées $A$ et $b$}
 
-        \arrow{Accès \og aléatoire \fg{} sur le vecteur de sortie $c$}
+        \arrow[\normalsize]{Accès \og aléatoire \fg{} sur le vecteur de sortie $c$}
+
+        \bigskip
+
+        <IBR OBR ??>
 
     \end{minipage}
     
@@ -86,16 +92,14 @@
 
 \begin{frame}
     \frametitle{Cache générique}
-    \framesubtitle{Fonctionnement \& Réduction dans un cache générique}
+    % \framesubtitle{Fonctionnement \& Réduction dans un cache générique}
 
-    \begin{columns}
-        \column{0.48\linewidth}
+    \begin{minipage}[t]{0.48\linewidth}
+        \raggedright
 
         % Cache classique : set-associatif, plusieurs voies
 
         Granularité : ligne de cache (64 octets)
-
-        \bigskip
 
         Transactions mémoires : lecture et écriture de ligne de 64 octets
 
@@ -105,16 +109,43 @@
 
         \smallskip
 
-        \point{lecture dans le cache}
+        % \point{lecture dans le cache}
 
-        \subpt{avec hit, miss ou évincement}
+        % \subpt{avec hit, miss ou évincement}
         
-        \point{accumulation dans le processeur}
+        % \point{accumulation dans le processeur}
         
-        \point{écriture dans le cache}
+        % \point{écriture dans le cache}
 
-        % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        \column{0.48\linewidth}
+        Cas de hit :
+
+        \point{Lecture du cache \ck}
+
+        \point{Accumulation dans le processeur}
+        
+        \point{Ecriture dans le cache \ck}
+
+        Cas de miss:
+
+        \point{Lecture en mémoire et mise à jour du cache \cr}
+
+        \point{Accumulation dans le processeur}
+
+        \point{Ecriture dans le cache \ck}
+
+        Cas de miss avec évincement :
+
+        \point{Ecriture en mémoire de la donnée évincée \cr}
+
+        \point{Lecture en mémoire et mise à jour du cache \cr}
+
+        \point{Accumulation dans le processeur}
+
+        \point{Ecriture dans le cache \ck}
+
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\linewidth}
 
         \begin{figure}
             \centering
@@ -123,24 +154,36 @@
 
         <schéma d'une réduction dans un cache générique>
 
-    \end{columns}
+    \end{minipage}
 \end{frame}
 
 \subsection{Cache de réduction}
 
 \begin{frame}
     \frametitle{Cache de réduction}
-    \framesubtitle{Qu'est-ce ?}
 
-    Même caractéristiques que cache : set-associatif, plusieurs voies, lignes de cache
+    \begin{minipage}[t]{0.48\linewidth}
+        \raggedright
 
-    Traite des instructions de réduction RED
+        % Même caractéristiques que cache : set-associatif, plusieurs voies, lignes de cache
+        Cache de réduction : cache générique avec quelques modifications
 
-    Accumulation sur place, ajout d'un accumulateur
+        \point{Supporte des instructions de réduction RED}
 
-    Style write-back
+        \point{Possède un accumulateur : accumulation dans le cache}
 
-    Figure comme SpDCache (voir ASAP) ou on montre ce qu'il y a en plus
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\linewidth}
+
+        \begin{figure}
+            \centering
+            \includegraphics[width=\linewidth]{Figures/PDF/LIST.pdf}
+        \end{figure}
+
+        <Figure comme SpDCache (voir ASAP) ou on montre ce qu'il y a en plus (?)>
+
+    \end{minipage}
 \end{frame}
 
 \begin{frame}
@@ -171,12 +214,35 @@
     \bigskip
 
     Comparaison du nombre d'instruction / le processeur n'attend pas les REDs
+
+    GC 0 1 2
+
+    RedC 0 0 2
+
+    Evincement : le processeur n'attend pas de réponse
 \end{frame}
 
 \begin{frame}
     \frametitle{Perf}
 
-    Python 25/75
+    Simulation Python d'un OP SpMV
+
+    Avec 25\% du cache pour les transactions génériques (lectures de $A$ et $b$)
+
+    Et 75\% du cache en mode réduction pour $c$
+
+    \bigskip
+
+    <resultats (table ? / juste quelques chiffres ?)>
+
+    <ajouter taux de remplissage pour transition ? --> next slide ?>
+
+    <trafic mémoire>
+
+    \begin{tikzpicture}[remember picture, overlay]
+        \node [shift={(-0.7cm, 1.80cm)}, rotate=-5] at (current page.center)
+            { \includegraphics[width=0.08\linewidth]{Figures/PDF/Sticker_Py.pdf} };
+    \end{tikzpicture}
 
 \end{frame}
 
