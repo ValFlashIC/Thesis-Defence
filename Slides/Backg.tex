@@ -3,7 +3,7 @@
 % Section: Background
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section[Prérequis]{Prérequis et Problématique}
+\section[Matrices creuses]{Les matrices creuses}
 
 % \begin{frame}
 %     SpMV
@@ -36,75 +36,353 @@
 \begin{frame}
     \frametitle{Les matrices creuses}
 
-    Slide 1 de HiPEAC
+    \underbar{Applications :} Physiques numériques, Intéligence artificielle, Analyse de graphes...
+    %
+    \begin{tikzpicture}[remember picture, overlay]
+        \node [shift={(-3cm, 1cm)}, rotate=0] at (current page.east)
+            { \includegraphics[width=0.2\linewidth]{Figures/PDF/LogoUGA.pdf} };
+    \end{tikzpicture}
+    %
+    \begin{tikzpicture}[remember picture, overlay]
+        \node [shift={(-2cm, 0cm)}, rotate=0] at (current page.east)
+            { \includegraphics[width=0.2\linewidth]{Figures/PDF/LogoUGA.pdf} };
+    \end{tikzpicture}
+    %
+    \begin{tikzpicture}[remember picture, overlay]
+        \node [shift={(-5cm, -0.5cm)}, rotate=0] at (current page.east)
+            { \includegraphics[width=0.2\linewidth]{Figures/PDF/LogoUGA.pdf} };
+    \end{tikzpicture}
+
+    \medskip
+
+    \arrow[\color{Red}\bfseries][0]{Matrice creuse}
+    %
+    \begin{tikzpicture}[remember picture, overlay]
+        \node [shift={(-3cm, -2.5cm)}, rotate=0] at (current page.east)
+            { \includegraphics[width=0.2\linewidth]{Figures/PDF/LogoUGA.pdf} };
+    \end{tikzpicture}
+
+    \point[\bfseries][2][Red]{\parbox[t]{2cm}{Larges}}(nombre d'éléments non-nuls jusqu'à $\sim10^9$)
+
+    \point[\bfseries][2][Red]{\parbox[t]{2cm}{Creuses}}(densité jusqu'à $\sim10^{-7}$)
+
+    \arrow[\bfseries][2][Red]{Compressées en mémoire :} Formats creux
+
+    \bigskip
+
+    \point[\bfseries][2][Red]{Diverses}
+    %
+    {%
+        \def\posX{-8cm}%
+        \def\posY{-2cm}%
+        \begin{tikzpicture}[remember picture, overlay]
+            \node [shift={(\posX, \posY)}, rotate=0] at (current page.east)
+                { \includegraphics[width=0.2\linewidth]{Figures/PDF/LogoUGA.pdf} };
+        \end{tikzpicture}
+        %
+        \begin{tikzpicture}[remember picture, overlay]
+            \node [shift={(\posX, \posY + 1cm)}, rotate=0] at (current page.east)
+                { \scriptsize\color{Orange} Réseaux de neurones };
+        \end{tikzpicture}
+        %
+        \begin{tikzpicture}[remember picture, overlay]
+            \node [shift={(\posX, \posY)}, rotate=-45] at (current page.east)
+                { \scriptsize\color{Blue} Graphes / Algèbre linéaire };
+        \end{tikzpicture}
+        %
+        \begin{tikzpicture}[remember picture, overlay]
+            \node [shift={(\posX, \posY - 1cm)}, rotate=0] at (current page.east)
+                { \scriptsize From  \cref{ref:Spada} };
+        \end{tikzpicture}
+    }
+
+    \subpt[][4]{En tailles et densités}
+
+    \subpt[][4]{En structures}
+
+    \vspace{3cm}
+    \dref{ref:Spada}{Zhiyao Li, Jiaxiang Li, Taijie Chen, Dimin Niu, Hongzhong Zheng, Yuan Xie, and Mingyu Gao. 2023. Spada: Accelerating Sparse Matrix Multiplication with Adaptive Dataflow. ASPLOS 2023. Association for Computing Machinery, 747–761.}
 
 \end{frame}
 
 \begin{frame}
-    \frametitle{Les matrices creuses jusqu'au problème dans cache, et intro SpDCache}
+    \frametitle{Les formats creux}
 
-    Premières slides de ASAP
+    \textbf{Formats creux} \cref{ref:spFormats1} \cref{ref:spFormats2} \arrow[]{pour éviter de stocker les zéros}
+
+    \point[][2][Red]{Beaucoup de formats spécifiques à des structures de matrices}
+
+    \point[][2][Red]{CSR et CSC} \arrow[]{les plus simples et plus utilisées}
+
+    \vspace{1cm}
+    \begin{minipage}[t]{0.48\linewidth}
+        \centering
+
+        \textbf{CSR} (Compressed Sparse Row)
+        \medskip
+
+        \animategraphics[loop,controls,autoplay,buttonsize=6pt,buttonfg=0.5,width=\linewidth]{2}{Figures/GIF/test-}{0}{11}
+
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\linewidth}
+        \centering
+
+        \textbf{CSC} (Compressed Sparse Column)
+        \medskip
+
+        \animategraphics[loop,controls,autoplay,buttonsize=6pt,buttonfg=0.5,width=\linewidth]{2}{Figures/GIF/test-}{0}{11}
+    \end{minipage}
+
+    \vspace{1cm}
+    \dref{ref:spFormats1}{Reginald P. Tewarson. 1973. Sparse matrices. Vol. 69. Academic press New York, State University of New York, Stony Brook, NY.}
+    \smallskip
+    \dref{ref:spFormats2}{Yousef Saad. 2003. Iterative Methods for Sparse Linear Systems (second ed.). Society for Industrial and Applied Mathematics.}
 
 \end{frame}
 
 \begin{frame}
-    \frametitle{Les modèles développés pour étudier et évaluer SpDCache}
+    \frametitle{\'Echanger un problème pour un autre}
 
-    Trois modèles :
+    Formats creux :
 
-    \bigskip\bigskip\bigskip\bigskip
+    \arrow[\color{Green}][2]{Empreinte mémoire réduite} de $\mathcal{O}(n^2)$ à $\mathcal{O}(n)$ \arrow[]{une nécessité}
 
-    \begin{tblr}{
-            width = {\linewidth},
-            colspec = {X[1.2,c] *{3}{X[2,c]}}, % rowspec
-            rows = {m},
-            colsep = {4pt},
-            row{1-Z} = {rowsep=2pt, black!2},
-            row{1} = {c, font=\bfseries, black!5},
-            hspan = {minimal},
-            % hlines, vlines,
-            % rulesep = {-1pt},
-            hline{1,Z} = {2pt}, % Z for last
-            hline{2} = {1pt},
-            % hline{Z} = {1pt, dashed},
-            vline{2-Y} = {1-Z}{0.5pt},
+    \arrow[\color{Red}][2]{Utilisation de métadonnées} \arrow[]{génèrent des transactions mémoires vers des adresses non-consécutives}
+
+    \bigskip
+    \begin{center}
+        \animategraphics[loop,controls,autoplay,buttonsize=6pt,buttonfg=0.5,width=0.5\linewidth]{2}{Figures/GIF/test-}{0}{11}
+    \end{center}
+    \bigskip
+
+    \textbf{\textcolor{Red}{Indirections}}
+
+    \point[\bfseries][2][Red]{Accès indirects} depuis/vers la hiérarchie mémoire
+
+    \point[][2][Red]{Du point de vue d'un système mémoire naïf :} \textbf{\textcolor{Red}{accès \og aléatoires \fg{}}}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Les noyaux de caclul (Kernels)}
+
+    \textbf{\textcolor{Red}{Où appairaissent les indirections ?}}
+
+    \bigskip
+
+    Les matrices creuses sont utilisées dans de \textbf{nombreux kernels} :
+
+    \point[][2][Red]{\parbox[t]{1cm}{$1\mathcal{D}$}} Multiplication \textbf{matrice} creuse-\textbf{vecteur} : SpMV
+
+    \point[][2][Red]{\parbox[t]{1cm}{$2\mathcal{D}$}} Multiplication \textbf{matrice}-\textbf{matrice} : SpMSpM, SpGEMM, SpMM
+    %
+    \makebox(0,0){\put(0,2.8\normalbaselineskip){%
+        $\left.\rule{0pt}{1.1\normalbaselineskip}\right\}$
+        \parbox{0.25\linewidth}{\raggedright \textbf{Kernels de base} utilisés dans la majorité des applications}
+    }}
+    
+    \point[][2][Red]{\parbox[t]{1cm}{$n\mathcal{D}$}} Les \textbf{tenseurs} en général
+
+    \bigskip
+
+    Chaque kernel peut être implémenté suivant \textbf{plusieurs algorithmes} :
+
+    \point[][2][Red]{\parbox[t]{4.5cm}{\textbf{\textcolor{Red}{Inner-Product}} (IP)}} ($\geqslant1\mathcal{D}$)
+
+    \point[][2][Red]{\parbox[t]{4.5cm}{\textbf{\textcolor{Red}{Outer-Product}} (OP)}} ($\geqslant1\mathcal{D}$)
+
+    \point[][2][Red]{\parbox[t]{4.5cm}{\textbf{\textcolor{Red}{Gustavson}} (ou Row-wise)}} ($\geqslant2\mathcal{D}$)
+    %
+    \quad\makebox(0,0){\put(0,3.8\normalbaselineskip){%
+        $\left.\rule{0pt}{1.6\normalbaselineskip}\right\}$
+        \parbox[t]{0.55\linewidth}{
+            \raggedright
+            \textbf{Algorithmes de base}
+
+            \medskip
+            Des algorithmes plus compexes peuvent être vues comme des combinaisons de ces trois là.
         }
-        %
-        Modèle & Modèle analytique & Modèle de simulation & Implémentation RTL \\
-        Langage & C & Python & SystemVerilog \\
-        Entrées & Distributions de densités & Matrices réelles et synthétiques & Matrices réelles et synthétiques \\
-        Niveau de paramétrisation & Très élevé +++ & \'Elevé ++ & Moyen + \\
-        Vitesse de simulation & $\sim$10\textsuperscript{5} $nnz/s$ +++ & $\sim$10\textsuperscript{3} $nnz/s$ ++ & $\sim$10 $nnz/s$ + \\
-        Précision & Probabilité + & Transaction ++ & Cycle +++ \\
-        Design & Approximatif & Exact & Exact avec contraintes matérielles \\
-        %
-    \end{tblr}
+    }}
 
-    \begin{tikzpicture}[remember picture, overlay]
-        \node [shift={(-4.7cm, 1.70cm)}, rotate=5] at (current page.center)
-            { \includegraphics[width=0.08\linewidth]{Figures/PDF/Sticker_C.pdf} };
-    \end{tikzpicture}
+    \bigskip\bigskip
 
-    \begin{tikzpicture}[remember picture, overlay]
-        \node [shift={(-0.7cm, 1.80cm)}, rotate=-5] at (current page.center)
-            { \includegraphics[width=0.08\linewidth]{Figures/PDF/Sticker_Py.pdf} };
-    \end{tikzpicture}
-
-    \begin{tikzpicture}[remember picture, overlay]
-        \node [shift={(3.5cm, 1.73cm)}, rotate=7] at (current page.center)
-            { \includegraphics[width=0.08\linewidth]{Figures/PDF/Sticker_RTL.pdf} };
-    \end{tikzpicture}
+    \point[][2][Red]{Méthodes de tiling} \arrow[]{$\sim$ algorithmes customisés / pré-traitement} \qquad ($\geqslant1\mathcal{D}$)
 
 \end{frame}
 
 \begin{frame}
-    Problème :
+    \frametitle{Kernels creux -- Inner-Product SpMV}
 
-    Comment traiter efficacement des réductions irrégulières ?
+    ...
 
-    Deux approches complémentaires :
-
-    Approche 1 : Cache de réduction pour calculer les réductions dans le cache et éviter des transactions inutiles
-
-    Approche 2 : Traiter l'irrégularité en s'appuyant sur la structure des matrices, partitionnement du cache
 \end{frame}
+
+\begin{frame}
+    \frametitle{Kernels creux -- Outer-Product SpMV}
+
+    ...
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Kernels creux -- Gustavson SpMSpM}
+
+    ...
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{La hiérarchie mémoire}
+
+    ...
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Résumé}
+
+    ...
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Problématique}
+
+    Plus général (on sait pas encore que ce sera scatter focus)
+
+\end{frame}
+
+\section[\'Etat-de-l'art]{Accélérateurs dédiées et Directions}
+
+\begin{frame}
+    \frametitle{Accélérateurs matériels dédiés}
+    
+    ...
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Accélérateurs matériels dédiés}
+    
+    ...
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Gamma ???}
+    
+    ...
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{PHI ???}
+    
+    ...
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Quelle est la meilleure solution ?}
+    
+    ...
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{}
+    
+    Parmis les accélérateurs complets -> gust
+
+    Etendre la discussion sur avantatge OP sur IP
+
+    > 1 Gust 2 OP 3 IP
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Avant de concevoir un accélérateur pour le calcul creux}
+    
+    ...
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Direction}
+
+    Hypothèses :
+    
+    OP SpMV
+
+    architecture générique, faible coût
+
+    structure des matrices
+
+    \bigskip
+
+    Approche : (résumé en qq mots)
+
+\end{frame}
+
+% \begin{frame}
+%     \frametitle{Les modèles développés pour étudier et évaluer SpDCache}
+
+%     Trois modèles :
+
+%     \bigskip\bigskip\bigskip\bigskip
+
+%     \begin{tblr}{
+%             width = {\linewidth},
+%             colspec = {X[1.2,c] *{3}{X[2,c]}}, % rowspec
+%             rows = {m},
+%             colsep = {4pt},
+%             row{1-Z} = {rowsep=2pt, black!2},
+%             row{1} = {c, font=\bfseries, black!5},
+%             hspan = {minimal},
+%             % hlines, vlines,
+%             % rulesep = {-1pt},
+%             hline{1,Z} = {2pt}, % Z for last
+%             hline{2} = {1pt},
+%             % hline{Z} = {1pt, dashed},
+%             vline{2-Y} = {1-Z}{0.5pt},
+%         }
+%         %
+%         Modèle & Modèle analytique & Modèle de simulation & Implémentation RTL \\
+%         Langage & C & Python & SystemVerilog \\
+%         Entrées & Distributions de densités & Matrices réelles et synthétiques & Matrices réelles et synthétiques \\
+%         Niveau de paramétrisation & Très élevé +++ & \'Elevé ++ & Moyen + \\
+%         Vitesse de simulation & $\sim$10\textsuperscript{5} $nnz/s$ +++ & $\sim$10\textsuperscript{3} $nnz/s$ ++ & $\sim$10 $nnz/s$ + \\
+%         Précision & Probabilité + & Transaction ++ & Cycle +++ \\
+%         Design & Approximatif & Exact & Exact avec contraintes matérielles \\
+%         %
+%     \end{tblr}
+
+%     \begin{tikzpicture}[remember picture, overlay]
+%         \node [shift={(-4.7cm, 1.70cm)}, rotate=5] at (current page.center)
+%             { \includegraphics[width=0.08\linewidth]{Figures/PDF/Sticker_C.pdf} };
+%     \end{tikzpicture}
+
+%     \begin{tikzpicture}[remember picture, overlay]
+%         \node [shift={(-0.7cm, 1.80cm)}, rotate=-5] at (current page.center)
+%             { \includegraphics[width=0.08\linewidth]{Figures/PDF/Sticker_Py.pdf} };
+%     \end{tikzpicture}
+
+%     \begin{tikzpicture}[remember picture, overlay]
+%         \node [shift={(3.5cm, 1.73cm)}, rotate=7] at (current page.center)
+%             { \includegraphics[width=0.08\linewidth]{Figures/PDF/Sticker_RTL.pdf} };
+%     \end{tikzpicture}
+
+% \end{frame}
+
+% \begin{frame}
+%     Problème :
+
+%     Comment traiter efficacement des réductions irrégulières ?
+
+%     Deux approches complémentaires :
+
+%     Approche 1 : Cache de réduction pour calculer les réductions dans le cache et éviter des transactions inutiles
+
+%     Approche 2 : Traiter l'irrégularité en s'appuyant sur la structure des matrices, partitionnement du cache
+% \end{frame}

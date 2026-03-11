@@ -6,6 +6,7 @@
 \usepackage{textcomp}
 % \usepackage[square,numbers,sort&compress]{natbib}
 \usepackage[french]{babel}
+\usepackage{setspace}
 \usepackage{bookman}
 \usepackage{latexsym}
 \usepackage{amsmath}
@@ -24,6 +25,7 @@
 \usepackage{stackengine}
 \usepackage{calligra}
 \usepackage{fontawesome}
+\usepackage{animate}
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -56,14 +58,42 @@
 
 \def\maincolor{Dandelion} % Goldenrod
 
-\newcommand{\point}[2][\small]{{#1\ $\bullet$ \ #2}}
-\newcommand{\subpt}[2][\small]{{#1\ \ $\filledtriangleright$ \ #2}}
-\newcommand{\ssbpt}[2][\small]{{#1\ \ \ - \ #2}}
-\newcommand{\arrow}[2][\small]{{#1\ \faArrowRight \ #2}}
-\newcommand{\tab}[2][\small]{{#1 \qquad #2}}
+\makeatletter
+\newcount\my@repeat@count
+\newcommand{\myrepeat}[2]{%
+  \begingroup
+  \my@repeat@count=\z@
+  \@whilenum\my@repeat@count<#1\do{#2\advance\my@repeat@count\@ne}%
+  \endgroup
+}
+\makeatother
+
+\NewDocumentCommand{\bulletPoint}{O{\small} O{1} o m O{$\bullet$}}{%
+	{#1\myrepeat{#2}{\ }{\IfNoValueF{#3}{\color{#3}}#5}\ #4}%
+}
+
+\NewDocumentCommand{\arrow}{O{\small} O{0} o m O{{\normalfont\faArrowRight}}}{\bulletPoint[#1][#2][#3]{#4}[#5]}
+\NewDocumentCommand{\point}{O{\small} O{1} o m O{$\bullet$}}{\bulletPoint[#1][#2][#3]{#4}[#5]}
+\NewDocumentCommand{\subpt}{O{\small} O{3} o m O{$\filledtriangleright$}}{\bulletPoint[#1][#2][#3]{#4}[#5]}
+\NewDocumentCommand{\ssbpt}{O{\small} O{5} o m O{-}}{\bulletPoint[#1][#2][#3]{#4}[#5]}
+\NewDocumentCommand{\tab}{O{\small} O{8} m}{\bulletPoint[#1][#2]{#3}[]}
 
 \def\ck{\textcolor{Green}{\faCheck}}
 \def\cr{\textcolor{Red}{\faClose}}
+
+\newcounter{refcnt}
+\setcounter{refcnt}{0}
+\newcommand{\refNb}[1]{%
+	\refstepcounter{refcnt}%
+	\label{#1}\par%
+	[\therefcnt]%
+}
+\newcommand{\cref}[1]{%
+	\textit{[\ref{#1}]}%
+}
+\newcommand{\dref}[2]{%
+	{\scriptsize\begin{spacing}{0.5}\refNb{#1} #2\end{spacing}}%
+}
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -200,6 +230,8 @@
 \setbeamercolor{normal text}{bg=,fg=black}
 \setbeamercolor{section in head/foot}{use=normal text,bg=\maincolor!60!Yellow!80!white,fg=normal text.fg}
 \setbeamercolor{frametitle}{use=normal text,bg=\maincolor!50!Yellow!50!white,fg=normal text.fg}
+
+\setbeamerfont{frametitle}{series=\scshape\bfseries}
 
 \setbeamertemplate{footline}[text line]{%
 	\begin{beamercolorbox}[wd=\paperwidth,ht=0pt,dp=0pt]{white}%

@@ -3,7 +3,7 @@
 % Section: Reduction Cache
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section[Réductions]{Approche 1 : Cache de réduction}
+\section[Réductions]{Cache de réduction}
 
 % \begin{frame}
 %     Cache générique, fonctionnement (rapide)
@@ -68,11 +68,11 @@
 
         \textcolor{purple}{$for \, n \in [0, N-1]$}
 
-        \tab[\normalsize\color{purple}]{$for \, m \in [0, M-1]$}
+        \tab[\normalsize\color{purple}][4]{$for \, m \in [0, M-1]$}
 
-        \tab{\tab[\normalsize\color{purple}]{$c_m +\!\!= A_{m, n} \times b_n$}}
+        \tab[\normalsize\color{purple}][8]{$c_m +\!\!= A_{m, n} \times b_n$}
 
-        \tab[\normalsize\color{purple}]{$end$}
+        \tab[\normalsize\color{purple}][4]{$end$}
 
         \textcolor{purple}{$end$}
 
@@ -81,10 +81,6 @@
         \arrow[\normalsize]{Accès séquentiels sur les entrées $A$ et $b$}
 
         \arrow[\normalsize]{Accès \og aléatoire \fg{} sur le vecteur de sortie $c$}
-
-        \bigskip
-
-        <IBR OBR ??>
 
     \end{minipage}
     
@@ -222,36 +218,36 @@
     Evincement : le processeur n'attend pas de réponse
 \end{frame}
 
-\begin{frame}
-    \frametitle{Perf}
+% \begin{frame}
+%     \frametitle{Perf}
 
-    Simulation Python d'un OP SpMV
+%     Simulation Python d'un OP SpMV
 
-    Avec 25\% du cache pour les transactions génériques (lectures de $A$ et $b$)
+%     Avec 25\% du cache pour les transactions génériques (lectures de $A$ et $b$)
 
-    Et 75\% du cache en mode réduction pour $c$
+%     Et 75\% du cache en mode réduction pour $c$
 
-    \bigskip
+%     \bigskip
 
-    <resultats (table ? / juste quelques chiffres ?)>
+%     <resultats (table ? / juste quelques chiffres ?)>
 
-    <ajouter taux de remplissage pour transition ? --> next slide ?>
+%     <ajouter taux de remplissage pour transition ? --> next slide ?>
 
-    <trafic mémoire>
+%     <trafic mémoire>
 
-    \begin{tikzpicture}[remember picture, overlay]
-        \node [shift={(-0.7cm, 1.80cm)}, rotate=-5] at (current page.center)
-            { \includegraphics[width=0.08\linewidth]{Figures/PDF/Sticker_Py.pdf} };
-    \end{tikzpicture}
+%     \begin{tikzpicture}[remember picture, overlay]
+%         \node [shift={(-0.7cm, 1.80cm)}, rotate=-5] at (current page.center)
+%             { \includegraphics[width=0.08\linewidth]{Figures/PDF/Sticker_Py.pdf} };
+%     \end{tikzpicture}
 
-\end{frame}
+% \end{frame}
 
-\subsection{Conclusion}
+% \subsection{Conclusion}
 
-\begin{frame}
-    \frametitle{Conclusion}
+% \begin{frame}
+%     \frametitle{Conclusion}
 
-    Notre cache doit supporter les réductions
+%     Notre cache doit supporter les réductions
 
-    Note : existant, PHI, SortCache, ASA le font déjà
-\end{frame}
+%     Note : existant, PHI, SortCache, ASA le font déjà
+% \end{frame}
