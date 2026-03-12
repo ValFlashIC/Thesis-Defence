@@ -283,7 +283,7 @@
         
         \bigskip
 
-        \arrow[]{Avec le \textbf{SpMV} en \textbf{Inner-Product}, \textcolor{Red}{\textbf{les accès \og aléatoires \fg{} se produisent sur le vecteur d'entrée \textit{\textbf{b}}}}, au moment de cacluler la \textbf{somme partielle} $A_{i,j} \times b_j$.}
+        \arrow[]{Avec le \textbf{SpMV} en \textbf{Inner-Product}, \textcolor{Red}{\textbf{les accès \og aléatoires \fg{} se produisent sur le vecteur d'entrée \textit{\textbf{b}}}}, au moment de calculer la \textbf{somme partielle} $A_{i,j} \times b_j$.}
 
     \end{minipage}
 
@@ -299,14 +299,72 @@
 \begin{frame}
     \frametitle{Kernels creux -- Gustavson SpMSpM}
 
-    ...
+    Exemple de \textbf{SpMSpM} (multiplication matrice creuse-matrice creuse) : $A \times B = C$, avec $A$ de taille $(M, K)$, $B$ de taille $(K, N)$, et $C$ de taille $(M, N)$.
+
+    \point[][2][Red]{$\forall (i, j, k) \in \ldb 0, M-1 \rdb \times \ldb 0, N-1 \rdb \times \ldb 0, K-1 \rdb, \; C_{i, j} = C_{i, j} + A_{i, k} \times B_{k, j}$}
+
+    \point[][2][Red]{$A$ et $B$ sont stockées avec un format creux comme \underbar{CSR} ou CSC}
+
+    \point[][2][Red]{Des \textbf{accès indirectes} apparaissent, sur les entrées ou la sortie, en fonction de l'algorithme :}
+
+    \subpt[\bfseries][4][Red]{Gustavson (Gust) :}
+
+    \bigskip
+
+    \begin{minipage}[t]{0.48\linewidth}
+        \centering
+
+        \pause[1]%
+        \includegraphics[width=0.6\linewidth]{Figures/PDF/LIST.pdf}
+
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\linewidth}
+        \centering
+
+        \pause[1]%
+        \includegraphics[width=0.6\linewidth]{Figures/PDF/LIST.pdf}
+
+    \end{minipage}
+    
+    \bigskip
+
+    \arrow[]{Avec le \textbf{SpMSpM} en \textbf{Gustavson}, \textcolor{Red}{\textbf{les accès \og aléatoires \fg{}} se produisent sur \textbf{les lignes de la matrice d'entrée \textit{B}} et \textbf{dans les lignes de la matrice de sortie \textit{C}}}, au moment d'accumuler la \textbf{somme partielle} $A_{i,k} \times B_{k, j}$ avec $C_{i, j}$.}
+
+    \arrow[]{Gustavson se place comme un algorithme \textbf{intermédiaire} entre inner-product et outer-product}
 
 \end{frame}
 
 \begin{frame}
     \frametitle{La hiérarchie mémoire}
 
-    ...
+    \textcolor{Red}{\textbf{Pourquoi les accès \og aléatoires \fg{} sont un problème ?}}
+
+    \bigskip
+
+    \parbox[t]{5cm}{Avec une matrice dense} \arrow[]{localités spatiale et temporelle}
+
+    \parbox[t]{5cm}{Avec une \textbf{matrice creuse}} \arrow[\bfseries]{pas de localité}
+
+    \bigskip
+
+    Dans une architecture classique
+
+    \point[][2][Red]{Les hiérarchies mémoires prennent avantage des accès temporellement et spatialement locals}
+
+    \bigskip
+
+    \textcolor{Red}{Caches} \arrow[\color{Red}]{\textbf{non-adaptés} aux accès \og aléatoires \fg{}}
+
+    \arrow[][2][Red]{Cache remplie de zéros (lignes de cache remplies à 40\% d'éléments non-nuls)}
+
+    \arrow[][2][Red]{Nombre de hits bas}
+
+    \arrow[][2][Red]{\'Evincements non-nécessaires} \arrow[]{Beaucoup de \textbf{transactions mémoires} avec des \textbf{temps de réponse élevés}}
+
+    \medskip
+
+    \textcolor{Red}{Simple préfetcher linéaire} \arrow[][0][Red]{pas suffisant pour s'occuper du goulot d'étranglement mémoire}
 
 \end{frame}
 
