@@ -214,7 +214,78 @@
 \begin{frame}
     \frametitle{Kernels creux -- Inner-Product SpMV}
 
-    ...
+    Exemple de \textbf{SpMV} (multiplication matrice creuse-vecteur) : $A \times b = c$, avec $A$ de taille $(M, N)$.
+
+    \point[][2][Red]{$\forall (i, j) \in \ldb 0, M-1 \rdb \times \ldb 0, N-1 \rdb, \; c_i = c_i + A_{i, j} \times b_j$}
+
+    \point[][2][Red]{$A$ est stockée avec un format creux comme \underbar{CSR} ou CSC}
+
+    \point[][2][Red]{Des \textbf{accès indirectes} apparaissent, sur les entrées ou la sortie, en fonction de l'algorithme :}
+
+    \subpt[\bfseries][4][Red]{Inner-Product (IP) :}
+
+    \bigskip
+
+    \begin{minipage}[t]{0.17\linewidth}
+        \raggedright
+
+        \pause[1]%
+        \parbox[t]{2cm}{$c_0 \acc A_{0, 0} \times b_0$} (0)
+
+        \parbox[t]{2cm}{$c_0 \acc A_{0, 0} \times b_0$} (0)
+
+        \parbox[t]{2cm}{$c_0 \acc A_{0, 0} \times b_0$} (0)
+
+        \parbox[t]{2cm}{$c_0 \acc A_{0, 0} \times b_0$} (0)
+
+        \parbox[t]{2cm}{$c_0 \acc A_{0, 0} \times b_0$} (0)
+
+        \parbox[t]{2cm}{$c_0 \acc A_{0, 0} \times b_0$} (0)
+
+        \parbox[t]{2cm}{$c_0 \acc A_{0, 0} \times b_0$} (0)
+
+        \parbox[t]{2cm}{$c_0 \acc A_{0, 0} \times b_0$} (0)
+
+        \parbox[t]{2cm}{$c_0 \acc A_{0, 0} \times b_0$} (0)
+
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.81\linewidth}
+        \begin{minipage}[t]{0.365\linewidth}
+            \centering
+
+            \pause[1]%
+            \includegraphics[width=\linewidth]{Figures/PDF/LIST.pdf}
+
+        \end{minipage}
+        \hfill
+        \begin{minipage}[t]{0.365\linewidth}
+            \centering
+
+            \pause[1]%
+            \includegraphics[width=\linewidth]{Figures/PDF/LIST.pdf}
+
+        \end{minipage}
+        \hfill
+        \begin{minipage}[t]{0.250\linewidth}
+            \raggedleft
+
+            \pause[1]%
+            \parbox[t]{2.6cm}{$c_0 \acc \mathit{VAL}_0 \times b_{\mathit{IDX}_0}$} \ding{172}
+
+            \parbox[t]{2.6cm}{$c_0 \acc \mathit{VAL}_0 \times b_{\mathit{IDX}_0}$} \ding{172}
+
+            \parbox[t]{2.6cm}{$c_0 \acc \mathit{VAL}_0 \times b_{\mathit{IDX}_0}$} \ding{172}
+
+            \parbox[t]{2.6cm}{$c_0 \acc \mathit{VAL}_0 \times b_{\mathit{IDX}_0}$} \ding{172}
+
+        \end{minipage}
+        
+        \bigskip
+
+        \arrow[]{Avec le \textbf{SpMV} en \textbf{Inner-Product}, \textcolor{Red}{\textbf{les accès \og aléatoires \fg{} se produisent sur le vecteur d'entrée \textit{\textbf{b}}}}, au moment de cacluler la \textbf{somme partielle} $A_{i,j} \times b_j$.}
+
+    \end{minipage}
 
 \end{frame}
 
