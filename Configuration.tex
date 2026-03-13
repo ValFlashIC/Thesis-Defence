@@ -73,7 +73,7 @@
 	{#1\myrepeat{#2}{\ }{\IfNoValueF{#3}{\color{#3}}#5}\ #4}%
 }
 
-\NewDocumentCommand{\arrow}{O{\small} O{0} o m O{{\normalfont\faArrowRight}}}{\bulletPoint[#1][#2][#3]{#4}[#5]}
+\NewDocumentCommand{\arrow}{O{\small} O{0} o m O{\ding{220}}}{\bulletPoint[#1][#2][#3]{#4}[#5]} % {\normalfont\faArrowRight}
 \NewDocumentCommand{\point}{O{\small} O{1} o m O{$\bullet$}}{\bulletPoint[#1][#2][#3]{#4}[#5]}
 \NewDocumentCommand{\subpt}{O{\small} O{3} o m O{$\filledtriangleright$}}{\bulletPoint[#1][#2][#3]{#4}[#5]}
 \NewDocumentCommand{\ssbpt}{O{\small} O{5} o m O{-}}{\bulletPoint[#1][#2][#3]{#4}[#5]}
