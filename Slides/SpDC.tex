@@ -19,12 +19,156 @@
 %     Slide sur flexibilité, config, RISCV, opensource(?)
 % \end{frame}
 
+% \begin{frame}
+%     \frametitle{SpDCache}
+
+%     4 slides spdcache de ASAP
+
+%     % Quelques détails sur l'implem RTL
+
+% \end{frame}
+
 \begin{frame}
-    \frametitle{SpDCache}
+    \frametitle{Les matrices bandées}
 
-    4 slides spdcache de ASAP
+    Présenter les matrices bandées
 
-    % Quelques détails sur l'implem RTL
+\end{frame}
+
+\begin{frame}
+    \frametitle{Concept de SpDCache}
+
+    \begin{minipage}[t]{0.48\linewidth}
+        \raggedright
+
+        Par rapport à un cache générique :
+
+        \smallskip
+
+        \arrow[][0][Red]{Ajout du \textbf{mode réduction}}
+
+        \smallskip
+
+        \arrow[][0][Red]{Ajout d'une \textbf{FPU}} (unité de calcul flottant)
+
+        \smallskip
+
+        \arrow[][0][Red]{Partage de la mémoire cache en \textbf{trois régions} :}
+
+        \smallskip
+
+        \point[\bfseries][2][Red]{DRC} pour la région dense, en-bande
+
+        \subpt[][4][Red]{Vecteur $c$ uniquement}
+
+        \subpt[][4][Red]{Réductions uniquement}
+
+        \subpt[][4][Red]{Granularité d'une ligne de cache}
+
+        \subpt[][4][Red]{Associatif à ensemble}
+
+        \smallskip
+
+        \point[\bfseries][2][Red]{SRT} pour la région creuse, hors-bande
+
+        \subpt[][4][Red]{Vecteur $c$ uniquement}
+
+        \subpt[][4][Red]{Réductions uniquement}
+
+        \subpt[][4][Red]{Granularité d'un élément}
+
+        \subpt[][4][Red]{Complètement associatif}
+
+        \smallskip
+
+        \point[\bfseries][2][Red]{GRC}
+
+        \subpt[][4][Red]{Lectures génériques de $A$ et $b$}
+
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\linewidth}
+        \centering
+        <ajouter figure avec les modifs apportés à un cache générique>
+    \end{minipage}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Architecture de SpDCache}
+
+    \begin{minipage}[t]{0.48\linewidth}
+        \raggedright
+
+        Du texte pour expliquer comment passent les données dans le cache
+
+        A, b dans GRC
+
+        Dans processeur : En ou hors bande de A ? / Axb -> c
+
+        RED (c Axb reg) vers L1
+
+        Selon reg, DRC ou SRT
+
+        Evincements vers mémoire, soit ligne wise soit RMW
+
+        \subpt[][2][Red]{Utilise des transactions atomique RMW (lecture-accumulation-écriture)}
+        
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\linewidth}
+        \centering
+
+        <figure de spdcache + direction des transactions (globales) de A,b à c>
+
+    \end{minipage}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Architecture de SpDCache}
+
+    \begin{minipage}[t]{0.48\linewidth}
+        \raggedright
+
+        Transactions RED -> "envoyées et oubliées"
+
+    \bigskip
+
+    Hit / Miss
+
+    \point[\bfseries][2][Red]{Pas} de transaction mémoire
+
+    \point[][2][Red]{Insertion ou accumulation dans le cache}
+
+    \bigskip
+
+    Miss avec évincement dans le DRC
+
+    \point[][2][Red]{2 transactions mémoires}
+
+    \point[][2][Red]{Accumulation dans le cache}
+
+    \bigskip
+
+    Miss avec évincement dans la SRT
+
+    \point[][2][Red]{1 transaction mémoire}
+
+    \point[][2][Red]{"envoyé et oublié"}
+
+    \point[][2][Red]{Accumulation en mémoire principale}
+
+    (note sur les duplications)
+
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\linewidth}
+        \centering
+
+        <figure avec animations du fonctionnement de spdcache>
+
+    \end{minipage}
 
 \end{frame}
 

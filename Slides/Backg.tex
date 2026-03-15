@@ -152,7 +152,8 @@
 
     \bigskip
     \begin{center}
-        \animategraphics[loop,controls,autoplay,buttonsize=6pt,buttonfg=0.5,width=0.5\linewidth]{2}{Figures/GIF/test-}{0}{11}
+        % \animategraphics[loop,controls,autoplay,buttonsize=6pt,buttonfg=0.5,width=0.5\linewidth]{2}{Figures/GIF/test-}{0}{11}
+        \includegraphics[width=0.3\linewidth]{Figures/PDF/LIST.pdf}
     \end{center}
     \bigskip
 
@@ -292,46 +293,61 @@
 \begin{frame}
     \frametitle{Kernels creux -- Outer-Product SpMV}
 
-    ...
+    idem pour OP (faire court à l'oral)
 
 \end{frame}
 
-\begin{frame}
-    \frametitle{Kernels creux -- Gustavson SpMSpM}
+% \begin{frame}
+%     \frametitle{Kernels creux -- Gustavson SpMSpM}
 
-    Exemple de \textbf{SpMSpM} (multiplication matrice creuse-matrice creuse) : $A \times B = C$, avec $A$ de taille $(M, K)$, $B$ de taille $(K, N)$, et $C$ de taille $(M, N)$.
+%     Exemple de \textbf{SpMSpM} (multiplication matrice creuse-matrice creuse) : $A \times B = C$, avec $A$ de taille $(M, K)$, $B$ de taille $(K, N)$, et $C$ de taille $(M, N)$.
 
-    \point[][2][Red]{$\forall (i, j, k) \in \ldb 0, M-1 \rdb \times \ldb 0, N-1 \rdb \times \ldb 0, K-1 \rdb, \; C_{i, j} = C_{i, j} + A_{i, k} \times B_{k, j}$}
+%     \point[][2][Red]{$\forall (i, j, k) \in \ldb 0, M-1 \rdb \times \ldb 0, N-1 \rdb \times \ldb 0, K-1 \rdb, \; C_{i, j} = C_{i, j} + A_{i, k} \times B_{k, j}$}
 
-    \point[][2][Red]{$A$ et $B$ sont stockées avec un format creux comme \underbar{CSR} ou CSC}
+%     \point[][2][Red]{$A$ et $B$ sont stockées avec un format creux comme \underbar{CSR} ou CSC}
 
-    \point[][2][Red]{Des \textbf{accès indirectes} apparaissent, sur les entrées ou la sortie, en fonction de l'algorithme :}
+%     \point[][2][Red]{Des \textbf{accès indirectes} apparaissent, sur les entrées ou la sortie, en fonction de l'algorithme :}
 
-    \subpt[\bfseries][4][Red]{Gustavson (Gust) :}
+%     \subpt[\bfseries][4][Red]{Gustavson (Gust) :}
 
-    \bigskip
+%     \bigskip
 
-    \begin{minipage}[t]{0.48\linewidth}
-        \centering
+%     \begin{minipage}[t]{0.48\linewidth}
+%         \centering
 
-        \pause[1]%
-        \includegraphics[width=0.6\linewidth]{Figures/PDF/LIST.pdf}
+%         \pause[1]%
+%         \includegraphics[width=0.6\linewidth]{Figures/PDF/LIST.pdf}
 
-    \end{minipage}
-    \hfill
-    \begin{minipage}[t]{0.48\linewidth}
-        \centering
+%     \end{minipage}
+%     \hfill
+%     \begin{minipage}[t]{0.48\linewidth}
+%         \centering
 
-        \pause[1]%
-        \includegraphics[width=0.6\linewidth]{Figures/PDF/LIST.pdf}
+%         \pause[1]%
+%         \includegraphics[width=0.6\linewidth]{Figures/PDF/LIST.pdf}
 
-    \end{minipage}
+%     \end{minipage}
     
-    \bigskip
+%     \bigskip
 
-    \arrow[]{Avec le \textbf{SpMSpM} en \textbf{Gustavson}, \textcolor{Red}{\textbf{les accès \og aléatoires \fg{}} se produisent sur \textbf{les lignes de la matrice d'entrée \textit{B}} et \textbf{dans les lignes de la matrice de sortie \textit{C}}}, au moment d'accumuler la \textbf{somme partielle} $A_{i,k} \times B_{k, j}$ avec $C_{i, j}$.}
+%     \arrow[]{Avec le \textbf{SpMSpM} en \textbf{Gustavson}, \textcolor{Red}{\textbf{les accès \og aléatoires \fg{}} se produisent sur \textbf{les lignes de la matrice d'entrée \textit{B}} et \textbf{dans les lignes de la matrice de sortie \textit{C}}}, au moment d'accumuler la \textbf{somme partielle} $A_{i,k} \times B_{k, j}$ avec $C_{i, j}$.}
 
-    \arrow[]{Gustavson se place comme un algorithme \textbf{intermédiaire} entre inner-product et outer-product}
+%     \arrow[]{Gustavson se place comme un algorithme \textbf{intermédiaire} entre inner-product et outer-product}
+
+% \end{frame}
+
+\begin{frame}
+    \frametitle{Kernels creux -- MM}
+
+    (très rapide sur cette slide)
+
+    Matrice-matrice -> SpMM, SpMSpM, SpGEMM
+
+    Aussi IP et OP
+
+    Mêmes remarques sur les indirections mais sur matrice entière au lieu de vecteur
+
+    En plus, Gustavson -> intermédiaire, scatter et gather mais sur les lignes des matrices $B$ et $C$
 
 \end{frame}
 
@@ -371,14 +387,38 @@
 \begin{frame}
     \frametitle{Résumé}
 
-    ...
+    \textbf{Inner-Product} \arrow[]{accès \og aléatoires \fg{} sur l'entrée ($b$ ou $B$)} \arrow[]{accès = lecture}
+
+    \arrow[][2][Red]{Problème : comment \textbf{rassembler} efficacement les données} \arrow[\bfseries\color{Red}]{gather}
+
+    \arrow[\bfseries\color{Red}][4]{Intersections} des éléments non-nuls de $A$ avec ceux de $b$ ou $B$ \hfill ($1\mathcal{D}$ ou $2\mathcal{D}$)
+
+    \bigskip
+
+    \textbf{Outer-Product} \arrow[]{accès \og aléatoires \fg{} sur la sortie ($c$ ou $C$)} \arrow[]{accès = lecture + accumulation + écriture}
+
+    \arrow[][2][Red]{Problème : comment \textbf{distribuer} efficacement les données} \arrow[\bfseries\color{Red}]{scatter}
+
+    \arrow[\bfseries\color{Red}][4]{Réductions} des sommes partielles non-nuls dans $c$ ou $C$ \hfill ($1\mathcal{D}$ ou $2\mathcal{D}$)
+
+    \bigskip
+
+    \textbf{Gustavson} \arrow[]{accès \og aléatoires \fg{} sur l'entrée et la sortie ($B$ et $C$)}
+
+    \arrow[][2][Red]{Les deux broblèmes de \textbf{\textcolor{Red}{gather}} et \textbf{\textcolor{Red}{scatter}} à la fois}
+
+    \arrow[\bfseries\color{Red}][4]{Intersections} avec les \textbf{lignes de \textit{B}} seulement \hfill ($1\mathcal{D}$)
+
+    \arrow[\bfseries\color{Red}][4]{Réductions} \og aléatoires \fg{} dans les \textbf{lignes de \textit{C}} seulement \hfill ($1\mathcal{D}$)
 
 \end{frame}
 
 \begin{frame}
     \frametitle{Problématique}
 
-    Plus général (on sait pas encore que ce sera scatter focus)
+    (fusionner avec slide précédente ?)
+
+    \textbf{\textcolor{Mulberry}{Dans le contexte du calcul matriciel, comment adresser efficacement les problématiques d'intersections (gather) et/ou de réductions (scatter) lorsque les données subissent des accès \og aléatoires \fg{} ?}}
 
 \end{frame}
 
@@ -386,71 +426,284 @@
 
 \begin{frame}
     \frametitle{Accélérateurs matériels dédiés}
+
+    <flèche temporelle :>
+
+    1973 : Approches logicielles sur CPUs \cref{ref:spFormats1} / 2005 : Approches logicielles pour GPUs \cref{ref:GPU} / 2018 - aujourd'hui : \textbf{Accélérateurs matériels dédiés au calcul creux}
+
+    \bigskip
     
-    ...
+    \textbf{\textcolor{Red}{Plusieurs caractéristiques}}
+
+    \point[\bfseries][2][Red]{Kernel :} {\def\c{Yellow} \lbox{\c}{Matrice-Matrice} \lbox{\c}{Matrice-Vecteur} \lbox{\c}{Générique}}
+
+    \point[\bfseries][2][Red]{Algorithme :} {\def\c{Green} \lbox{\c}{Inner-Product} \lbox{\c}{Outer-Product} \lbox{\c}{Gustavson} \lbox{\c}{Méthodes de tiling}}
+
+    \point[\bfseries][2][Red]{Problèmes adressés :} {\def\c{Blue} \lbox{\c}{Gather (Intersections)} \lbox{\c}{Scatter (Réductions)}}
+
+    \point[\bfseries][2][Red]{Type d'accélérateur :} {\def\c{Cyan} \lbox{\c}{Complet} \lbox{\c}{Assisté par processeur}}
+
+    \point[][2][Red]{Pour les accélérateurs assistés par processeur,} \textbf{position dans la hiérarchie mémoire :} {\def\c{Purple} \lbox{\c}{Proche processeur} \lbox{\c}{Proche caches} \lbox{\c}{Esquive caches} \lbox{\c}{Proche mémoire principale}}
+
+    \vspace{1cm}
+    \dref{ref:GPU}{Thaha Mohammed and Rashid Mehmood. 2022. Performance Enhancement Strategies for Sparse Matrix-Vector Multiplication (SpMV) and Iterative Linear Solvers. (2022), 41.}
 
 \end{frame}
 
 \begin{frame}
     \frametitle{Accélérateurs matériels dédiés}
     
-    ...
+    \begin{minipage}[t]{0.68\linewidth}
+        \centering
+
+        <ajouter couleur slide précédente sur table / ajout nb total>
+        
+        {
+            \def\ck{\ding{51}}
+            % \def\sa{\ding{86}\textsuperscript{1}}
+            % \def\sb{\ding{86}\textsuperscript{2}}
+            % \def\sc{\ding{86}\textsuperscript{3}}
+            % \def\sd{\ding{86}\textsuperscript{4}}
+            \def\sa{}
+            \def\sb{$\mathbf{\sim}$}
+            \def\sc{$\mathbf{\sim}$}
+            \def\sd{$\mathbf{\sim}$}
+            \begin{tblr}{
+                    width = {\linewidth},
+                    colspec = {X[2.5,c] X[1,c] *{12}{X[1,c]}}, % rowspec
+                    rows = {m, font=\scriptsize},
+                    colsep = {1pt},
+                    row{1-W} = {rowsep=0pt, black!2},
+                    row{1-2} = {c, font=\bfseries\scriptsize, black!5},
+                    cell{2}{3-14} = {font=\bfseries\itshape\scriptsize},
+                    row{W-Z} = {l, font=\itshape\scriptsize, rowsep=-2pt},
+                    row{W} = {abovesep=2pt},
+                    row{Z} = {belowsep=2pt},
+                    cell{1}{1,2} = {r=2}{valign=f},
+                    cell{1}{2} = {cmd=\rotatebox{90}},
+                    cell{2}{3-14} = {cmd=\rotatebox{90}},
+                    cell{1}{3,11,13} = {c=2}{},
+                    cell{1}{5,8} = {c=3}{},
+                    cell{W-Z}{1} = {c=14}{},
+                    hspan = {minimal},
+                    % hlines, vlines,
+                    % rulesep = {-1pt},
+                    hline{1,V} = {2pt}, % Z for last
+                    hline{3} = {1pt},
+                    hline{Z} = {1pt, dashed},
+                    vline{2,3,5,8,11,13} = {1-V}{0.5pt},
+                }
+                %
+                Nom & Année & Autonomie & & {Position dans la hiérarchie mémoire} & & & {Algorithme(s) le(s) plus adapté(s)} & & & {Support matériel pour} & & {Kernels creux adressés} & \\
+                & & Complet & Assisté & Proc. & Caches & Mém. & IP & OP & Gust & Gather & Scatter & MV & MM \\
+                %
+                Coup                    & 2015 &     & \ck &     & \ck &     &     & \ck &     &     & \ck & \ck & \sc \\
+                EIE                        & 2016 & \ck &     &     &     & \sa &     & \ck &     & \ck & \ck & \ck &     \\
+                OuterSPACE          & 2018 & \ck &     &     &     & \sa &     & \ck &     & \ck & \ck & \ck & \ck \\
+                GraphR                 & 2018 & \ck &     &     &     & \sa &     & \ck &     & \ck & \ck & \ck &     \\
+                SDE               & 2019 & \ck &     &     &     & \sa & \ck &     & \sc & \ck & \sb & \ck & \sc \\
+                ExTensor            & 2019 & \ck &     &     &     & \sa & \ck & \sb &     & \ck & \sb & \sc & \ck \\
+                PHI                    & 2019 &     & \ck &     & \ck &     &     & \ck & \sc &     & \ck & \ck & \sc \\
+                SPiDRE              & 2019 &     & \ck &     &     & \ck & \ck &     &     & \ck &     & \ck & \sc \\
+                ITS                       & 2019 & \ck &     &     &     & \sa &     & \ck &     & \ck & \ck & \ck &     \\
+                SPU                       & 2019 & \ck &     &     &     & \sa & \ck & \ck &     & \ck & \ck & \ck &     \\
+                Tensaurus     & 2020 & \ck &     &     &     & \sa & \sc & \sb &     & \ck & \ck & \ck & \ck \\
+                MatRaptor     & 2020 & \ck &     &     &     & \sa &     &     & \ck & \ck & \ck &     & \ck \\
+                SpArch               & 2020 & \ck &     &     &     & \sa &     & \ck &     & \ck & \ck &     & \ck \\
+                Alrescha           & 2020 & \ck &     &     &     & \sa & \ck &     &     & \ck & \ck & \ck &     \\
+                SIGMA                    & 2020 & \ck &     &     &     & \sa & \ck &     &     & \ck & \ck &     & \ck \\
+                SpaceA                  & 2021 & \ck &     &     &     & \ck & \ck &     &     & \ck & \ck & \ck &     \\
+                Gamma                  & 2021 & \ck &     &     &     & \sa &     &     & \ck & \ck & \ck &     & \ck \\
+                SPAGHETTI         & 2021 & \ck &     &     &     & \sa &     & \ck &     & \ck & \ck &     & \ck \\
+                InnerSP               & 2021 & \ck &     &     &     & \sa &     &     & \ck & \ck & \ck &     & \ck \\
+                CoSPARSE             & 2021 & \ck &     &     &     & \sa & \ck & \ck &     & \ck & \ck & \ck &     \\
+                SortCache       & 2021 &     & \ck &     & \ck &     &     & \ck & \sc &     & \ck & \sc & \ck \\
+                Sextans               & 2022 & \ck &     &     &     & \sa &     & \ck &     & \ck & \ck &     & \ck \\
+                ASA                      & 2022 &     & \ck & \ck &     &     &     & \sc & \ck &     & \ck & \sc & \ck \\
+                Spada                     & 2023 & \ck &     &     &     & \sa &     &     & \sd & \ck & \ck &     & \ck \\
+                Flexagon   & 2023 & \ck &     &     &     & \sa & \ck & \ck & \ck & \ck & \ck &     & \ck \\
+                MOSCON                & 2023 & \ck &     &     &     & \sa &     & \ck &     & \ck & \ck &     & \ck \\
+                GSCSp                     & 2023 & \ck &     &     &     & \sa &     &     & \ck & \ck & \ck &     & \ck \\
+                SDMA                      & 2023 & \ck &     &     &     & \sa &     &     & \sd & \ck & \ck &     & \ck \\
+                SSSR                & 2023 &     & \ck & \ck &     &     & \ck &     &     & \ck &     & \ck & \sc \\
+                Funnel                   & 2024 & \ck &     &     &     & \sa & \ck &     & \ck & \ck & \ck &     & \ck \\
+                GAS                      & 2024 & \ck &     &     &     & \ck &     & \ck &     &     & \ck & \ck & \ck \\
+                ACES                      & 2024 & \ck &     &     &     & \sa &     &     & \ck & \ck & \ck &     & \ck \\
+                FullSparse          & 2024 & \ck &     &     &     & \sa &     & \ck &     & \ck & \ck &     & \ck \\
+                Sparm                    & 2024 & \ck &     &     &     & \sa & \ck & \ck & \ck & \ck & \ck &     & \ck \\
+                % \textbf{SpDCache}~[\ref{publ:SpDC}]           & 2024 &     & \ck &     & \ck &     &     & \ck & \sc &     & \ck & \ck & \sc \\
+                SPADES                & 2024 & \ck &     &     &     & \sa & \sc & \sc & \sc & \ck &     & \ck & \sc \\
+                DySpMM                & 2024 & \ck &     &     &     & \sa & \ck &     &     & \ck & \ck &     & \ck \\
+                Vesper                  & 2024 & \ck &     &     &     & \sa & \ck & \ck & \ck & \ck & \ck & \ck & \ck \\
+                Mentor                   & 2024 & \ck &     &     &     & \sa &     &     & \ck & \ck & \ck &     & \ck \\
+                IOPS                      & 2025 & \ck &     &     &     & \sa & \ck & \ck &     & \ck & \ck &     & \ck \\
+                Leda                      & 2025 & \ck &     &     &     & \sa &     & \ck &     & \ck & \ck &     & \ck \\
+                DMSA               & 2025 & \ck &     &     &     & \sa &     &     & \sd & \ck & \ck &     & \ck \\
+                C\textsuperscript{3}ache & 2025 &     & \ck &     & \ck &     &     & \sd & \sd & \ck & \ck &     & \ck \\
+                ScanNow                & 2025 & \ck &     &     &     & \sa &     &     & \sd & \ck & \ck &     & \ck \\
+                %
+                % \sa \; Most standalone accelerators connect directly to main memory. \\
+                % \sb \; Not main contribution but addressed in the article. \\
+                % \sc \; Could be adapted but not discussed in the article. \\
+                % \sd \; New dataflow based on one or several algorithms.
+            \end{tblr}
+        }
+
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.30\linewidth}
+        \raggedright
+        
+        \pause[1]%
+        \arrow[\bfseries\color{Red}]{Diversité} des choix de design, toutes les caractéristiques sont couvertes
+
+        \bigskip\bigskip
+
+        \qquad\makebox(0,0){\put(0,0.0\normalbaselineskip){%
+            $\left.\rule{0pt}{3.0\normalbaselineskip}\right\}$
+            \parbox[t]{0.9\linewidth}{
+                \raggedright
+                Exploration des algorithmes \textbf{IP et OP}
+            }
+        }}
+
+        \bigskip\bigskip\bigskip
+
+        \quad\makebox(0,0){\put(0,0.0\normalbaselineskip){%
+            $\left.\rule{0pt}{3.0\normalbaselineskip}\right\}$
+            \parbox[t]{0.9\linewidth}{
+                \raggedright
+                Exploration de l'algorithme de \textbf{Gustavson}
+            }
+        }}
+
+        \bigskip\bigskip\bigskip
+
+        \makebox(0,0){\put(0,0.0\normalbaselineskip){%
+            $\left.\rule{0pt}{3.0\normalbaselineskip}\right\}$
+            \parbox[t]{0.9\linewidth}{
+                \raggedright
+                \textbf{Combinaisons d'algorithmes}
+            }
+        }}
+
+    \end{minipage}
 
 \end{frame}
 
-\begin{frame}
-    \frametitle{Gamma ???}
+% \begin{frame}
+%     \frametitle{Gamma ???}
     
-    ...
+%     Description rapide
 
-\end{frame}
+%     \bigskip
+%     Est-ce que j'ai le temps ?
+
+% \end{frame}
+
+% \begin{frame}
+%     \frametitle{PHI ???}
+    
+%     Description rapide
+
+%     \bigskip
+%     Est-ce que j'ai le temps ?
+
+% \end{frame}
 
 \begin{frame}
-    \frametitle{PHI ???}
+    \frametitle{Design space}
     
-    ...
+    <diagramme complet - simplifié ?>
+
+    Montrer liens assist = générique, ... -> différences entre complets et assistés (avantages et inconvénients)
 
 \end{frame}
 
 \begin{frame}
     \frametitle{Quelle est la meilleure solution ?}
     
-    ...
+    Les accélérateurs matériels dédiés
+
+    \point[\bfseries][2][Red]{Répondent efficacement à la problématique du calcul creux} \textcolor{Green}{\ding{51}}
+
+    \bigskip
+
+    \point[][2][Red]{Les méthodes et choix de design sont \textbf{diverses}}
+
+    \arrow[][4]{\underbar{Une comparaison de performance exhaustive est difficile}}
+
+    \bigskip\bigskip
+
+    \arrow[\bfseries\color{Red}]{Une comparaison juste est difficile à réaliser}
+
+    \arrow[][2][Red]{\`A la place, on aimerais une \textbf{vision claire du design space} <FIXME> slide précédente}
+
+    \arrow[][2][Red]{On compare seulement les performances des algorithmes pour les accélérateurs complets <FIXME>}
 
 \end{frame}
 
 \begin{frame}
-    \frametitle{}
+    \frametitle{Un besoin de support pour les réductions}
     
-    Parmis les accélérateurs complets -> gust
+    % Parmis les accélérateurs complets -> gust
 
-    Etendre la discussion sur avantatge OP sur IP
+    % Etendre la discussion sur avantatge OP sur IP
 
-    > 1 Gust 2 OP 3 IP
+    % > 1 Gust 2 OP 3 IP
 
-\end{frame}
+    (fusionner avec slide précédente ?)
 
-\begin{frame}
-    \frametitle{Avant de concevoir un accélérateur pour le calcul creux}
-    
-    ...
+    Parmi accélérateurs complets, majoritairement MM -> Gust puis OP
+
+    -> analyse théorique ok
+
+    - - > ** Besoin de support pour les réductions ! **
+
+    Remarque sur les variations des perfs selon les structures des matrices
+
+    - - > ** Besoin de considérer les structures ! **
 
 \end{frame}
 
 \begin{frame}
     \frametitle{Direction}
 
-    Hypothèses :
+    \textbf{\textcolor{Red}{Hypothèses :}}
+
+    \smallskip
+
+    \point[][0][Red]{Noyau de calcul :} \textbf{SpMV} (multiplication matrice creuse-vecteur)
+
+    \smallskip
+
+    \point[][0][Red]{Algorithme :} \textbf{OP} (\textit{Outer-Product})
+
+    \smallskip
     
-    OP SpMV
-
-    architecture générique, faible coût
-
-    structure des matrices
+    \point[][0][Red]{Problème :} Scatter \arrow[\bfseries]{Réductions \og aléatoires \fg{}}
 
     \bigskip
 
-    Approche : (résumé en qq mots)
+    \point[][0][Red]{Architecture de \textbf{type générique}, faible coût en surface}
+
+    \arrow[][2][Red]{Au niveau des \textbf{caches de données}}
+
+    \bigskip\bigskip
+
+    \textbf{\textcolor{Red}{Approche :}}
+
+    \smallskip
+    
+    \arrow[\bfseries][0][Red]{SpDCache :} Cache de données spécialisé qui adresse les réductions \og aléatoires \fg{}
+
+    \bigskip
+
+    \textbf{\textcolor{Mulberry}{Objectif 1 :} Mitiger l'irrégularité des réductions en analysant le comportement des caches de données}
+
+    \medskip
+
+    \textbf{\textcolor{Mulberry}{Objectif 2 :} Comprendre le rôle des structures des matrices dans les performances}
 
 \end{frame}
 
