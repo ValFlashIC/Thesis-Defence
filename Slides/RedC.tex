@@ -20,130 +20,194 @@
 \subsection{Cache générique}
 
 \begin{frame}
-    \frametitle{Contexte}
+    \frametitle{SpMV en Outer-Product}
 
-    \begin{minipage}[t]{0.48\linewidth}
-        \raggedright
+    Exemple de \textbf{SpMV} : $A \times b = c$, avec $A$ de taille $(M, N)$.
 
-        Noyau de calcul : SpMV (multiplication matrice creuse-vecteur)
+    \point[][2][Red]{$\forall (i, j) \in \ldb 0, M-1 \rdb \times \ldb 0, N-1 \rdb, \; c_i = c_i + A_{i, j} \times b_j$}
 
-        \smallskip
+    \point[][2][Red]{$A$ est stockée au format creux CSC ($\mathit{VAL}$, $\mathit{IDX}$, $\mathit{PTR}$)}
 
-        Algorithme : OP (\textit{Outer-Product})
+    \point[\bfseries][2][Red]{Outer-Product (OP) :} des \textbf{accès indirectes} apparaissent sur la sortie%
+    %
+    {%
+        \def\X{-3cm}%
+        \def\Y{-0.2cm}%
+        \begin{tikzpicture}[remember picture, overlay]
+            \node [shift={(\X, \Y)}, rotate=0] at (current page.east)
+                {%
+                    \lbox{Red}{%
+                        \rule{0pt}{3.0\normalbaselineskip}%
+                        \hspace*{0.5cm}%
+                    }%
+                };
+        \end{tikzpicture}%
+        %
+        \begin{tikzpicture}[remember picture, overlay]
+            \node [shift={(\X, \Y + 1cm)}, rotate=-90] at (current page.east)
+                {%
+                    \color{Red}\ding{222}%
+                };
+        \end{tikzpicture}%
+        %
+        \begin{tikzpicture}[remember picture, overlay]
+            \node [shift={(\X, \Y + 1.5cm)}, rotate=0] at (current page.east)
+                {%
+                    \color{Red}Indirections%
+                };
+        \end{tikzpicture}%
+    }
 
-        \bigskip
-        %%%% ici, colone 2 apparaît avant !!! %%%%
+    \bigskip
 
-        Avec OP SpMV, les accès \og aléatoires \fg{} se produisent sur le vecteur de sortie et sont des réductions
+    % \begin{minipage}[t]{0.17\linewidth}
+    %     \raggedright
 
-        \arrow[\normalsize]{Réductions \og aléatoires \fg{}}
+    %     \pause[1]%
+    %     \parbox[t]{2cm}{$c_0 \acc A_{0, 0} \times b_0$} (0)
 
-        \bigskip
+    %     \parbox[t]{2cm}{$c_1 \acc A_{1, 0} \times b_0$} (0)
 
-        Une réduction sur un vecteur $v$ : $v_{indice} \acc valeur$
+    %     \parbox[t]{2cm}{$c_2 \acc A_{2, 0} \times b_0$} \,\ding{172}
 
-        \point{Une lecture en mémoire de $v_{indice}$}
+    %     \parbox[t]{2cm}{$c_0 \acc A_{0, 1} \times b_1$} \,\ding{173}
 
-        \point{Une accumulation pour mettre à jour $v_{indice}$ avec $valeur$}
+    %     \parbox[t]{2cm}{$c_1 \acc A_{1, 1} \times b_1$} (0)
 
-        \point{Une écriture en mémoire de $v_{indice}$ mis à jour}
+    %     \parbox[t]{2cm}{$c_2 \acc A_{2, 1} \times b_1$} (0)
 
-        \medskip
+    %     \parbox[t]{2cm}{$c_0 \acc A_{0, 2} \times b_2$} (0)
 
-        Cette opération est noté RED : $\mathit{RED}(indice, valeur)$
+    %     \parbox[t]{2cm}{$c_1 \acc A_{1, 2} \times b_2$} \,\ding{174}
+
+    %     \parbox[t]{2cm}{$c_2 \acc A_{2, 2} \times b_2$} \,\ding{175}
+
+    % \end{minipage}
+    % \hfill
+    \begin{minipage}[t]{0.81\linewidth}
+        \begin{minipage}[t]{0.365\linewidth}
+            \centering
+
+            \pause[1]%
+            \includegraphics[width=\linewidth]{Figures/PDF/LIST.pdf}
+
+        \end{minipage}
+        \hfill
+        \begin{minipage}[t]{0.365\linewidth}
+            \centering
+
+            \pause[1]%
+            \includegraphics[width=\linewidth]{Figures/PDF/LIST.pdf}
+
+        \end{minipage}
+        \hfill
+        \begin{minipage}[t]{0.250\linewidth}
+            \raggedleft
+
+            \pause[1]%
+            \parbox[t]{2.6cm}{$c_{\mathit{IDX}_0} \acc \mathit{VAL}_0 \times b_0$} \ding{172}
+
+            \parbox[t]{2.6cm}{$c_{\mathit{IDX}_1} \acc \mathit{VAL}_1 \times b_1$} \ding{173}
+
+            \parbox[t]{2.6cm}{$c_{\mathit{IDX}_2} \acc \mathit{VAL}_2 \times b_2$} \ding{174}
+
+            \parbox[t]{2.6cm}{$c_{\mathit{IDX}_3} \acc \mathit{VAL}_3 \times b_2$} \ding{175}
+
+        \end{minipage}
 
     \end{minipage}
-    \hfill
-    \begin{minipage}[t]{0.48\linewidth}
 
-        SpMV : $A \times b = c$
+    \bigskip
 
-        Avec $A$ une matrice creuse de taille $(M, N)$,
+    \arrow[]{Avec le \textbf{SpMV} en \textbf{Outer-Product}, \textcolor{Red}{\textbf{les accès \og aléatoires \fg{} se produisent sur le vecteur de sortie \textit{\textbf{c}}}}, au moment d'accumuler la \textbf{somme partielle} $A_{i,j} \times b_j$ avec $c_i$.}
 
-        $b$ et $c$ des vecteurs denses de taille $N$ et $M$
+    \arrow[\bfseries\color{Red}][4]{Réductions \og aléatoires \fg{}}
 
-        \bigskip
+    \medskip
 
-        OP (Outer-Product)
+    \arrow[]{Lectures séquentiels des matrice et vecteur d'entrées $A$ et $b$}
 
-        \textcolor{purple}{$for \, n \in [0, N-1]$}
+\end{frame}
 
-        \tab[\normalsize\color{purple}][4]{$for \, m \in [0, M-1]$}
+\begin{frame}
+    \frametitle{Réductions}
 
-        \tab[\normalsize\color{purple}][8]{$c_m \acc A_{m, n} \times b_n$}
+    \textbf{\textcolor{Red}{Qu'est-ce qu'une réduction ?}}
 
-        \tab[\normalsize\color{purple}][4]{$end$}
+    \bigskip
 
-        \textcolor{purple}{$end$}
+    Une réduction sur le vecteur $c$ : $c_{indice} \acc valeur$
 
-        \bigskip
+    \point[][2][Red]{Une \textbf{lecture} en mémoire de $c_{indice}$}
 
-        \arrow[\normalsize]{Accès séquentiels sur les entrées $A$ et $b$}
+    \point[][2][Red]{Une \textbf{accumulation} pour mettre à jour $c_{indice}$ avec $valeur$}
 
-        \arrow[\normalsize]{Accès \og aléatoire \fg{} sur le vecteur de sortie $c$}
+    \point[][2][Red]{Une \textbf{écriture} en mémoire de $c_{indice}$ mis à jour}
 
-        \bigskip
+    \medskip
 
-        <raccourcir !>
+    Cette opération est noté \textbf{RED} : $\mathit{RED}(indice, valeur)$
 
-        <ajouter une phrase pour expliquer le but de cette section>
+    \bigskip
 
-    \end{minipage}
+    \textbf{Cache générique :} pas de support particulier pour les opérations de réduction
+
+    \bigskip
+
+    \arrow[\bfseries\color{Red}][0][Red]{Cache de réduction} (ex. : \cref{ref:PHI} \cref{ref:SortCache})
+
+    \point[][4][Red]{Supporte une \textbf{nouvelle instruction RED} : $\mathit{RED}(adresse, valeur)$}
+
+    \point[][4][Red]{L'opération de réduction est \textbf{traitée dans le cache}}
+
+    \arrow[][8]{Possède une \textbf{unité de calcul}}
+
+    \vspace*{0.5cm}
+    \dref{ref:PHI}{A. Mukkara, N. Beckmann, and D. Sanchez. 2019. PHI: Architectural Support for Synchronization- and Bandwidth-Efficient Commutative Scatter Updates. In Proceedings of the 52nd Annual IEEE/ACM International Symposium on Microarchitecture (MICRO-52). Association for Computing Machinery, New York, NY, USA, 1009–1022.}
+    \vspace{3pt}
+    \dref{ref:SortCache}{S. Srikanth, A. Jain, T. M. Conte, E. P. Debenedictis, and J. Cook. 2021. SortCache: Intelligent Cache Management for Accelerating Sparse Data Workloads. ACM Trans. Archit. Code Optim.18, 4, Article 56 (sep 2021), 24 pages.}
     
 \end{frame}
 
 \begin{frame}
     \frametitle{Cache générique}
-    % \framesubtitle{Fonctionnement \& Réduction dans un cache générique}
+
+    \textbf{\textcolor{Red}{Comment se comporte une réduction dans un cache générique ?}}
+
+    \bigskip
 
     \begin{minipage}[t]{0.48\linewidth}
         \raggedright
 
-        % Cache classique : set-associatif, plusieurs voies
+        \point[\bfseries][0][Red]{Cas de hit :}
 
-        Granularité : ligne de cache (64 octets)
+        \point[][2]{Lecture du cache \ck}
 
-        Transactions mémoires : lecture et écriture de ligne de 64 octets
-
-        \bigskip
-
-        Réduction : $c_{indice} \acc valeur$
-
-        \smallskip
-
-        % \point{lecture dans le cache}
-
-        % \subpt{avec hit, miss ou évincement}
+        \point[][2]{Accumulation dans le processeur}
         
-        % \point{accumulation dans le processeur}
-        
-        % \point{écriture dans le cache}
+        \point[][2]{Ecriture dans le cache \ck}
 
-        Cas de hit :
+        \medskip
 
-        \point{Lecture du cache \ck}
+        \point[\bfseries][0][Red]{Cas de miss:}
 
-        \point{Accumulation dans le processeur}
-        
-        \point{Ecriture dans le cache \ck}
+        \point[][2]{Lecture en mémoire et mise à jour du cache \cr}
 
-        Cas de miss:
+        \point[][2]{Accumulation dans le processeur}
 
-        \point{Lecture en mémoire et mise à jour du cache \cr}
+        \point[][2]{Ecriture dans le cache \ck}
 
-        \point{Accumulation dans le processeur}
+        \medskip
 
-        \point{Ecriture dans le cache \ck}
+        \point[\bfseries][0][Red]{Cas de miss avec évincement :}
 
-        Cas de miss avec évincement :
+        \point[][2]{Ecriture en mémoire de la donnée évincée \cr}
 
-        \point{Ecriture en mémoire de la donnée évincée \cr}
+        \point[][2]{Lecture en mémoire et mise à jour du cache \cr}
 
-        \point{Lecture en mémoire et mise à jour du cache \cr}
+        \point[][2]{Accumulation dans le processeur}
 
-        \point{Accumulation dans le processeur}
-
-        \point{Ecriture dans le cache \ck}
+        \point[][2]{Ecriture dans le cache \ck}
 
     \end{minipage}
     \hfill
@@ -161,32 +225,32 @@
 
 \subsection{Cache de réduction}
 
-\begin{frame}
-    \frametitle{Cache de réduction}
+% \begin{frame}
+%     \frametitle{Cache de réduction}
 
-    \begin{minipage}[t]{0.48\linewidth}
-        \raggedright
+%     \begin{minipage}[t]{0.48\linewidth}
+%         \raggedright
 
-        % Même caractéristiques que cache : set-associatif, plusieurs voies, lignes de cache
-        Cache de réduction : cache générique avec quelques modifications
+%         % Même caractéristiques que cache : set-associatif, plusieurs voies, lignes de cache
+%         Cache de réduction : cache générique avec quelques modifications
 
-        \point{Supporte des instructions de réduction RED}
+%         \point{Supporte des instructions de réduction RED}
 
-        \point{Possède un accumulateur : accumulation dans le cache}
+%         \point{Possède un accumulateur : accumulation dans le cache}
 
-    \end{minipage}
-    \hfill
-    \begin{minipage}[t]{0.48\linewidth}
+%     \end{minipage}
+%     \hfill
+%     \begin{minipage}[t]{0.48\linewidth}
 
-        \begin{figure}
-            \centering
-            \includegraphics[width=\linewidth]{Figures/PDF/LIST.pdf}
-        \end{figure}
+%         \begin{figure}
+%             \centering
+%             \includegraphics[width=\linewidth]{Figures/PDF/LIST.pdf}
+%         \end{figure}
 
-        <Figure comme SpDCache (voir ASAP) ou on montre ce qu'il y a en plus par rapport à un cache générique (?)>
+%         <Figure comme SpDCache (voir ASAP) ou on montre ce qu'il y a en plus par rapport à un cache générique (?)>
 
-    \end{minipage}
-\end{frame}
+%     \end{minipage}
+% \end{frame}
 
 \begin{frame}
     \frametitle{Cache de réduction}
@@ -199,7 +263,7 @@
             \includegraphics[width=\linewidth]{Figures/PDF/LIST.pdf}
         \end{figure}
 
-        <schéma d'une réduction dans un cache générique>
+        % <schéma d'une réduction dans un cache générique>
 
         \column{0.48\linewidth}
 
@@ -208,19 +272,30 @@
             \includegraphics[width=\linewidth]{Figures/PDF/LIST.pdf}
         \end{figure}
 
-        <schéma d'une réduction dans un cache de réduction>
+        % <schéma d'une réduction dans un cache de réduction>
 
     \end{columns}
 
     \bigskip
 
-    Comparaison du nombre d'instruction / le processeur n'attend pas les REDs
+    \point[\bfseries][0][Red]{Nombre intrinsèque de transactions mémoires}
+    
+    \point[][2][Red]{Cache générique :} 0 + 1 + 2 = \textbf{\textcolor{Red}{3 \cr}}
+    
+    \point[][2][Red]{Cache de réduction :} 0 + 0 + 2 = \textbf{\textcolor{Green}{2 \ck}}
 
-    GC 0 1 2
+    \medskip
 
-    RedC 0 0 2
+    \point[][0][Red]{Les réductions sont \textbf{\og envoyées et oubliées \fg{}} :}
 
-    Evincement : le processeur n'attend pas de réponse
+    \arrow[][2]{Le processeur \textbf{n'attend pas de réponse}, même à l'évincement}
+
+    \bigskip
+
+    \textbf{\textcolor{Red}{SpDCache :} cache de réduction}
+    
+    \arrow[\bfseries][2]{\textcolor{Green}{Reductions \ck} \textcolor{Red}{\og aléatoires \fg{} \cr}}
+
 \end{frame}
 
 % \begin{frame}
