@@ -31,13 +31,90 @@
 \begin{frame}
     \frametitle{Les matrices bandées}
 
-    SpDCache : s'inspire d'une structure de matrice très répandue, la structure bandée
+    \textbf{SpDCache :} tirer partie des \textbf{structures} des matrices
 
-    <Présenter les matrices bandées>
+    \smallskip
 
+    \arrow[][0][Red]{Une structure de matrice fréquente :} la \textbf{\textcolor{Red}{structure bandée}}
+
+    \point[][2][Red]{Une \textbf{région dense} autour de la diagonale :} \textbf{\textcolor{Red}{en-bande}}
+
+    \point[][2][Red]{Une \textbf{région creuse} ailleurs :} \textbf{\textcolor{Red}{hors-bande}}
+
+    \bigskip
+
+    \begin{minipage}[t]{0.18\linewidth}
+        \centering
+
+        \includegraphics[width=\linewidth]{Figures/PDF/LogoUGA.pdf}
+
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.18\linewidth}
+        \centering
+
+        \includegraphics[width=\linewidth]{Figures/PDF/LogoUGA.pdf}
+
+        \textit{roadNet-CA}
+
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.18\linewidth}
+        \centering
+
+        \includegraphics[width=\linewidth]{Figures/PDF/LogoUGA.pdf}
+
+        \textit{scircuit}
+
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.18\linewidth}
+        \centering
+
+        \includegraphics[width=\linewidth]{Figures/PDF/LogoUGA.pdf}
+
+        \textit{msc10848}
+
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.18\linewidth}
+        \centering
+
+        \includegraphics[width=\linewidth]{Figures/PDF/LogoUGA.pdf}
+
+        \textit{raefsky3}
+
+    \end{minipage}
     
+    \bigskip
 
-    SpDCache et les matrices bandées -> 
+    \begin{minipage}[t]{0.40\linewidth}
+        \raggedright
+
+        \pause[1]%
+        \arrow[\bfseries][0][Red]{Densités}
+
+        \point[][2][Red]{\parbox[t]{2cm}{En-bande :}} $\sim$ 10\textsuperscript{-3} (de 10\textsuperscript{-8} à 10\textsuperscript{-2})
+
+        \point[][2][Red]{\parbox[t]{2cm}{Hors-bande :}} $\sim$ 10\textsuperscript{-4} (de 0 à 10\textsuperscript{-2})
+
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.56\linewidth}
+        \raggedright
+        
+        \pause[1]%
+        \point[][2][Red]{Structure naturelle dans les \underbar{systèmes linéaires}}
+        
+        \arrow[][6]{Corrélation élevée des composantes proches}
+
+        \point[][2][Red]{\underbar{Techniques de diagonalisation} des matrices}
+
+    \end{minipage}
+
+    \bigskip
+
+    \point[\bfseries\color{Red}][0]{Parfaitement bandée} : hors-bande à zéro
 
 \end{frame}
 
@@ -106,7 +183,40 @@
     \begin{minipage}[t]{0.48\linewidth}
         \raggedright
 
-        Du texte pour expliquer comment passent les données dans le cache
+        \arrow[\bfseries]{SpDCache}
+
+        \point[][2][Red]{Lecture de $A$ et $b$} \arrow[]{GRC}
+
+        \point[][2][Red]{Transactions mémoires classiques}
+        
+        \subpt[][6][Red]{Taille d'une ligne de cache}
+
+        \medskip
+
+        \arrow[\bfseries]{Processeur}
+
+        \point[][2][Red]{Somme partielle :} $\mathit{valeur} = A_{i,j} \times b_j$
+
+        \point[][2][Red]{Région de la matrice :} $\mathit{region}$ de $A_{i,j}$
+
+        \point[][2][Red]{$\mathit{RED}(\mathit{adresse} \; \mathit{de} \; c_i, \mathit{valeur}, \mathit{region})$}
+
+        \medskip
+
+        \arrow[\bfseries]{SpDCache}
+
+        \point[][2][Red]{Insertion ou accumulation}
+
+        \subpt[][6][Red]{$\mathit{region}$ en-bande} \arrow[]{DRC}
+    
+        \subpt[][6][Red]{$\mathit{region}$ hors-bande} \arrow[]{SRT}
+        
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\linewidth}
+        \centering
+
+        <figure de spdcache + direction des transactions (globales) de A,b à c>
 
         A, b dans GRC
 
@@ -118,15 +228,6 @@
 
         Evincements vers mémoire, soit ligne wise soit RMW
 
-        \subpt[][2][Red]{Utilise des transactions atomique RMW (lecture-accumulation-écriture)}
-        
-    \end{minipage}
-    \hfill
-    \begin{minipage}[t]{0.48\linewidth}
-        \centering
-
-        <figure de spdcache + direction des transactions (globales) de A,b à c>
-
     \end{minipage}
 
 \end{frame}
@@ -137,35 +238,43 @@
     \begin{minipage}[t]{0.48\linewidth}
         \raggedright
 
-        Transactions RED -> "envoyées et oubliées"
+        Transactions RED \arrow[\bfseries\color{Red}]{\og envoyées et oubliées \fg{}}
 
-    \bigskip
+        \medskip
 
-    Hit / Miss
+        \textbf{\textcolor{Red}{Hit / Miss}}
 
-    \point[\bfseries][2][Red]{Pas} de transaction mémoire
+        \point[\bfseries][2][Red]{0} transaction mémoire
 
-    \point[][2][Red]{Insertion ou accumulation dans le cache}
+        \point[][2][Red]{Insertion ou accumulation dans le cache}
 
-    \bigskip
+        \medskip
 
-    Miss avec évincement dans le DRC
+        Transferts entre DRC et SRT
+        
+        \arrow[\bfseries\color{Red}][2]{pas de duplication}
 
-    \point[][2][Red]{2 transactions mémoires}
+        \medskip
 
-    \point[][2][Red]{Accumulation dans le cache}
+        \textbf{\textcolor{Red}{Miss avec évincement dans le DRC}}
 
-    \bigskip
+        \point[\bfseries][2][Red]{2} transactions mémoires (lignes)
 
-    Miss avec évincement dans la SRT
+        \point[][2][Red]{Accumulation dans le cache}
 
-    \point[][2][Red]{1 transaction mémoire}
+        \medskip
 
-    \point[][2][Red]{"envoyé et oublié"}
+        \textbf{\textcolor{Red}{Miss avec évincement dans la SRT}}
 
-    \point[][2][Red]{Accumulation en mémoire principale}
+        \point[\bfseries][2][Red]{1} transaction mémoire (\textbf{élément})
 
-    (note sur les duplications)
+        \point[\bfseries][2][Red]{\og Envoyé et oublié \fg{}}
+
+        \point[][2][Red]{Accumulation en mémoire principale}
+
+        \subpt[][6][Red]{RMW} (lecture-accumulation-écriture)
+
+        \subpt[][6][Red]{AMOs AXI-4}
 
     \end{minipage}
     \hfill
