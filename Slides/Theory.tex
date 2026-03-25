@@ -244,12 +244,40 @@
 
     \bigskip
 
-    On utilise la structure à gros grain des matrices
+    \point[\bfseries\color{Red}][0]{Structure à gros grain des matrices}
+    \subpt[][2][Red]{La structure bandée}
 
-    On se base sur le comportement des caches pour proposer la séparation en plusieurs régions
+    \medskip
 
-    La solution fonctionne pour toute structure, mais est plus adapté au bandé
+    \point[\bfseries\color{Red}][0]{Analyse du comportement des caches} \arrow[]{séparation de la mémoire cache en plusieurs régions}
 
-    Est-ce que la combinaison des deux régions réduit les perfs ?
+    \subpt[\bfseries][2][Red]{GRC}: région générique
+    \subpt[\bfseries][2][Red]{DRC}: région dense (en-bande)
+    \subpt[\bfseries][2][Red]{SRT}: région creuse (hors-bande)
+
+    \medskip
+
+    \point[\bfseries\color{Red}][0]{Architecture flexible}
+
+    \subpt[][2][Red]{\`A partir d'un cache générique}
+    \subpt[][2][Red]{Réductions seulement}
+
+    \bigskip
+
+    \textbf{\underbar{Remarque :}} SpDCache \arrow[\bfseries]{tout type de structure}, mais plus adapté à la structure bandée
+    
+    \subpt[][20]{Si la matrice est plus dense dans la bande fixée}
+
+    \bigskip
+
+    \textbf{\textcolor{Mulberry}{Qu'en est-il des performances de SpDCache ?}}
+
+    \medskip
+
+    \textbf{\textcolor{Mulberry}{Qu'en est-il du dimensionnement des régions ?}}
+
+    \medskip
+
+    \textbf{\textcolor{Mulberry}{Qu'en est-il de la structure à grain fin des matrice ?}}
 
 \end{frame}

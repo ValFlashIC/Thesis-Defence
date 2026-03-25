@@ -8,12 +8,52 @@
 \begin{frame}
     \frametitle{Conclusion}
 
-    Revenir sur la problématique
+    \textbf{\textcolor{Mulberry}{Objectif 1 :} Mitiger l’irrégularité des réductions en analysant le comportement des caches de données}
+    
+    \arrow[\bfseries\color{Red}][2]{Cache de réduction :} réduction effectuée dans le cache
+    
+    \arrow[\bfseries\color{Red}][2]{Analyse des caches} en fonction des structures gros grain des matrices
 
-    Et sur les Q1 et Q2
+    \arrow[\bfseries\color{Red}][2]{SpDCache :} des régions mémoires du cache pour les régions dense et creuse des matrices
 
     \bigskip
 
-    slide publi et autres ?
+    \textbf{\textcolor{Mulberry}{Objectif 2 :} Comprendre le rôle des structures des matrices dans les performances}
+
+    \subpt[][10][Green]{\parbox[t]{3cm}{Traffic mémoire :}} \textbf{\textcolor{Green}{3.9$\times$}}
+
+    \subpt[][10][Green]{\parbox[t]{3cm}{Accélération :}} \textbf{\textcolor{Green}{10\%}}
+
+    \arrow[\bfseries\color{Red}][2]{Analyse des performances} en fonction des matrices
+
+    \arrow[\bfseries\color{Red}][2]{Critère de classification} des matrices
+
+    \point[][6][Red]{Comportements des performances :} SpMV limité par le calcul ou la mémoire
+
+    \bigskip
+
+    \textbf{\textcolor{Mulberry}{Limitations \& Perspectives}}
+
+    \point[][2][Red]{Mono-c\oe{}ur, un niveau de cache} \arrow[]{Question du passage à l'échelle}
+
+    \arrow[][6][Red]{\underbar{Multi-c\oe{}ur, multi-niveau} :} seulement conceptualisé
+
+    \point[][2][Red]{De nombreuses \underbar{optimisations} à faire sur l'implémentation RTL}
+
+    \point[][2][Red]{\'Etude de l'utilisation avec d'\underbar{autres kernels} (ex. : SpMSpM)}
+    
+\end{frame}
+
+\begin{frame}[plain]
+
+    Merci
+
+    % \begin{center}
+    %     {\Huge\calligra Thanks!}
+    % \end{center}
+
+    Contact
+
+    Publi
     
 \end{frame}

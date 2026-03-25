@@ -19,38 +19,161 @@
 % \end{frame}
 
 \begin{frame}
-    \frametitle{Environement}
+    \frametitle{Environnement}
 
-    CVA6 + SpDCache + RAM
+    \textbf{\textcolor{Red}{Environnement RTL}}
+
+    \point[\bfseries][2][Red]{\parbox[t]{4cm}{C\oe{}ur :}} CVA6 (RISC-V) -- Scalaire, exécution dans l'ordre
+
+    \point[\bfseries][2][Red]{\parbox[t]{4cm}{Cache L1 :}} SpDCache (\textit{mode réduction} activable à l'exécution)
+
+    \point[\bfseries][2][Red]{\parbox[t]{4cm}{Mémoire principale :}} RAM simulée
+
+    \bigskip
+
+    <schéma simple de l'env>
+
+    \bigskip
+
+    \textbf{\textcolor{Red}{Approche}}
+
+    \point[][2][Red]{SpMV en Outer-Product}
+
+    \point[\bfseries][2][Red]{62 matrices} -- Dimensions et structures variables
+
+    \point[][2][Red]{Configuration des régions :} \textbf{25/50/25\%} \hfill \textcolor{black!60}{(GRC/DRC/SRT, \% de la taille totale du cache)}
+
+    \point[][2][Red]{Comparaison avec un cache générique et un cache de réduction}
+
+    \bigskip
+
+    \textbf{\textcolor{Red}{Performances}}
+
+    \point[\bfseries][2][Red]{Traffic mémoire} entre SpDCache et mémoire principale
+
+    \point[\bfseries][2][Red]{Accélération} en fonction de la structure à grain fin des matrices
 
 \end{frame}
 
 \begin{frame}
     \frametitle{Traffic mémoire}
 
-    Set de 48 à 62 matrices
+    \begin{minipage}[t]{\linewidth}
+        \centering
 
-    Toutes structures
+        \includegraphics[width=0.2\linewidth]{Figures/PDF/LIST.pdf}
 
-    Config 25/50/25
+    \end{minipage}
+    
+    \smallskip
 
-    Perfs avec écart type (brut et $\times$)
+    \textbf{Traffic mémoire total moyen :}
+    
+    \point[\bfseries\color{Green}][2]{3.9$\times$} par rapport à un cache générique
 
-    Conclu : réduction significative du trafic mémoire
+    \point[\bfseries\color{Green}][2]{2.8$\times$} par rapport à un cache de réduction
 
-    On note deux groupes (transition vers speedup)
+    \medskip
+
+    \arrow[\bfseries][0][Red]{Réduction significative du traffic mémoire}
+
+    \bigskip
+
+    \underbar{Avec d'autres configurations des régions :} variations de \textbf{+\!/\!-\,20\% maximum}
+
+    \arrow[\bfseries\color{Red}][2]{25/50/25\% :} performant, simple à réaliser en matériel
+
+    \bigskip
+
+    \textbf{\underbar{Remarque :}} Deux groupes de performances selon les matrices
+
+    \arrow[\bfseries\color{Mulberry}]{Quel rôle jouent les matrices dans les performances ?}
 
 \end{frame}
 
 \begin{frame}
     \frametitle{Accélération}
 
-    1 coeur CVA6, basse perf -> on est dans une zone entre compute et memory bound
+    \begin{minipage}[t]{\linewidth}
+        \centering
 
-    Permet de clasifier les marices selon nouveau critere dcd
+        \includegraphics[width=0.2\linewidth]{Figures/PDF/LIST.pdf}
 
-    Explique les deux groupes d'accélérations
+    \end{minipage}
+    
+    \smallskip
 
-    Conclu : Comme attendu, reduction du trafic permet accélérations sur matrice memory bound / classification des matrices selon densité des lignes de cache
+    \textbf{Accélération totale moyenne :}
+    
+    \point[\bfseries\color{Green}][2]{10\%} par rapport à un cache générique
+
+    \point[\bfseries\color{Green}][2]{10\%} par rapport à un cache de réduction
+
+    \bigskip
+
+    \textbf{\underbar{Remarque :}}
+    
+    \point[][2][Red]{Multi-c\oe{}urs hautes performances} \arrow[]{SpMV} toujours limité par la mémoire
+
+    \point[\bfseries\color{Red}][2][Red]{1 c\oe{}ur CVA6} \arrow[]{SpMV} limité par le calcul \textbf{OU} la mémoire
+
+    \smallskip
+
+    \arrow[\bfseries][0][Red]{Classifier les matrices} suivant un nouveau critère, \textbf{\textit{d\textsubscript{cd}}}
+
+    \bigskip
+
+    \textbf{\textit{d\textsubscript{cd}} :} Densité moyenne de sections non-nulles de la matrice
+    
+    \point[][2][Red]{Sections :} Taille d'une ligne de cache
+    %
+    \begin{tikzpicture}[remember picture, overlay]
+        \node [shift={(-3cm, -3cm)}, rotate=0] at (current page.east)
+            { \includegraphics[width=0.2\linewidth]{Figures/PDF/LIST.pdf} };
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Accélération}
+
+    \begin{minipage}[t]{\linewidth}
+        \centering
+
+        \includegraphics[width=0.2\linewidth]{Figures/PDF/LIST.pdf}
+
+    \end{minipage}
+    
+    \smallskip
+
+    \textbf{Groupe 1 :} matrice à \textbf{\textit{d\textsubscript{cd}} basse}
+
+    \smallskip
+
+    \point[][2][Red]{Lignes de cache creuses, beaucoup d'évincements consécutifs}
+    
+    \arrow[\bfseries][6][Red]{SpMV \textcolor{Red}{limité par la mémoire}}
+
+    \smallskip
+
+    \arrow[\bfseries][2][Green]{Accélération moyenne du groupe 1 : \textcolor{Green}{20\%}} par rapport à un cache générique
+
+    \arrow[\bfseries\color{Green}][6]{Réduction du traffic = accélération}
+    
+    \bigskip
+
+    \textbf{Groupe 2 :} matrice à \textbf{\textit{d\textsubscript{cd}} haute}
+
+    \smallskip
+
+    \point[][2][Red]{Lignes de cache denses, peu d'évincements consécutifs}
+    
+    \arrow[\bfseries][6][Red]{SpMV \textcolor{Red}{limité par le calcul}}
+
+    \smallskip
+
+    \arrow[\bfseries][2][Orange]{Accélération moyenne du groupe 2 : \textcolor{Orange}{0\%}} par rapport à un cache générique
+
+    \arrow[\bfseries\color{Orange}][6]{Réduction du traffic = pas d'impact}
 
 \end{frame}
