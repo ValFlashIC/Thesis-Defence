@@ -2,14 +2,14 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="369.53473mm"
-   height="877.97565mm"
-   viewBox="0 0 369.53474 877.97565"
+   width="160.51389mm"
+   height="54.680546mm"
+   viewBox="0 0 160.51389 54.680546"
    version="1.1"
    id="svg5"
-   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
    sodipodi:docname="Sparse formats.svg"
-   inkscape:export-filename="Sparse formats anim gif\25.01.21_CSC_11.png"
+   inkscape:export-filename="..\GIF\CSR\CSR_1.pdf"
    inkscape:export-xdpi="150"
    inkscape:export-ydpi="150"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -28,19 +28,23 @@
      inkscape:document-units="mm"
      showgrid="true"
      inkscape:zoom="1.0620589"
-     inkscape:cx="1060.6756"
-     inkscape:cy="2891.5534"
-     inkscape:window-width="2100"
-     inkscape:window-height="1284"
-     inkscape:window-x="-9"
-     inkscape:window-y="35"
+     inkscape:cx="343.2013"
+     inkscape:cy="-100.27692"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1">
     <inkscape:grid
        type="xygrid"
        id="grid182"
        originx="-14.993075"
-       originy="11.90604" />
+       originy="-176.38909"
+       spacingy="1"
+       spacingx="1"
+       units="mm"
+       visible="true" />
   </sodipodi:namedview>
   <defs
      id="defs2" />
@@ -48,7 +52,7 @@
      inkscape:label="Calque 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-14.993055,11.90625)">
+     transform="translate(-14.993055,-176.38888)">
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:1.76389;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
        id="rect9856-8"

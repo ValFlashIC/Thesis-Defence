@@ -46,14 +46,14 @@
     \begin{minipage}[t]{0.18\linewidth}
         \centering
 
-        \includegraphics[width=\linewidth]{Figures/PDF/LogoUGA.pdf}
+        \includegraphics[width=0.8\linewidth]{Figures/PDF/BandedM_def.pdf}
 
     \end{minipage}
     \hfill
     \begin{minipage}[t]{0.18\linewidth}
         \centering
 
-        \includegraphics[width=\linewidth]{Figures/PDF/LogoUGA.pdf}
+        \includegraphics[width=0.8\linewidth]{Figures/PDF/roadNet-CA.pdf}
 
         \textit{roadNet-CA}
 
@@ -62,7 +62,7 @@
     \begin{minipage}[t]{0.18\linewidth}
         \centering
 
-        \includegraphics[width=\linewidth]{Figures/PDF/LogoUGA.pdf}
+        \includegraphics[width=0.8\linewidth]{Figures/PDF/scircuit.pdf}
 
         \textit{scircuit}
 
@@ -71,7 +71,7 @@
     \begin{minipage}[t]{0.18\linewidth}
         \centering
 
-        \includegraphics[width=\linewidth]{Figures/PDF/LogoUGA.pdf}
+        \includegraphics[width=0.8\linewidth]{Figures/PDF/msc10848.pdf}
 
         \textit{msc10848}
 
@@ -80,7 +80,7 @@
     \begin{minipage}[t]{0.18\linewidth}
         \centering
 
-        \includegraphics[width=\linewidth]{Figures/PDF/LogoUGA.pdf}
+        \includegraphics[width=0.8\linewidth]{Figures/PDF/raefsky3.pdf}
 
         \textit{raefsky3}
 
@@ -119,7 +119,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Concept de SpDCache}
+    \frametitle{SpDCache : le concept}
 
     \begin{minipage}[t]{0.48\linewidth}
         \raggedright
@@ -172,7 +172,10 @@
     \hfill
     \begin{minipage}[t]{0.48\linewidth}
         \centering
-        <ajouter figure avec les modifs apportés à un cache générique>
+        
+        \pause[1]%
+        \includegraphics[width=\linewidth]{Figures/Others/24.07.26_MatrixAndDataCachePartition_06.png}
+
     \end{minipage}
 
 \end{frame}
@@ -183,7 +186,7 @@
     \begin{minipage}[t]{0.48\linewidth}
         \raggedright
 
-        \arrow[\bfseries]{SpDCache}
+        \arrow[\bfseries][0][Red]{SpDCache}[1.]
 
         \point[][2][Red]{Lecture de $A$ et $b$} \arrow[]{GRC}
 
@@ -191,49 +194,55 @@
         
         \subpt[][6][Red]{Taille d'une ligne de cache}
 
-        \medskip
+        \bigskip
 
-        \arrow[\bfseries]{Processeur}
+        \arrow[\bfseries][0][Red]{Processeur}[2.]
 
-        \point[][2][Red]{Somme partielle :} $\mathit{valeur} = A_{i,j} \times b_j$
+        \point[][2][Red]{\parbox[t]{3.5cm}{Somme partielle :}} $\mathit{sp} = A_{i,j} \times b_j$
 
-        \point[][2][Red]{Région de la matrice :} $\mathit{region}$ de $A_{i,j}$
+        \point[][2][Red]{\parbox[t]{3.5cm}{Région de la matrice :}} $\mathit{reg}$ de $A_{i,j}$
 
-        \point[][2][Red]{$\mathit{RED}(\mathit{adresse} \; \mathit{de} \; c_i, \mathit{valeur}, \mathit{region})$}
+        \smallskip
 
-        \medskip
+        \arrow[][2][Red]{$\mathit{RED}(\mathit{adresse} \; \mathit{de} \; c_i, \mathit{sp}, \mathit{reg})$}
 
-        \arrow[\bfseries]{SpDCache}
+        \bigskip
+
+        \arrow[\bfseries][0][Red]{SpDCache}[3.]
 
         \point[][2][Red]{Insertion ou accumulation}
 
-        \subpt[][6][Red]{$\mathit{region}$ en-bande} \arrow[]{DRC}
+        \subpt[][6][Red]{\parbox[t]{2.5cm}{$\mathit{reg}$ : en-bande}} \arrow[]{DRC}
     
-        \subpt[][6][Red]{$\mathit{region}$ hors-bande} \arrow[]{SRT}
+        \subpt[][6][Red]{\parbox[t]{2.5cm}{$\mathit{reg}$ : hors-bande}} \arrow[]{SRT}
         
     \end{minipage}
     \hfill
     \begin{minipage}[t]{0.48\linewidth}
         \centering
 
-        <figure de spdcache + direction des transactions (globales) de A,b à c>
+        \vspace*{-7pt}
+        \pause[1]%
+        \includegraphics[width=0.9\linewidth]{Figures/PDF/SpDC_MacroArchi.pdf}
 
-        A, b dans GRC
+        % <figure de spdcache + direction des transactions (globales) de A,b à c>
 
-        Dans processeur : En ou hors bande de A ? / Axb -> c
+        % A, b dans GRC
 
-        RED (c Axb reg) vers L1
+        % Dans processeur : En ou hors bande de A ? / Axb -> c
 
-        Selon reg, DRC ou SRT
+        % RED (c Axb reg) vers L1
 
-        Evincements vers mémoire, soit ligne wise soit RMW
+        % Selon reg, DRC ou SRT
+
+        % Evincements vers mémoire, soit ligne wise soit RMW
 
     \end{minipage}
 
 \end{frame}
 
 \begin{frame}
-    \frametitle{Architecture de SpDCache}
+    \frametitle{Fonctionnement de SpDCache}
 
     \begin{minipage}[t]{0.48\linewidth}
         \raggedright
@@ -281,7 +290,8 @@
     \begin{minipage}[t]{0.48\linewidth}
         \centering
 
-        <figure avec animations du fonctionnement de spdcache>
+        \pause[1]%
+        \includegraphics[width=\linewidth]{Figures/PDF/SpDC_behavior.pdf}
 
     \end{minipage}
 
