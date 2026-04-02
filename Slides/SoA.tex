@@ -246,48 +246,56 @@
     \begin{minipage}[t]{0.40\linewidth}
         \raggedright
 
+        <ajout objectif de la slide, aspect contribution>
+
+        \smallskip
+
         \point[\bfseries\color{Red}]{Accélérateur complet}
         
         \tab[\bfseries\color{Red}][0]{= spécifique, performance}
 
-        \medskip
+        \smallskip
         
-        \arrow[][2]{Kernel spécifique}
+        \arrow[][2]{Kernel spécifique}[\faCheckCircleO]
         
-        \arrow[][2]{Application spécifique (parfois)}
+        \arrow[][2]{Application spécifique (parfois)}[\faCheckCircleO]
         
-        \arrow[][2]{Mémoires customisées}
+        \arrow[][2]{Mémoires customisées}[\faCheckCircleO]
         
-        \arrow[][2][Green]{Hautes performances}
+        \arrow[][2][Green]{Hautes performances}[\faPlus]
         
-        \arrow[][2][Red]{Surface conséquente}
+        \arrow[][2][Red]{Surface conséquente}[\faMinus]
 
-        \bigskip
+        \medskip
 
         \point[\bfseries\color{Red}]{Assisté par processeur}
         
         \tab[\bfseries\color{Red}][0]{= flexible, faible coût}
 
+        \smallskip
+        
+        \arrow[][2][Green]{Pour tous kernels}[\faPlus]
+        
+        \arrow[][2]{Mémoires existantes}[\faCheckCircleO]
+        
+        \arrow[][2][Green]{Intégrable dans divers systèmes}[\faPlus]
+        
+        \arrow[][2][Red]{Intégration peu évidente}[\faMinus]
+        
+        \arrow[][2][Red]{Performances moins élevées}[\faMinus]
+        
+        \arrow[][2][Green]{Faible surface ajoutée}[\faPlus]
+
         \medskip
-        
-        \arrow[][2][Green]{Pour tous kernels}
-        
-        \arrow[][2]{Mémoires existantes}
-        
-        \arrow[][2][Green]{Intégrable dans divers systèmes}
-        
-        \arrow[][2][Red]{Intégration peu évidente}
-        
-        \arrow[][2][Red]{Performances moins élevées}
-        
-        \arrow[][2][Green]{Faible surface ajoutée}
-        
+
+        <cite HiPEAC>
 
     \end{minipage}
     \hfill
     \begin{minipage}[t]{0.58\linewidth}
         \centering
 
+        \vspace*{7pt}
         \pause[1]%
         \includegraphics[width=0.78\linewidth]{Figures/PDF/SoA_AnalysisForDesigners.pdf}
 
@@ -316,10 +324,16 @@
 
     \arrow[][2][Red]{On compare seulement les performances des algorithmes pour les accélérateurs complets}
 
+    \bigskip
+
+    <REMOVE>
+
 \end{frame}
 
 \begin{frame}
     \frametitle{Un besoin de support pour les réductions}
+
+    <Attention au N°1 et 2>
 
     Parmi les \underbar{accélérateurs complets} (majoritairement pour les kernels Matrice-Matrice)
     
@@ -370,7 +384,7 @@
 
     \bigskip
 
-    \point[][0][Red]{Architecture de \textbf{type générique}, faible coût en surface}
+    \point[][0][Red]{Architecture de \textbf{type générique}, \textbf{assisté par processeur}, faible coût en surface}
 
     \arrow[][2][Red]{Au niveau des \textbf{caches de données}}
 
@@ -391,65 +405,3 @@
     \textbf{\textcolor{Mulberry}{Objectif 2 :} Comprendre le rôle des structures des matrices dans les performances}
 
 \end{frame}
-
-% \begin{frame}
-%     \frametitle{Les modèles développés pour étudier et évaluer SpDCache}
-
-%     Trois modèles :
-
-%     \bigskip\bigskip\bigskip\bigskip
-
-%     \begin{tblr}{
-%             width = {\linewidth},
-%             colspec = {X[1.2,c] *{3}{X[2,c]}}, % rowspec
-%             rows = {m},
-%             colsep = {4pt},
-%             row{1-Z} = {rowsep=2pt, black!2},
-%             row{1} = {c, font=\bfseries, black!5},
-%             hspan = {minimal},
-%             % hlines, vlines,
-%             % rulesep = {-1pt},
-%             hline{1,Z} = {2pt}, % Z for last
-%             hline{2} = {1pt},
-%             % hline{Z} = {1pt, dashed},
-%             vline{2-Y} = {1-Z}{0.5pt},
-%         }
-%         %
-%         Modèle & Modèle analytique & Modèle de simulation & Implémentation RTL \\
-%         Langage & C & Python & SystemVerilog \\
-%         Entrées & Distributions de densités & Matrices réelles et synthétiques & Matrices réelles et synthétiques \\
-%         Niveau de paramétrisation & Très élevé +++ & \'Elevé ++ & Moyen + \\
-%         Vitesse de simulation & $\sim$10\textsuperscript{5} $nnz/s$ +++ & $\sim$10\textsuperscript{3} $nnz/s$ ++ & $\sim$10 $nnz/s$ + \\
-%         Précision & Probabilité + & Transaction ++ & Cycle +++ \\
-%         Design & Approximatif & Exact & Exact avec contraintes matérielles \\
-%         %
-%     \end{tblr}
-
-%     \begin{tikzpicture}[remember picture, overlay]
-%         \node [shift={(-4.7cm, 1.70cm)}, rotate=5] at (current page.center)
-%             { \includegraphics[width=0.08\linewidth]{Figures/PDF/Sticker_C.pdf} };
-%     \end{tikzpicture}
-
-%     \begin{tikzpicture}[remember picture, overlay]
-%         \node [shift={(-0.7cm, 1.80cm)}, rotate=-5] at (current page.center)
-%             { \includegraphics[width=0.08\linewidth]{Figures/PDF/Sticker_Py.pdf} };
-%     \end{tikzpicture}
-
-%     \begin{tikzpicture}[remember picture, overlay]
-%         \node [shift={(3.5cm, 1.73cm)}, rotate=7] at (current page.center)
-%             { \includegraphics[width=0.08\linewidth]{Figures/PDF/Sticker_RTL.pdf} };
-%     \end{tikzpicture}
-
-% \end{frame}
-
-% \begin{frame}
-%     Problème :
-
-%     Comment traiter efficacement des réductions irrégulières ?
-
-%     Deux approches complémentaires :
-
-%     Approche 1 : Cache de réduction pour calculer les réductions dans le cache et éviter des transactions inutiles
-
-%     Approche 2 : Traiter l'irrégularité en s'appuyant sur la structure des matrices, partitionnement du cache
-% \end{frame}

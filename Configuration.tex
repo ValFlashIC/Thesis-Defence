@@ -29,6 +29,7 @@
 \usepackage{fontawesome}
 \usepackage{animate}
 \usepackage{pifont}
+\usepackage{filecontents}
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -81,6 +82,13 @@
 \NewDocumentCommand{\ssbpt}{O{\small} O{5} o m O{-}}{\bulletPoint[#1][#2][#3]{#4}[#5]}
 \NewDocumentCommand{\tab}{O{\small} O{8} m}{\bulletPoint[#1][#2]{#3}[]}
 
+\NewDocumentCommand{\algoBar}{O{\small} O{1} O{1} o m O{\ |}}{%
+	{#1%
+	\myrepeat{#3}{%
+	{\IfNoValueF{#4}{\color{#4}}#6}\myrepeat{#2}{\ }}%
+	\ #5}%
+}
+
 \def\ck{\textcolor{Green}{\faCheck}}
 \def\cr{\textcolor{Red}{\faClose}}
 
@@ -101,6 +109,204 @@
 \def\ldb{[\!\![}
 \def\rdb{]\!\!]}
 \def\acc{+\!\!=}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \pdfcatalog{
+%   /AA <<
+%     /WP <<
+%       /S/JavaScript/JS (anim["2"].pause();anim["2"].frameNum=5;)
+%     >>
+%   >>
+% }
+
+\begin{filecontents}[overwrite]{timeline12.txt}
+:2:0
+::1
+::2
+::3
+::4
+::5
+::6
+::7
+::8
+::9
+::10
+:0.5:11
+\end{filecontents}
+
+% \begin{filecontents}[overwrite]{timeline3.txt}
+% :2:0
+% ::1
+% ::2
+% ::3
+% ::4
+% ::5
+% ::6
+% ::7
+% ::8
+% ::9
+% ::10
+% :1:11
+% \end{filecontents}
+
+% \begin{filecontents}[overwrite]{timeline4.txt}
+% :2:0
+% ::1
+% ::2
+% ::3
+% ::4
+% ::5
+% ::6
+% ::7
+% ::8
+% ::9
+% ::10
+% :1:11
+% \end{filecontents}
+
+% \begin{filecontents}[overwrite]{timeline5.txt}
+% :2:0
+% ::1
+% ::2
+% ::3
+% ::4
+% ::5
+% ::6
+% ::7
+% ::8
+% ::9
+% ::10
+% :1:11
+% \end{filecontents}
+
+\begin{filecontents}[overwrite]{timeline6.txt}
+:0.5:0
+:3:1
+::2
+::3
+::4
+::5
+::6
+::7
+::8
+::9
+::10
+::11
+::12
+::13
+::14
+::15
+::16
+::17
+::18
+::19
+::20
+::21
+::22
+::23
+::24
+::25
+::26
+::27
+::28
+::29
+::30
+::31
+::32
+::33
+::34
+:0.5:35
+\end{filecontents}
+
+\begin{filecontents}[overwrite]{timeline7.txt}
+:0.5:0
+:3:1
+::2
+::3
+::4
+::5
+::6
+::7
+::8
+::9
+:0.5:10
+::11
+:3:12
+::13
+::14
+::15
+::16
+::17
+::18
+::19
+::20
+::21
+::22
+::23
+::24
+::25
+::26
+::27
+::28
+::29
+::30
+::31
+::32
+::33
+::34
+:0.5:35
+\end{filecontents}
+
+\begin{filecontents}[overwrite]{timeline8.txt}
+:2:0
+::1
+::2
+::3
+::4
+::5
+::6
+::7
+::8
+::9
+::10
+:1:11
+\end{filecontents}
+
+\begin{filecontents}[overwrite]{timeline9.txt}
+:0.5:0
+:3:1
+::2
+::3
+::4
+::5
+::6
+::7
+::8
+::9
+::10
+::11
+::12
+::13
+::14
+::15
+::16
+::17
+::18
+::19
+::20
+::21
+::22
+::23
+::24
+::25
+::26
+::27
+::28
+::29
+::30
+:0.5:31
+\end{filecontents}
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

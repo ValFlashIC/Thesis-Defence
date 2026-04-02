@@ -5,57 +5,29 @@
 
 \section[Matrices creuses]{Les matrices creuses}
 
-% \begin{frame}
-%     SpMV
-
-%     OP
-
-%     reductions
-
-%     irrégulières
-
-%     scatter
-
-%     formats creux CSC
-
-%     matrices creuses
-
-%     correspondance direct vs associatif : 1 schéma pour expliquer les 3 types
-
-%     visu du problème dans cache classique (au niveau, voir ASAP)
-% \end{frame}
-
-% \begin{frame}
-%     Cache : mémoire intermédiaire entre le processeur et la mémoire principale
-
-%     Fonction : stocker quelques données proche du processeur
-
-%     Pourquoi : une transaction en mémoire principale prend du temps ($\sim$100 ns)
-% \end{frame}
-
 \begin{frame}
     \frametitle{Les matrices creuses}
 
     \underbar{Applications :} Physiques numériques, Intéligence artificielle, Analyse de graphes...
     %
     \begin{tikzpicture}[remember picture, overlay]
-        \node [shift={(-3cm, 1.2cm)}, rotate=0] at (current page.east)
-            { \includegraphics[width=0.22\linewidth]{Figures/Others/24.09.29_Computational_physics_1.jpg} };
+        \node [shift={(-1.2cm, 2.1cm)}, rotate=0] at (current page.east)
+            { \includegraphics[width=0.17\linewidth]{Figures/Others/24.09.29_Graph_analytics_2.jpg} };
     \end{tikzpicture}
     %
     \begin{tikzpicture}[remember picture, overlay]
-        \node [shift={(-2cm, 0cm)}, rotate=0] at (current page.east)
-            { \includegraphics[width=0.2\linewidth]{Figures/Others/24.09.29_Graph_analytics_2.jpg} };
+        \node [shift={(-1.6cm, 0cm)}, rotate=0] at (current page.east)
+            { \includegraphics[width=0.18\linewidth]{Figures/Others/24.09.29_Computational_physics_1.jpg} };
     \end{tikzpicture}
     %
     \begin{tikzpicture}[remember picture, overlay]
-        \node [shift={(-6cm, -0.5cm)}, rotate=0] at (current page.east)
-            { \includegraphics[width=0.2\linewidth]{Figures/Others/24.09.29_Graph_analytics_1.jpg} };
+        \node [shift={(-4.5cm, 1cm)}, rotate=0] at (current page.east)
+            { \includegraphics[width=0.17\linewidth]{Figures/Others/24.09.29_Graph_analytics_1.jpg} };
     \end{tikzpicture}
 
     \medskip
 
-    \arrow[\color{Red}\bfseries][0]{Matrice creuse}
+    \arrow[\color{Red}\bfseries][0]{Matrice creuse} (hors IA)
     %
     \begin{tikzpicture}[remember picture, overlay]
         \node [shift={(-3cm, -2.5cm)}, rotate=0] at (current page.east)
@@ -70,37 +42,63 @@
 
     \bigskip
 
-    \point[\bfseries][2][Red]{Diverses}
-    %
-    {%
-        \def\posX{-9.5cm}%
-        \def\posY{-1.8cm}%
-        \begin{tikzpicture}[remember picture, overlay]
-            \node [shift={(\posX, \posY)}, rotate=0] at (current page.east)
-                { \includegraphics[width=0.25\linewidth]{Figures/Others/25.01.21_spada_graph.PNG} };
-        \end{tikzpicture}
-        %
-        \begin{tikzpicture}[remember picture, overlay]
-            \node [shift={(\posX, \posY + 1cm)}, rotate=0] at (current page.east)
-                { \scriptsize\color{Orange} Réseaux de neurones };
-        \end{tikzpicture}
-        %
-        \begin{tikzpicture}[remember picture, overlay]
-            \node [shift={(\posX, \posY)}, rotate=-45] at (current page.east)
-                { \scriptsize\color{Blue} Graphes / Algèbre linéaire };
-        \end{tikzpicture}
-        %
-        \begin{tikzpicture}[remember picture, overlay]
-            \node [shift={(\posX, \posY - 1cm)}, rotate=0] at (current page.east)
-                { \scriptsize Source  \cref{ref:Spada} };
-        \end{tikzpicture}
-    }
+    \begin{minipage}{0.30\linewidth}
+        \raggedright
 
-    \subpt[][4]{En tailles et densités}
+        \pause[1]%
+        \point[\bfseries][2][Red]{Diverses}
 
-    \subpt[][4]{En structures}
+        \subpt[][4]{En tailles et densités}
 
-    \vspace{3cm}
+        \subpt[][4]{En structures}
+
+        \bigskip\bigskip
+
+        \subpt[][0]{IA:} matrices plus petites et plus denses
+
+        \smallskip
+
+        \arrow[][0][Red]{Focus sur les matrices à \textbf{\textcolor{Red}{très basse densité}}} (bleu)
+
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.65\linewidth}
+        \raggedright
+
+        \pause[1]%
+        \includegraphics[width=0.4\linewidth]{Figures/Others/25.01.21_spada_graph.PNG}
+        %
+        {%
+            \def\posX{-8cm}%
+            \def\posY{-1cm}%
+            \begin{tikzpicture}[remember picture, overlay]
+                \node [shift={(\posX - 0.1cm, \posY + 1.3cm)}, rotate=0] at (current page.east)
+                    { \scriptsize\color{Orange} Réseaux de neurones };
+            \end{tikzpicture}
+            %
+            \begin{tikzpicture}[remember picture, overlay]
+                \node [shift={(\posX + 0.9cm, \posY - 0.6cm)}, rotate=-48] at (current page.east)
+                    { \scriptsize\color{Blue} Graphes / Algèbre linéaire };
+            \end{tikzpicture}
+            %
+            \begin{tikzpicture}[remember picture, overlay]
+                \node [shift={(\posX - 0.6cm, \posY - 1.6cm)}, rotate=0] at (current page.east)
+                    { \scriptsize Source  \cref{ref:Spada} };
+            \end{tikzpicture}
+            %
+            \begin{tikzpicture}[remember picture, overlay]
+                \node [shift={(\posX + 0.7cm, \posY - 0.8cm)}, rotate=-48] at (current page.east)
+                    {%
+                        \lbox[standard jigsaw,opacityframe=1.,opacityback=0.]{Red}{%
+                            \rule{0pt}{25pt}%
+                            \hspace*{3cm}%
+                        }%
+                    };
+            \end{tikzpicture}%
+        }
+    \end{minipage}
+
+    \vspace{0.5cm}
     \dref{ref:Spada}{Zhiyao Li, Jiaxiang Li, Taijie Chen, Dimin Niu, Hongzhong Zheng, Yuan Xie, and Mingyu Gao. 2023. Spada: Accelerating Sparse Matrix Multiplication with Adaptive Dataflow. ASPLOS 2023. Association for Computing Machinery, 747–761.}
 
 \end{frame}
@@ -108,7 +106,7 @@
 \begin{frame}
     \frametitle{Les formats creux}
 
-    \textbf{Formats creux} \cref{ref:spFormats1} \cref{ref:spFormats2} \arrow[]{pour éviter de stocker les zéros}
+    \textbf{\textcolor{Red}{Formats creux}} \cref{ref:spFormats1} \cref{ref:spFormats2} \arrow[]{pour éviter de stocker les zéros}
 
     \point[][2][Red]{Beaucoup de formats spécifiques à des structures de matrices}
 
@@ -121,7 +119,7 @@
         \textbf{CSR} (Compressed Sparse Row)
         \medskip
 
-        \animategraphics[loop,controls,autoplay,buttonsize=6pt,buttonfg=0.5,width=\linewidth]{2}{Figures/GIF/CSR/CSR_}{0}{1}
+        \animategraphics[label=1,loop,controls,autoplay,timeline=timeline12.txt,buttonsize=6pt,buttonfg=0.5,width=\linewidth]{2}{Figures/GIF/CSR/CSR_}{0}{1}
 
     \end{minipage}
     \hfill
@@ -131,7 +129,8 @@
         \textbf{CSC} (Compressed Sparse Column)
         \medskip
 
-        \animategraphics[loop,controls,autoplay,buttonsize=6pt,buttonfg=0.5,width=\linewidth]{2}{Figures/GIF/test-}{0}{11}
+        % \animategraphics[label=2,loop,controls,autoplay,timeline=timeline12.txt,buttonsize=6pt,buttonfg=0.5,width=\linewidth]{2}{Figures/GIF/test-}{0}{11}
+        \includegraphics[width=\linewidth]{Figures/GIF/test-6.png}
     \end{minipage}
 
     \vspace{1cm}
@@ -152,7 +151,7 @@
 
     \bigskip
     \begin{center}
-        \animategraphics[loop,controls,autoplay,buttonsize=6pt,buttonfg=0.5,width=0.5\linewidth]{2}{Figures/GIF/IndirVisu/25.01.21_indirections_}{0}{10}
+        \animategraphics[label=3,loop,controls,autoplay,buttonsize=6pt,buttonfg=0.5,width=0.5\linewidth]{2}{Figures/GIF/IndirVisu/25.01.21_indirections_}{0}{10}
     \end{center}
     \bigskip
 
@@ -164,134 +163,10 @@
     
 \end{frame}
 
-% \begin{frame}
-%     \frametitle{Kernels creux -- Inner-Product SpMV}
-
-%     Exemple de \textbf{SpMV} (multiplication matrice creuse-vecteur) : $A \times b = c$, avec $A$ de taille $(M, N)$.
-
-%     \point[][2][Red]{$\forall (i, j) \in \ldb 0, M-1 \rdb \times \ldb 0, N-1 \rdb, \; c_i = c_i + A_{i, j} \times b_j$}
-
-%     \point[][2][Red]{$A$ est stockée avec un format creux comme \underbar{CSR} ou CSC}
-
-%     \point[][2][Red]{Des \textbf{accès indirectes} apparaissent, sur les entrées ou la sortie, en fonction de l'algorithme :}
-
-%     \subpt[\bfseries][4][Red]{Inner-Product (IP) :}
-
-%     \bigskip
-
-%     \begin{minipage}[t]{0.17\linewidth}
-%         \raggedright
-
-%         \pause[1]%
-%         \parbox[t]{2cm}{$c_0 \acc A_{0, 0} \times b_0$} (0)
-
-%         \parbox[t]{2cm}{$c_0 \acc A_{0, 0} \times b_0$} (0)
-
-%         \parbox[t]{2cm}{$c_0 \acc A_{0, 0} \times b_0$} (0)
-
-%         \parbox[t]{2cm}{$c_0 \acc A_{0, 0} \times b_0$} (0)
-
-%         \parbox[t]{2cm}{$c_0 \acc A_{0, 0} \times b_0$} (0)
-
-%         \parbox[t]{2cm}{$c_0 \acc A_{0, 0} \times b_0$} (0)
-
-%         \parbox[t]{2cm}{$c_0 \acc A_{0, 0} \times b_0$} (0)
-
-%         \parbox[t]{2cm}{$c_0 \acc A_{0, 0} \times b_0$} (0)
-
-%         \parbox[t]{2cm}{$c_0 \acc A_{0, 0} \times b_0$} (0)
-
-%     \end{minipage}
-%     \hfill
-%     \begin{minipage}[t]{0.81\linewidth}
-%         \begin{minipage}[t]{0.365\linewidth}
-%             \centering
-
-%             \pause[1]%
-%             \includegraphics[width=\linewidth]{Figures/PDF/LIST.pdf}
-
-%         \end{minipage}
-%         \hfill
-%         \begin{minipage}[t]{0.365\linewidth}
-%             \centering
-
-%             \pause[1]%
-%             \includegraphics[width=\linewidth]{Figures/PDF/LIST.pdf}
-
-%         \end{minipage}
-%         \hfill
-%         \begin{minipage}[t]{0.250\linewidth}
-%             \raggedleft
-
-%             \pause[1]%
-%             \parbox[t]{2.6cm}{$c_0 \acc \mathit{VAL}_0 \times b_{\mathit{IDX}_0}$} \ding{172}
-
-%             \parbox[t]{2.6cm}{$c_0 \acc \mathit{VAL}_0 \times b_{\mathit{IDX}_0}$} \ding{172}
-
-%             \parbox[t]{2.6cm}{$c_0 \acc \mathit{VAL}_0 \times b_{\mathit{IDX}_0}$} \ding{172}
-
-%             \parbox[t]{2.6cm}{$c_0 \acc \mathit{VAL}_0 \times b_{\mathit{IDX}_0}$} \ding{172}
-
-%         \end{minipage}
-        
-%         \bigskip
-
-%         \arrow[]{Avec le \textbf{SpMV} en \textbf{Inner-Product}, \textcolor{Red}{\textbf{les accès \og aléatoires \fg{} se produisent sur le vecteur d'entrée \textit{\textbf{b}}}}, au moment de calculer la \textbf{somme partielle} $A_{i,j} \times b_j$.}
-
-%     \end{minipage}
-
-% \end{frame}
-
-% \begin{frame}
-%     \frametitle{Kernels creux -- Outer-Product SpMV}
-
-%     idem pour OP (faire court à l'oral)
-
-% \end{frame}
-
-% \begin{frame}
-%     \frametitle{Kernels creux -- Gustavson SpMSpM}
-
-%     Exemple de \textbf{SpMSpM} (multiplication matrice creuse-matrice creuse) : $A \times B = C$, avec $A$ de taille $(M, K)$, $B$ de taille $(K, N)$, et $C$ de taille $(M, N)$.
-
-%     \point[][2][Red]{$\forall (i, j, k) \in \ldb 0, M-1 \rdb \times \ldb 0, N-1 \rdb \times \ldb 0, K-1 \rdb, \; C_{i, j} = C_{i, j} + A_{i, k} \times B_{k, j}$}
-
-%     \point[][2][Red]{$A$ et $B$ sont stockées avec un format creux comme \underbar{CSR} ou CSC}
-
-%     \point[][2][Red]{Des \textbf{accès indirectes} apparaissent, sur les entrées ou la sortie, en fonction de l'algorithme :}
-
-%     \subpt[\bfseries][4][Red]{Gustavson (Gust) :}
-
-%     \bigskip
-
-%     \begin{minipage}[t]{0.48\linewidth}
-%         \centering
-
-%         \pause[1]%
-%         \includegraphics[width=0.6\linewidth]{Figures/PDF/LIST.pdf}
-
-%     \end{minipage}
-%     \hfill
-%     \begin{minipage}[t]{0.48\linewidth}
-%         \centering
-
-%         \pause[1]%
-%         \includegraphics[width=0.6\linewidth]{Figures/PDF/LIST.pdf}
-
-%     \end{minipage}
-    
-%     \bigskip
-
-%     \arrow[]{Avec le \textbf{SpMSpM} en \textbf{Gustavson}, \textcolor{Red}{\textbf{les accès \og aléatoires \fg{}} se produisent sur \textbf{les lignes de la matrice d'entrée \textit{B}} et \textbf{dans les lignes de la matrice de sortie \textit{C}}}, au moment d'accumuler la \textbf{somme partielle} $A_{i,k} \times B_{k, j}$ avec $C_{i, j}$.}
-
-%     \arrow[]{Gustavson se place comme un algorithme \textbf{intermédiaire} entre inner-product et outer-product}
-
-% \end{frame}
-
 \begin{frame}
     \frametitle{La hiérarchie mémoire}
 
-    \textcolor{Red}{\textbf{Pourquoi les accès \og aléatoires \fg{} sont un problème ?}}
+    \textcolor{Red}{\textbf{Pourquoi les accès dit \og aléatoires \fg{} ou irréguliers sont un problème ?}}
 
     \bigskip
 
@@ -359,6 +234,53 @@
     }}
 
     \bigskip\bigskip
+
+    \begin{minipage}{0.32\linewidth}
+        \raggedright
+
+        \textbf{MM: IP}
+
+        \tab[\itshape\color{Blue}][0]{\textbf{for} $m \in \ldb 0, M-1 \rdb$}
+
+        \algoBar[\itshape\color{Blue}][4][1][Blue!40]{\textbf{for} $n \in \ldb 0, N-1 \rdb$}
+
+        \algoBar[\itshape\color{Blue}][4][2][Blue!40]{\textbf{for} $k \in \ldb 0, K-1 \rdb$} \ \textit{\textcolor{Green}{\# K}}
+
+        \algoBar[\itshape\color{Blue}][4][3][Blue!40]{$C_{i,j} \acc A_{i,k} \times B_{k,j}$}
+
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.32\linewidth}
+        \raggedright
+
+        \textbf{MM: OP}
+
+        \tab[\itshape\color{Blue}][0]{\textbf{for} $k \in \ldb 0, K-1 \rdb$} \ \textit{\textcolor{Green}{\# K}}
+
+        \algoBar[\itshape\color{Blue}][4][1][Blue!40]{\textbf{for} $m \in \ldb 0, M-1 \rdb$}
+        
+        \algoBar[\itshape\color{Blue}][4][2][Blue!40]{\textbf{for} $n \in \ldb 0, N-1 \rdb$}
+
+        \algoBar[\itshape\color{Blue}][4][3][Blue!40]{$C_{i,j} \acc A_{i,k} \times B_{k,j}$}
+
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.32\linewidth}
+        \raggedright
+
+        \textbf{MM: Gust}
+
+        \tab[\itshape\color{Blue}][0]{\textbf{for} $m \in \ldb 0, M-1 \rdb$}
+
+        \algoBar[\itshape\color{Blue}][4][1][Blue!40]{\textbf{for} $k \in \ldb 0, K-1 \rdb$} \ \textit{\textcolor{Green}{\# K}}
+
+        \algoBar[\itshape\color{Blue}][4][2][Blue!40]{\textbf{for} $n \in \ldb 0, N-1 \rdb$}
+
+        \algoBar[\itshape\color{Blue}][4][3][Blue!40]{$C_{i,j} \acc A_{i,k} \times B_{k,j}$}
+
+    \end{minipage}
+
+    \bigskip
 
     \point[][2][Red]{Méthodes de tiling} \arrow[]{$\sim$ algorithmes customisés / pré-traitement} \qquad ($\geqslant1\mathcal{D}$)
 
@@ -459,20 +381,6 @@
 
     \point[][6]{Intermédiaire entre Inner-Product et Outer-Product}
 
-    % SpMM
-
-    % $\forall (i, j, k) \in \ldb 0, M-1 \rdb \times \ldb 0, N-1 \rdb \times \ldb 0, K-1 \rdb$
-
-    % En dense : $C_{i, j} \acc A_{i, k} \times B_{k, j}$
-
-    % $\forall p \in \ldb \mathit{PTR}_i, \mathit{PTR}_{i+1}-1 \rdb$
-
-    % $C_{i, j} \acc \mathit{VAL}_p \times B_{\mathit{IDX}_p, j}$
-
-    % $\forall p \in \ldb \mathit{PTR}_k, \mathit{PTR}_{k+1}-1 \rdb$
-
-    % $C_{\mathit{IDX}_p, j} \acc \mathit{VAL}_p \times B_{k, j}$
-
 \end{frame}
 
 \begin{frame}
@@ -507,5 +415,15 @@
     \textbf{Problématique initiale}
 
     \arrow[\bfseries\color{Mulberry}]{Dans le contexte du calcul matriciel, comment adresser efficacement les problématiques d'intersections (gather) et/ou de réductions (scatter) lorsque les données subissent des accès \og aléatoires \fg{} ?}
+    %
+    \begin{tikzpicture}[remember picture, overlay]
+        \node [shift={(8cm, -1.5cm)}, rotate=0] at (current page.west)
+            {%
+                \lbox[standard jigsaw,opacityframe=.0,opacityback=0.7]{Red}{%
+                    \rule{0pt}{35pt}%
+                    \hspace*{15cm}%
+                }%
+            };
+    \end{tikzpicture}%
 
 \end{frame}
