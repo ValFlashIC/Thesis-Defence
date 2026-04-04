@@ -110,7 +110,7 @@
 
     \point[][2][Red]{Beaucoup de formats spécifiques à des structures de matrices}
 
-    \point[][2][Red]{CSR et CSC} \arrow[]{les plus simples et plus utilisées}
+    \point[\bfseries][2][Red]{CSR et CSC} \arrow[]{les plus simples et plus utilisées}
 
     \vspace{1cm}
     \begin{minipage}[t]{0.48\linewidth}
@@ -119,7 +119,7 @@
         \textbf{CSR} (Compressed Sparse Row)
         \medskip
 
-        \animategraphics[label=1,loop,controls,autoplay,timeline=timeline12.txt,buttonsize=6pt,buttonfg=0.5,width=\linewidth]{2}{Figures/GIF/CSR/CSR_}{0}{1}
+        \animategraphics[label=1,loop,controls,autoplay,timeline=timeline12.txt,buttonsize=6pt,buttonfg=0.9,width=\linewidth]{2}{Figures/GIF/CSR/CSR_}{0}{1}% just 2 examples in anim?
 
     \end{minipage}
     \hfill
@@ -129,7 +129,7 @@
         \textbf{CSC} (Compressed Sparse Column)
         \medskip
 
-        % \animategraphics[label=2,loop,controls,autoplay,timeline=timeline12.txt,buttonsize=6pt,buttonfg=0.5,width=\linewidth]{2}{Figures/GIF/test-}{0}{11}
+        % \animategraphics[label=2,loop,controls,autoplay,timeline=timeline12.txt,buttonsize=6pt,buttonfg=0.9,width=\linewidth]{2}{Figures/GIF/test-}{0}{11}
         \includegraphics[width=\linewidth]{Figures/GIF/test-6.png}
     \end{minipage}
 
@@ -145,13 +145,13 @@
 
     Formats creux :
 
-    \arrow[\color{Green}][2]{Empreinte mémoire réduite} de $\mathcal{O}(n^2)$ à $\mathcal{O}(n)$ \arrow[]{une nécessité}
+    \arrow[\bfseries\color{Green}][2]{Empreinte mémoire réduite}[\faPlus\ ] de $\mathcal{O}(n^2)$ à $\mathcal{O}(n)$ \arrow[]{une nécessité}
 
-    \arrow[\color{Red}][2]{Utilisation de métadonnées} \arrow[]{génèrent des transactions mémoires vers des adresses non-consécutives}
+    \arrow[\bfseries\color{Red}][2]{Utilisation de métadonnées}[\faMinus\ ] \arrow[]{génèrent des transactions mémoires vers des adresses non-consécutives}
 
     \bigskip
     \begin{center}
-        \animategraphics[label=3,loop,controls,autoplay,buttonsize=6pt,buttonfg=0.5,width=0.5\linewidth]{2}{Figures/GIF/IndirVisu/25.01.21_indirections_}{0}{10}
+        \animategraphics[label=3,loop,controls,autoplay,buttonsize=6pt,buttonfg=0.9,width=0.5\linewidth]{2}{Figures/GIF/IndirVisu/25.01.21_indirections_}{0}{10}
     \end{center}
     \bigskip
 
@@ -178,11 +178,11 @@
 
     Dans une architecture classique
 
-    \point[][2][Red]{Les hiérarchies mémoires prennent avantage des accès temporellement et spatialement locals}
+    \point[][2][Red]{Les hiérarchies mémoires prennent avantage des accès temporellement et spatialement locaux}
 
     \bigskip
 
-    \textcolor{Red}{Caches} \arrow[\color{Red}]{\textbf{non-adaptés} aux accès \og aléatoires \fg{}}
+    \textbf{Caches} \arrow[\color{Red}]{\textbf{non-adaptés}} aux accès \og aléatoires \fg{}
 
     \arrow[][2][Red]{Cache remplie de zéros (lignes de cache remplies à 40\% d'éléments non-nuls)}
 
@@ -192,7 +192,7 @@
 
     \medskip
 
-    \textcolor{Red}{Simple préfetcher linéaire} \arrow[][0][Red]{pas suffisant pour s'occuper du goulot d'étranglement mémoire}
+    \textbf{Simple préfetcher linéaire} \arrow[\bfseries\color{Red}]{pas suffisant} pour s'occuper du goulot d'étranglement mémoire
 
 \end{frame}
 
@@ -386,7 +386,7 @@
 \begin{frame}
     \frametitle{Résumé}
 
-    \textbf{Inner-Product} \arrow[]{accès \og aléatoires \fg{} sur l'entrée ($b$ ou $B$)} \arrow[]{accès = lecture}
+    \textbf{Inner-Product (IP)} \arrow[]{accès \og aléatoires \fg{} sur l'entrée ($b$ ou $B$)} \arrow[]{accès = lecture}
 
     \arrow[][2][Red]{Problème : comment \textbf{rassembler} efficacement les données} \arrow[\bfseries\color{Red}]{gather}
 
@@ -394,7 +394,7 @@
 
     \bigskip
 
-    \textbf{Outer-Product} \arrow[]{accès \og aléatoires \fg{} sur la sortie ($c$ ou $C$)} \arrow[]{accès = lecture + accumulation + écriture}
+    \textbf{Outer-Product (OP)} \arrow[]{accès \og aléatoires \fg{} sur la sortie ($c$ ou $C$)} \arrow[]{accès = lecture + accumulation + écriture}
 
     \arrow[][2][Red]{Problème : comment \textbf{distribuer} efficacement les données} \arrow[\bfseries\color{Red}]{scatter}
 
@@ -402,7 +402,7 @@
 
     \bigskip
 
-    \textbf{Gustavson} \arrow[]{accès \og aléatoires \fg{} sur l'entrée et la sortie ($B$ et $C$)}
+    \textbf{Gustavson (Gust)} \arrow[]{accès \og aléatoires \fg{} sur l'entrée et la sortie ($B$ et $C$)}
 
     \arrow[][2][Red]{Les deux broblèmes de \textbf{\textcolor{Red}{gather}} et \textbf{\textcolor{Red}{scatter}} à la fois}
 

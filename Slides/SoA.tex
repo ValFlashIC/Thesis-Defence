@@ -3,38 +3,123 @@
 % Section: State-of-the-Art
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section[\'Etat-de-l'art]{Accélérateurs dédiées et Directions}
+\section[\'Etat-de-l'art]{Accélérateurs dédiées et directions}
+
+\subsection{Accélérateurs matériels dédiés}
 
 \begin{frame}
     \frametitle{Accélérateurs matériels dédiés}
 
-    <flèche temporelle :>
+    {%
+    \def\X{6cm}%
+    \def\Y{2.35cm}%
+    \begin{tikzpicture}[remember picture, overlay]
+        \node [shift={(\X, \Y)}, single arrow, draw=Red!70!white, very thick, fill=Red!70!white, opacity=1., minimum width = 1.5cm, single arrow head extend=2pt, minimum height=18cm, rotate=0, blur shadow={shadow xshift=1pt,shadow yshift=-2pt}] at (current page.west)
+            {}; % length of arrow
+    \end{tikzpicture}%
+    %
+    \begin{tikzpicture}[remember picture, overlay]
+        \node [shift={(\X - 5.1cm, \Y + 0.25cm)}, rotate=0] at (current page.west)
+            {%
+                \bfseries 1973%
+            };
+    \end{tikzpicture}%
+    %
+    \begin{tikzpicture}[remember picture, overlay]
+        \node [shift={(\X - 0.95cm, \Y + 0.25cm)}, rotate=0] at (current page.west)
+            {%
+                \bfseries 2005%
+            };
+    \end{tikzpicture}%
+    %
+    \begin{tikzpicture}[remember picture, overlay]
+        \node [shift={(\X + 3.75cm, \Y + 0.25cm)}, rotate=0] at (current page.west)
+            {%
+                \bfseries 2018%
+            };
+    \end{tikzpicture}%
+    %
+    \begin{tikzpicture}[remember picture, overlay]
+        \node [shift={(\X + 7.4cm, \Y + 0.25cm)}, rotate=0] at (current page.west)
+            {%
+                \bfseries Aujourd'hui%
+            };
+    \end{tikzpicture}%
+    %
+    \begin{tikzpicture}[remember picture, overlay]
+        \node [shift={(\X - 3.3cm, \Y - 0.5cm)}, rotate=0] at (current page.west)
+            {%
+                \lbox{black}{%
+                    \parbox[t]{4cm}{\centering Approches logicielles sur CPUs \cref{ref:spFormats1}\vphantom{Ay}}
+                }%
+            };
+    \end{tikzpicture}%
+    %
+    \begin{tikzpicture}[remember picture, overlay]
+        \node [shift={(\X + 1.4cm, \Y - 0.5cm)}, rotate=0] at (current page.west)
+            {%
+                \lbox{black}{%
+                    \parbox[t]{4cm}{\centering Approches logicielles pour GPUs \cref{ref:GPU}\vphantom{Ay}}
+                }%
+            };
+    \end{tikzpicture}%
+    %
+    \begin{tikzpicture}[remember picture, overlay]
+        \node [shift={(\X + 6.1cm, \Y - 0.5cm)}, rotate=0] at (current page.west)
+            {%
+                \lbox{black}{%
+                    \parbox[t]{4cm}{\centering\bfseries Accélérateurs matériels dédiés au calcul creux\vphantom{Ay}}
+                }%
+            };
+    \end{tikzpicture}%
+    %
+    \begin{tikzpicture}[remember picture, overlay]
+        \node [shift={(\X + 6.0cm, \Y - 1.2cm)}, rotate=0] at (current page.west) (A)
+            {%
+                \itshape\small Fin de la loi de Dennard
+                % \lbox{black}{%
+                %     \parbox[t]{4cm}{\centering\bfseries Accélérateurs matériels dédiés au calcul creux\vphantom{Ay}}
+                % }%
+            };%
+        \draw [Stealth-, draw=black, thick] (A.west) -- ++(-0.5,0) -- ++(0,1.2);
+    \end{tikzpicture}%, arrows={-Stealth[length=3pt]}
+    }
 
-    1973 : Approches logicielles sur CPUs \cref{ref:spFormats1} / 2005 : Approches logicielles pour GPUs \cref{ref:GPU} / 2018 - aujourd'hui : \textbf{Accélérateurs matériels dédiés au calcul creux}
-
-    \bigskip
+    \bigskip\bigskip\bigskip\smallskip
     
     \textbf{\textcolor{Red}{Plusieurs caractéristiques}}
 
-    \point[\bfseries][2][Red]{Kernel :} {\def\c{Yellow} \lbox{\c}{Matrice-Matrice} \lbox{\c}{Matrice-Vecteur} \lbox{\c}{Générique}}
+    \smallskip
+
+    \point[\bfseries][2][Red]{Kernel :} {\def\c{Orange} \lbox{\c}{Matrice-Matrice} \lbox{\c}{Matrice-Vecteur} \lbox{\c}{Générique}}
+
+    \smallskip
 
     \point[\bfseries][2][Red]{Algorithme :} {\def\c{Green} \lbox{\c}{Inner-Product} \lbox{\c}{Outer-Product} \lbox{\c}{Gustavson} \lbox{\c}{Méthodes de tiling}}
 
+    \smallskip
+
     \point[\bfseries][2][Red]{Problèmes adressés :} {\def\c{Blue} \lbox{\c}{Gather (Intersections)} \lbox{\c}{Scatter (Réductions)}}
+
+    \smallskip
 
     \point[\bfseries][2][Red]{Type d'accélérateur :} {\def\c{Cyan} \lbox{\c}{Complet} \lbox{\c}{Assisté par processeur}}
 
-    \point[][2][Red]{Pour les accélérateurs assistés par processeur,} \textbf{position dans la hiérarchie mémoire :} {\def\c{Purple} \lbox{\c}{Proche processeur} \lbox{\c}{Proche caches} \lbox{\c}{Esquive caches} \lbox{\c}{Proche mémoire principale}}
+    \smallskip
 
-    \vspace{1cm}
+    \point[][2][Red]{Pour les accélérateurs assistés par processeur,} \textbf{position dans la hiérarchie mémoire :}
+
+    {\def\c{Purple}\hspace*{0.6cm} \lbox{\c}{Proche processeur} \lbox{\c}{Proche caches} \lbox{\c}{Esquive caches} \lbox{\c}{Proche mémoire principale}}
+
+    \vspace{0.4cm}
     \dref{ref:GPU}{Thaha Mohammed and Rashid Mehmood. 2022. Performance Enhancement Strategies for Sparse Matrix-Vector Multiplication (SpMV) and Iterative Linear Solvers. (2022), 41.}
 
 \end{frame}
 
 \begin{frame}
-    \frametitle{Accélérateurs matériels dédiés}
+    \frametitle{Diversité des accélérateurs existants}
     
-    Sous-ensemble sur \textbf{43 accélérateurs} étudiés entre 2015 et 2025.
+    Sous-ensemble sur \textbf{\textcolor{Red}{43 accélérateurs}} étudiés entre 2015 et 2025.
 
     \vspace*{-5pt}
 
@@ -158,7 +243,7 @@
             \begin{tikzpicture}[remember picture, overlay]
                 \node [shift={(\X, \Y)}, rotate=0] at (current page.west)
                     {%
-                        \lbox[standard jigsaw,opacityframe=1.,opacityback=0.]{Yellow}{%
+                        \lbox[standard jigsaw,opacityframe=1.,opacityback=0.]{Orange}{%
                             \rule{0pt}{\H}%
                             \hspace*{\Wa}%
                         }%
@@ -204,6 +289,15 @@
                         }%
                     };
             \end{tikzpicture}%
+            %
+            \begin{tikzpicture}[remember picture, overlay]
+                \node [shift={(\X - 1.8cm, \Y + 0.5cm)}, rotate=0] at (current page.west)
+                    {%
+                        \begin{lightbox}[left=0pt,right=0pt,top=0pt,bottom=-1pt,colback=black!5]{black!10}%
+                            \itshape\scriptsize Contribution \cref{ref:HiPEAC}%
+                        \end{lightbox}%
+                    };
+            \end{tikzpicture}%
         }
 
         \vspace*{0.75cm}
@@ -212,7 +306,7 @@
             $\left.\rule{0pt}{2.7\normalbaselineskip}\right\}$
             \parbox[t]{0.9\linewidth}{
                 \raggedright
-                Exploration des algorithmes \textbf{IP et OP}
+                Exploration des algorithmes \textbf{\textcolor{Red}{IP et OP}}
             }
         }}
 
@@ -222,7 +316,7 @@
             $\left.\rule{0pt}{3.3\normalbaselineskip}\right\}$
             \parbox[t]{0.9\linewidth}{
                 \raggedright
-                Exploration de l'algorithme de \textbf{Gustavson}
+                Exploration de l'algorithme de \textbf{\textcolor{Red}{Gustavson}}
             }
         }}
 
@@ -232,7 +326,7 @@
             $\left.\rule{0pt}{3.0\normalbaselineskip}\right\}$
             \parbox[t]{0.9\linewidth}{
                 \raggedright
-                \textbf{Combinaisons d'algorithmes}
+                \textbf{\textcolor{Red}{Combinaisons d'algorithmes}}
             }
         }}
 
@@ -243,16 +337,16 @@
 \begin{frame}
     \frametitle{Design space}
 
-    \begin{minipage}[t]{0.40\linewidth}
+    \begin{minipage}[t]{0.44\linewidth}
         \raggedright
 
-        <ajout objectif de la slide, aspect contribution>
+        \textbf{\textcolor{Mulberry}{Comment choisir une architecture ?}}
 
         \smallskip
 
-        \point[\bfseries\color{Red}]{Accélérateur complet}
+        \point[\bfseries\color{Red}][0]{Accélérateur complet}
         
-        \tab[\bfseries\color{Red}][0]{= spécifique, performance}
+        \point[\bfseries\color{Red}][0]{spécifique, performance}[=]
 
         \smallskip
         
@@ -266,11 +360,11 @@
         
         \arrow[][2][Red]{Surface conséquente}[\faMinus]
 
-        \medskip
+        \smallskip
 
-        \point[\bfseries\color{Red}]{Assisté par processeur}
+        \point[\bfseries\color{Red}][0]{Assisté par processeur}
         
-        \tab[\bfseries\color{Red}][0]{= flexible, faible coût}
+        \point[\bfseries\color{Red}][0]{flexible, faible coût}[=]
 
         \smallskip
         
@@ -286,68 +380,61 @@
         
         \arrow[][2][Green]{Faible surface ajoutée}[\faPlus]
 
-        \medskip
-
-        <cite HiPEAC>
-
     \end{minipage}
     \hfill
-    \begin{minipage}[t]{0.58\linewidth}
+    \begin{minipage}[t]{0.54\linewidth}
         \centering
 
-        \vspace*{7pt}
+        \vspace*{-7pt}
         \pause[1]%
-        \includegraphics[width=0.78\linewidth]{Figures/PDF/SoA_AnalysisForDesigners.pdf}
+        \includegraphics[width=\linewidth]{Figures/PDF/SoA_AnalysisForDesigners.pdf}
 
     \end{minipage}
 
+    \vspace{0.2cm}
+    \dref{ref:HiPEAC}{Valentin Isaac-{-}Chassande, Adrian Evans, Yves Durand, and Frédéric Rousseau. 2024. Dedicated Hardware Accelerators for Processing of Sparse Matrices and Vectors: A Survey. ACM Trans. Archit. Code Optim. 21, 2, Article 27 (June 2024), 26 pages.
+    %
+    \begin{tikzpicture}[remember picture, overlay]
+        \node [shift={(-3.8cm, 2.75cm)}, rotate=0] at (current page.east)
+            {%
+                {\itshape\scriptsize Contribution \cref{ref:HiPEAC}}%
+            };
+    \end{tikzpicture}%
+    }
+
 \end{frame}
+
+\subsection{Direction de la thèse}
 
 \begin{frame}
     \frametitle{Quelle est la meilleure solution ?}
     
     Les accélérateurs matériels dédiés (complets et assistés)
 
-    \point[\bfseries][2][Red]{Répondent efficacement à la problématique du calcul creux} \textcolor{Green}{\ding{51}}
+    \point[\bfseries][2][Green]{Répondent efficacement à la problématique du calcul creux}[\ding{51}]
 
     \bigskip
 
-    \point[][2][Red]{Les méthodes et choix de design sont \textbf{diverses}}
+    \point[][2][Red]{Méthodes et choix de design \textbf{divers}}
+    \arrow[]{\underbar{Comparaison de performance exhaustive difficile}}
 
-    \arrow[][4]{\underbar{Une comparaison de performance exhaustive est difficile}}
+    \smallskip
 
-    \bigskip\bigskip
-
-    \arrow[\bfseries\color{Red}]{Une comparaison juste est difficile à réaliser}
-
-    \arrow[][2][Red]{\`A la place, on a une \textbf{vision claire du design space}}
-
-    \arrow[][2][Red]{On compare seulement les performances des algorithmes pour les accélérateurs complets}
-
-    \bigskip
-
-    <REMOVE>
-
-\end{frame}
-
-\begin{frame}
-    \frametitle{Un besoin de support pour les réductions}
-
-    <Attention au N°1 et 2>
-
-    Parmi les \underbar{accélérateurs complets} (majoritairement pour les kernels Matrice-Matrice)
+    \point[][2][white]{Ce qui resort :}
+    \arrow[\bfseries][0][Red]{Pour les kernels Matrice-Matrice : \textcolor{Red}{Gustavson}}
     
-    \arrow[\bfseries\color{Red}][2][Red]{N°1 :} \textbf{Gustavson} présente les meilleurs performances et avantages
-    
-    \arrow[\bfseries\color{Red}][2][Red]{N°2 :} \textbf{Outer-Product}, N°1 pour le kernel SpMV
+    \subpt[][35][Red]{Réduction théorique du traffic par rapport à IP et OP} \cref{ref:HiPEAC}
 
-    \medskip
+    \smallskip
 
-    Vérifiable avec une \textbf{analyse gros grain} :
+    \point[\color{white}][2]{Ce qui resort :}
+    \arrow[\bfseries][0][Red]{Pour le SpMV : \textcolor{Red}{Outer-Product}}
 
-    \arrow[][2]{Nombre de données transférées en mémoire principale}
+    \subpt[][35][Red]{Avantages théoriques d'optimisation par rapport à IP} \cref{ref:HiPEAC}
 
-    \arrow[][2]{Pour chaque algorithme, en fonction d'une taille de mémoire locale}
+    \smallskip
+
+    \arrow[\bfseries\color{Red}][4]{Gust et OP :} Algorithmes \underbar{les plus utilisés} dans les accélérateurs \underbar{les plus performants}
 
     \medskip
 
