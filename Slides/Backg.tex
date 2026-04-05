@@ -5,6 +5,8 @@
 
 \section[Matrices creuses]{Les matrices creuses}
 
+\subsection{Matrices creuses et indirections}
+
 \begin{frame}
     \frametitle{Les matrices creuses}
 
@@ -31,7 +33,7 @@
     %
     \begin{tikzpicture}[remember picture, overlay]
         \node [shift={(-3cm, -2.5cm)}, rotate=0] at (current page.east)
-            { \includegraphics[width=0.15\linewidth]{Figures/Others/24.05.14_msc10848.png} };
+            { \includegraphics[width=0.15\linewidth]{Figures/PDF/msc10848.pdf} };
     \end{tikzpicture}
 
     \point[\bfseries][2][Red]{\parbox[t]{2cm}{Larges}}(nombre d'éléments non-nuls jusqu'à $\sim10^9$)
@@ -58,7 +60,7 @@
 
         \smallskip
 
-        \arrow[][0][Red]{Focus sur les matrices à \textbf{\textcolor{Red}{très basse densité}}} (bleu)
+        \arrow[][0][Red]{Focus sur les matrices à \textbf{\textcolor{Red}{très basse densité}}} \textcolor{Blue}{(bleu)}
 
     \end{minipage}
     \hfill
@@ -116,21 +118,21 @@
     \begin{minipage}[t]{0.48\linewidth}
         \centering
 
-        \textbf{CSR} (Compressed Sparse Row)
+        \textbf{\textcolor{Red}{CSR}} (Compressed Sparse Row)
         \medskip
 
-        \animategraphics[label=1,loop,controls,autoplay,timeline=timeline12.txt,buttonsize=6pt,buttonfg=0.9,width=\linewidth]{2}{Figures/GIF/CSR/CSR_}{0}{1}% just 2 examples in anim?
+        \animategraphics[label=1,loop,controls,autoplay,timeline=timeline12.txt,buttonsize=6pt,buttonfg=0.9,width=\linewidth]{2}{Figures/GIF/CSR/CSR_}{0}{3}
 
     \end{minipage}
     \hfill
     \begin{minipage}[t]{0.48\linewidth}
         \centering
 
-        \textbf{CSC} (Compressed Sparse Column)
+        \textbf{\textcolor{Red}{CSC}} (Compressed Sparse Column)
         \medskip
 
-        % \animategraphics[label=2,loop,controls,autoplay,timeline=timeline12.txt,buttonsize=6pt,buttonfg=0.9,width=\linewidth]{2}{Figures/GIF/test-}{0}{11}
-        \includegraphics[width=\linewidth]{Figures/GIF/test-6.png}
+        \animategraphics[label=2,loop,controls,autoplay,timeline=timeline12.txt,buttonsize=6pt,buttonfg=0.9,width=\linewidth]{2}{Figures/GIF/CSC/CSC_}{0}{3}
+
     \end{minipage}
 
     \vspace{1cm}
@@ -143,30 +145,32 @@
 \begin{frame}
     \frametitle{\'Echanger un problème pour un autre}
 
-    Formats creux :
+    \textbf{Formats creux :}
 
-    \arrow[\bfseries\color{Green}][2]{Empreinte mémoire réduite}[\faPlus\ ] de $\mathcal{O}(n^2)$ à $\mathcal{O}(n)$ \arrow[]{une nécessité}
+    \smallskip
 
-    \arrow[\bfseries\color{Red}][2]{Utilisation de métadonnées}[\faMinus\ ] \arrow[]{génèrent des transactions mémoires vers des adresses non-consécutives}
+    \arrow[\bfseries\color{Green}][2]{Empreinte mémoire réduite}[\faPlus\,] de $\mathcal{O}(n^2)$ à $\mathcal{O}(n)$ \arrow[]{une nécessité}
 
-    \bigskip
+    \arrow[\bfseries\color{Red}][2]{Utilisation de métadonnées}[\faMinus\,] \arrow[]{Transactions mémoires vers des \textbf{adresses non-consécutives}}
+
+    \medskip
     \begin{center}
-        \animategraphics[label=3,loop,controls,autoplay,buttonsize=6pt,buttonfg=0.9,width=0.5\linewidth]{2}{Figures/GIF/IndirVisu/25.01.21_indirections_}{0}{10}
+        \animategraphics[label=3,loop,controls,autoplay,timeline=timeline3.txt,buttonsize=6pt,buttonfg=0.9,width=0.6\linewidth]{2}{Figures/GIF/IndirVisu/IndirVisu_}{0}{10}
     \end{center}
-    \bigskip
+    \medskip
 
     \textbf{\textcolor{Red}{Indirections}}
 
     \point[\bfseries][2][Red]{Accès indirects} depuis/vers la hiérarchie mémoire
 
-    \point[][2][Red]{Du point de vue d'un système mémoire naïf :} \textbf{\textcolor{Red}{accès \og aléatoires \fg{}}}
+    \point[][2][Red]{Du point de vue d'un système mémoire \underbar{naïf} :} \textbf{\textcolor{Red}{accès \og aléatoires \fg{}}}
     
 \end{frame}
 
 \begin{frame}
     \frametitle{La hiérarchie mémoire}
 
-    \textcolor{Red}{\textbf{Pourquoi les accès dit \og aléatoires \fg{} ou irréguliers sont un problème ?}}
+    \textcolor{Red}{\textbf{Pourquoi les accès dit \og aléatoires \fg{} (ou irréguliers) sont un problème ?}}
 
     \bigskip
 
@@ -180,15 +184,17 @@
 
     \point[][2][Red]{Les hiérarchies mémoires prennent avantage des accès temporellement et spatialement locaux}
 
-    \bigskip
+    \bigskip\bigskip
 
     \textbf{Caches} \arrow[\color{Red}]{\textbf{non-adaptés}} aux accès \og aléatoires \fg{}
 
-    \arrow[][2][Red]{Cache remplie de zéros (lignes de cache remplies à 40\% d'éléments non-nuls)}
+    \arrow[][2][Red]{Cache remplie de zéros} \hfill \textcolor{black!50}{(lignes de cache remplies à 40\% d'éléments non-nuls)}
 
-    \arrow[][2][Red]{Nombre de hits bas}
+    \arrow[][2][Red]{Nombre de \textit{hits} bas}
 
-    \arrow[][2][Red]{\'Evincements non-nécessaires} \arrow[]{Beaucoup de \textbf{transactions mémoires} avec des \textbf{temps de réponse élevés}}
+    \arrow[][2][Red]{\'Evincements non-nécessaires}
+    
+    \arrow[][6]{Beaucoup de \textbf{transactions mémoires} avec des \textbf{temps de réponse élevés}}
 
     \medskip
 
@@ -196,18 +202,20 @@
 
 \end{frame}
 
+\subsection{La problématique}
+
 \begin{frame}
     \frametitle{Les noyaux de caclul (Kernels)}
 
     Les matrices creuses sont utilisées dans de \textbf{nombreux kernels} :
 
-    \point[][2][Red]{\parbox[t]{1cm}{$1\mathcal{D}$}} Multiplication \textbf{matrice} creuse-\textbf{vecteur} : SpMV
+    \point[][2][Red]{\parbox[t]{1cm}{$1\mathcal{D}$}} Multiplication \textbf{\textcolor{Red}{Matrice}} creuse-\textbf{\textcolor{Red}{Vecteur}} : SpMV
 
-    \point[][2][Red]{\parbox[t]{1cm}{$2\mathcal{D}$}} Multiplication \textbf{matrice}-\textbf{matrice} : SpMSpM, SpGEMM, SpMM
+    \point[][2][Red]{\parbox[t]{1cm}{$2\mathcal{D}$}} Multiplication \textbf{\textcolor{Red}{Matrice}}-\textbf{\textcolor{Red}{Matrice}} : SpMSpM, SpGEMM, SpMM
     %
     \makebox(0,0){\put(0,2.8\normalbaselineskip){%
         $\left.\rule{0pt}{1.1\normalbaselineskip}\right\}$
-        \parbox{0.25\linewidth}{\raggedright \textbf{Kernels de base} utilisés dans la majorité des applications}
+        \parbox{0.25\linewidth}{\raggedright \textbf{\underbar{Kernels de base}} utilisés dans la majorité des applications}
     }}
     
     \point[][2][Red]{\parbox[t]{1cm}{$n\mathcal{D}$}} Les \textbf{tenseurs} en général
@@ -226,7 +234,7 @@
         $\left.\rule{0pt}{1.6\normalbaselineskip}\right\}$
         \parbox[t]{0.55\linewidth}{
             \raggedright
-            \textbf{Algorithmes de base}
+            \textbf{\underbar{Algorithmes de base}}
 
             \medskip
             Des algorithmes plus compexes peuvent être vues comme des combinaisons de ces trois là.
@@ -244,7 +252,7 @@
 
         \algoBar[\itshape\color{Blue}][4][1][Blue!40]{\textbf{for} $n \in \ldb 0, N-1 \rdb$}
 
-        \algoBar[\itshape\color{Blue}][4][2][Blue!40]{\textbf{for} $k \in \ldb 0, K-1 \rdb$} \ \textit{\textcolor{Green}{\# K}}
+        \algoBar[\itshape\color{Blue}][4][2][Blue!40]{\textbf{for} $k \in \ldb 0, K-1 \rdb$} \ \textit{\textcolor{Red}{\# K}}
 
         \algoBar[\itshape\color{Blue}][4][3][Blue!40]{$C_{i,j} \acc A_{i,k} \times B_{k,j}$}
 
@@ -255,7 +263,7 @@
 
         \textbf{MM: OP}
 
-        \tab[\itshape\color{Blue}][0]{\textbf{for} $k \in \ldb 0, K-1 \rdb$} \ \textit{\textcolor{Green}{\# K}}
+        \tab[\itshape\color{Blue}][0]{\textbf{for} $k \in \ldb 0, K-1 \rdb$} \ \textit{\textcolor{Red}{\# K}}
 
         \algoBar[\itshape\color{Blue}][4][1][Blue!40]{\textbf{for} $m \in \ldb 0, M-1 \rdb$}
         
@@ -272,7 +280,7 @@
 
         \tab[\itshape\color{Blue}][0]{\textbf{for} $m \in \ldb 0, M-1 \rdb$}
 
-        \algoBar[\itshape\color{Blue}][4][1][Blue!40]{\textbf{for} $k \in \ldb 0, K-1 \rdb$} \ \textit{\textcolor{Green}{\# K}}
+        \algoBar[\itshape\color{Blue}][4][1][Blue!40]{\textbf{for} $k \in \ldb 0, K-1 \rdb$} \ \textit{\textcolor{Red}{\# K}}
 
         \algoBar[\itshape\color{Blue}][4][2][Blue!40]{\textbf{for} $n \in \ldb 0, N-1 \rdb$}
 
@@ -282,7 +290,7 @@
 
     \bigskip
 
-    \point[][2][Red]{Méthodes de tiling} \arrow[]{$\sim$ algorithmes customisés / pré-traitement} \qquad ($\geqslant1\mathcal{D}$)
+    \point[][2][Red]{Méthodes de \textit{tiling}} \arrow[]{$\sim$ algorithmes customisés / pré-traitement} \qquad ($\geqslant1\mathcal{D}$)
 
 \end{frame}
 
@@ -293,61 +301,43 @@
 
     \bigskip
 
-    \textbf{SpMV :} $A \times b = c$, avec $A$ de taille $(M, N)$%
+    \textbf{\textcolor{Red}{SpMV :}} $A \times b = c$, avec $A$ de taille $(M, N)$%
     %
     {%
         \def\X{-6.8cm}%
-        \def\Y{0.2cm}%
+        \def\Y{0.38cm}%
         \begin{tikzpicture}[remember picture, overlay]
-            \node [shift={(\X, \Y)}, rotate=0] at (current page.east)
+            \node [shift={(\X, \Y)}, rotate=0] at (current page.east) (A)
                 {%
                     \lbox{Red}{%
                         \rule{0pt}{0pt}%
                         \hspace*{0.5cm}%
                     }%
                 };
-        \end{tikzpicture}%
-        %
-        \begin{tikzpicture}[remember picture, overlay]
-            \node [shift={(\X + 0.1cm, \Y + 0.5cm)}, rotate=-90] at (current page.east)
+            \node [shift={(\X + 1.0cm, \Y + 1.5cm)}, rotate=0] at (current page.east) (B)
                 {%
-                    \color{Red}\ding{222}%
+                    \bfseries\color{Red}Indirection sur le vecteur d'entré \textit{b}%
                 };
-        \end{tikzpicture}%
-        %
-        \begin{tikzpicture}[remember picture, overlay]
-            \node [shift={(\X + 0.6cm, \Y + 0.9cm)}, rotate=0] at (current page.east)
-                {%
-                    \color{Red}Indirection%
-                };
+            \draw [Stealth-, draw=Red, thick] (A) -- (B);
         \end{tikzpicture}%
     }
     %
     {%
         \def\X{-8.6cm}%
-        \def\Y{-0.4cm}%
+        \def\Y{-0.2cm}%
         \begin{tikzpicture}[remember picture, overlay]
-            \node [shift={(\X, \Y)}, rotate=0] at (current page.east)
+            \node [shift={(\X, \Y)}, rotate=0] at (current page.east) (A)
                 {%
                     \lbox{Red}{%
                         \rule{0pt}{0pt}%
                         \hspace*{0.5cm}%
                     }%
                 };
-        \end{tikzpicture}%
-        %
-        \begin{tikzpicture}[remember picture, overlay]
-            \node [shift={(\X, \Y - 0.5cm)}, rotate=90] at (current page.east)
+            \node [shift={(\X + 3.0cm, \Y - 0.9cm)}, rotate=0] at (current page.east) (B)
                 {%
-                    \color{Red}\ding{222}%
+                    \bfseries\color{Red}Indirection sur le vecteur de sortie \textit{c}%
                 };
-        \end{tikzpicture}%
-        %
-        \begin{tikzpicture}[remember picture, overlay]
-            \node [shift={(\X, \Y - 0.8cm)}, rotate=0] at (current page.east)
-                {%
-                    \color{Red}Indirection%
-                };
+            \draw [Stealth-, draw=Red, thick] (A) -- (B);
         \end{tikzpicture}%
     }
 
@@ -357,50 +347,54 @@
 
     \medskip
 
-    \point[][2][Red]{\parbox[t]{6cm}{Creux en Inner-Product (CSR) :}} \parbox[t]{3cm}{$c_i \acc \mathit{VAL}_p \times b_{\mathit{IDX}_p}$} \hfill \textcolor{black!50}{($\forall p \in \ldb \mathit{PTR}_i, \mathit{PTR}_{i+1}-1 \rdb$)}
+    \point[][2][Red]{\parbox[t]{6cm}{\textbf{Creux} en \underbar{Inner-Product} (avec CSR) :}} \parbox[t]{3cm}{$c_i \acc \mathit{VAL}_p \times b_{\mathit{IDX}_p}$} \hfill \textcolor{black!50}{($\forall p \in \ldb \mathit{PTR}_i, \mathit{PTR}_{i+1}-1 \rdb$)}
 
     \medskip
 
-    \point[][2][Red]{\parbox[t]{6cm}{Creux en Outer-Product (CSC) :}} \parbox[t]{3cm}{$c_{\mathit{IDX}_p} \acc \mathit{VAL}_p \times b_j$} \hfill \textcolor{black!50}{($\forall p \in \ldb \mathit{PTR}_j, \mathit{PTR}_{j+1}-1 \rdb$)}
+    \point[][2][Red]{\parbox[t]{6cm}{\textbf{Creux} en \underbar{Outer-Product} (avec CSC) :}} \parbox[t]{3cm}{$c_{\mathit{IDX}_p} \acc \mathit{VAL}_p \times b_j$} \hfill \textcolor{black!50}{($\forall p \in \ldb \mathit{PTR}_j, \mathit{PTR}_{j+1}-1 \rdb$)}
 
     \bigskip\bigskip
 
-    \textbf{SpMM, SpMSpM :} $A \times B = C$
+    \textbf{\textcolor{Red}{SpMM, SpMSpM :}} $A \times B = C$
 
     \medskip
 
-    \point[][2][Red]{Inner-Product :} Indirections sur toute la matrice d'entrée $B$
+    \point[][2][Red]{\underbar{Inner-Product :}} Indirections sur toute la matrice d'\textbf{entrée} $B$
 
     \medskip
 
-    \point[][2][Red]{Outer-Product :} Indirections sur toute la matrice de sortie $C$
+    \point[][2][Red]{\underbar{Outer-Product :}} Indirections sur toute la matrice de \textbf{sortie} $C$
 
     \medskip
 
-    \point[][2][Red]{Gustavson :} Indirections sur les lignes de $B$ et dans les lignes de $C$
+    \point[][2][Red]{\underbar{Gustavson :}} Indirections sur les lignes de $B$ et dans les lignes de $C$
 
-    \point[][6]{Intermédiaire entre Inner-Product et Outer-Product}
+    \point[\bfseries][6]{Intermédiaire} entre Inner-Product et Outer-Product
 
 \end{frame}
 
 \begin{frame}
     \frametitle{Résumé}
 
-    \textbf{Inner-Product (IP)} \arrow[]{accès \og aléatoires \fg{} sur l'entrée ($b$ ou $B$)} \arrow[]{accès = lecture}
+    \textbf{Inner-Product (IP)} \arrow[]{accès \og aléatoires \fg{} sur l'entrée ($b$ ou $B$)}
+    
+    \textbf{\textcolor{white}{Inner-Product (IP)}} \arrow[]{accès = lecture}
 
     \arrow[][2][Red]{Problème : comment \textbf{rassembler} efficacement les données} \arrow[\bfseries\color{Red}]{gather}
 
     \arrow[\bfseries\color{Red}][4]{Intersections} des éléments non-nuls de $A$ avec ceux de $b$ ou $B$ \hfill ($1\mathcal{D}$ ou $2\mathcal{D}$)
 
-    \bigskip
+    \medskip
 
-    \textbf{Outer-Product (OP)} \arrow[]{accès \og aléatoires \fg{} sur la sortie ($c$ ou $C$)} \arrow[]{accès = lecture + accumulation + écriture}
+    \textbf{Outer-Product (OP)} \arrow[]{accès \og aléatoires \fg{} sur la sortie ($c$ ou $C$)}
+
+    \textbf{\textcolor{white}{Outer-Product (OP)}} \arrow[]{accès = lecture + accumulation + écriture}
 
     \arrow[][2][Red]{Problème : comment \textbf{distribuer} efficacement les données} \arrow[\bfseries\color{Red}]{scatter}
 
     \arrow[\bfseries\color{Red}][4]{Réductions} des sommes partielles non-nuls dans $c$ ou $C$ \hfill ($1\mathcal{D}$ ou $2\mathcal{D}$)
 
-    \bigskip
+    \medskip
 
     \textbf{Gustavson (Gust)} \arrow[]{accès \og aléatoires \fg{} sur l'entrée et la sortie ($B$ et $C$)}
 
@@ -417,7 +411,7 @@
     \arrow[\bfseries\color{Mulberry}]{Dans le contexte du calcul matriciel, comment adresser efficacement les problématiques d'intersections (gather) et/ou de réductions (scatter) lorsque les données subissent des accès \og aléatoires \fg{} ?}
     %
     \begin{tikzpicture}[remember picture, overlay]
-        \node [shift={(8cm, -1.5cm)}, rotate=0] at (current page.west)
+        \node [shift={(8cm, -1.45cm)}, rotate=0] at (current page.west)
             {%
                 \lbox[standard jigsaw,opacityframe=.0,opacityback=0.7]{Red}{%
                     \rule{0pt}{35pt}%
