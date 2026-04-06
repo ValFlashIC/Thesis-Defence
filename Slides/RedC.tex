@@ -5,18 +5,6 @@
 
 \section[Réductions]{Cache de réduction}
 
-% \begin{frame}
-%     Cache générique, fonctionnement (rapide)
-
-%     Réduction dans cache générique
-
-%     Cache de réduction, qu'est ce qu'il y a en plus
-
-%     Réduction dans cache de réduction VS générique
-
-%     Diminution du nombre de transactions mémoires / Non bloquant (RED envoyée et oubliée) / Transactions mémoires du haut vers le bas
-% \end{frame}
-
 \subsection{Cache générique}
 
 \begin{frame}
@@ -58,64 +46,45 @@
         \end{tikzpicture}%
     }
 
-    \bigskip
+    \medskip
 
-    % \begin{minipage}[t]{0.17\linewidth}
-    %     \raggedright
+    \begin{minipage}[t]{0.30766667\linewidth}
+        \centering
 
-    %     \pause[1]%
-    %     \parbox[t]{2cm}{$c_0 \acc A_{0, 0} \times b_0$} (0)
+        \pause[1]%
+        \animategraphics[label=4,loop,controls,autoplay,timeline=timeline4.txt,buttonsize=6pt,buttonfg=0.9,width=\linewidth]{2}{Figures/GIF/MV_CSC/MV_CSC_}{0}{9}
 
-    %     \parbox[t]{2cm}{$c_1 \acc A_{1, 0} \times b_0$} (0)
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.40233333\linewidth}
+        \centering
 
-    %     \parbox[t]{2cm}{$c_2 \acc A_{2, 0} \times b_0$} \,\ding{172}
+        \pause[1]%
+        \animategraphics[label=5,loop,controls,autoplay,timeline=timeline5.txt,buttonsize=6pt,buttonfg=0.9,width=\linewidth]{2}{Figures/GIF/SpMV_CSC/SpMV_CSC_}{0}{4}
 
-    %     \parbox[t]{2cm}{$c_0 \acc A_{0, 1} \times b_1$} \,\ding{173}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.20\linewidth}
+        \raggedleft
 
-    %     \parbox[t]{2cm}{$c_1 \acc A_{1, 1} \times b_1$} (0)
+        \vspace*{12pt}
 
-    %     \parbox[t]{2cm}{$c_2 \acc A_{2, 1} \times b_1$} (0)
+        \pause[1]%
+        \parbox[t]{2.6cm}{$c_{\mathit{IDX}_0} \acc \mathit{VAL}_0 \times b_0$} \ding{172}
 
-    %     \parbox[t]{2cm}{$c_0 \acc A_{0, 2} \times b_2$} (0)
+        \smallskip
 
-    %     \parbox[t]{2cm}{$c_1 \acc A_{1, 2} \times b_2$} \,\ding{174}
+        \parbox[t]{2.6cm}{$c_{\mathit{IDX}_1} \acc \mathit{VAL}_1 \times b_1$} \ding{173}
 
-    %     \parbox[t]{2cm}{$c_2 \acc A_{2, 2} \times b_2$} \,\ding{175}
+        \smallskip
 
-    % \end{minipage}
-    % \hfill
-    % \begin{minipage}[t]{0.81\linewidth}
-        \begin{minipage}[t]{0.365\linewidth}
-            \centering
+        \parbox[t]{2.6cm}{$c_{\mathit{IDX}_2} \acc \mathit{VAL}_2 \times b_2$} \ding{174}
 
-            \pause[1]%
-            \animategraphics[label=4,loop,controls,autoplay,buttonsize=6pt,buttonfg=0.5,width=\linewidth]{2}{Figures/GIF/MV_CSC/25.01.21_MV_CSC_0}{0}{4}
+        \smallskip
 
-        \end{minipage}
-        \hfill
-        \begin{minipage}[t]{0.365\linewidth}
-            \centering
+        \parbox[t]{2.6cm}{$c_{\mathit{IDX}_3} \acc \mathit{VAL}_3 \times b_2$} \ding{175}
 
-            \pause[1]%
-            \animategraphics[label=5,loop,controls,autoplay,buttonsize=6pt,buttonfg=0.5,width=\linewidth]{2}{Figures/GIF/SpMV_CSC/25.01.21_SpMV_CSC_0}{0}{5}
-
-        \end{minipage}
-        \hfill
-        \begin{minipage}[t]{0.250\linewidth}
-            \raggedleft
-
-            \pause[1]%
-            \parbox[t]{2.6cm}{$c_{\mathit{IDX}_0} \acc \mathit{VAL}_0 \times b_0$} \ding{172}
-
-            \parbox[t]{2.6cm}{$c_{\mathit{IDX}_1} \acc \mathit{VAL}_1 \times b_1$} \ding{173}
-
-            \parbox[t]{2.6cm}{$c_{\mathit{IDX}_2} \acc \mathit{VAL}_2 \times b_2$} \ding{174}
-
-            \parbox[t]{2.6cm}{$c_{\mathit{IDX}_3} \acc \mathit{VAL}_3 \times b_2$} \ding{175}
-
-        \end{minipage}
-
-    % \end{minipage}
+    \end{minipage}
 
     \bigskip
 
@@ -223,33 +192,6 @@
 
 \subsection{Cache de réduction}
 
-% \begin{frame}
-%     \frametitle{Cache de réduction}
-
-%     \begin{minipage}[t]{0.48\linewidth}
-%         \raggedright
-
-%         % Même caractéristiques que cache : set-associatif, plusieurs voies, lignes de cache
-%         Cache de réduction : cache générique avec quelques modifications
-
-%         \point{Supporte des instructions de réduction RED}
-
-%         \point{Possède un accumulateur : accumulation dans le cache}
-
-%     \end{minipage}
-%     \hfill
-%     \begin{minipage}[t]{0.48\linewidth}
-
-%         \begin{figure}
-%             \centering
-%             \includegraphics[width=\linewidth]{Figures/PDF/LIST.pdf}
-%         \end{figure}
-
-%         <Figure comme SpDCache (voir ASAP) ou on montre ce qu'il y a en plus par rapport à un cache générique (?)>
-
-%     \end{minipage}
-% \end{frame}
-
 \begin{frame}
     \frametitle{Cache de réduction}
 
@@ -291,37 +233,3 @@
     \arrow[\bfseries][2]{\textcolor{Green}{Réductions \ck} \textcolor{Red}{\og aléatoires \fg{} \cr}}
 
 \end{frame}
-
-% \begin{frame}
-%     \frametitle{Perf}
-
-%     Simulation Python d'un OP SpMV
-
-%     Avec 25\% du cache pour les transactions génériques (lectures de $A$ et $b$)
-
-%     Et 75\% du cache en mode réduction pour $c$
-
-%     \bigskip
-
-%     <resultats (table ? / juste quelques chiffres ?)>
-
-%     <ajouter taux de remplissage pour transition ? --> next slide ?>
-
-%     <trafic mémoire>
-
-%     \begin{tikzpicture}[remember picture, overlay]
-%         \node [shift={(-0.7cm, 1.80cm)}, rotate=-5] at (current page.center)
-%             { \includegraphics[width=0.08\linewidth]{Figures/PDF/Sticker_Py.pdf} };
-%     \end{tikzpicture}
-
-% \end{frame}
-
-% \subsection{Conclusion}
-
-% \begin{frame}
-%     \frametitle{Conclusion}
-
-%     Notre cache doit supporter les réductions
-
-%     Note : existant, PHI, SortCache, ASA le font déjà
-% \end{frame}
