@@ -5,44 +5,35 @@
 
 \section[Réductions]{Cache de réduction}
 
-\subsection{Cache générique}
+\subsection{Réductions dans un SpMV en Outer-Product}
 
 \begin{frame}
     \frametitle{SpMV en Outer-Product}
 
-    Exemple de \textbf{SpMV} : $A \times b = c$, avec $A$ de taille $(M, N)$.
+    Exemple de \textbf{\textcolor{Red}{SpMV}} : $A \times b = c$, avec $A$ de taille $(M, N)$.
 
-    \point[][2][Red]{$\forall (i, j) \in \ldb 0, M-1 \rdb \times \ldb 0, N-1 \rdb, \; c_i = c_i + A_{i, j} \times b_j$}
+    \point[\color{Blue}][2][Red]{$\forall (i, j) \in \ldb 0, M-1 \rdb \times \ldb 0, N-1 \rdb, \; c_i = c_i + A_{i, j} \times b_j$}
 
     \point[][2][Red]{$A$ est stockée au format creux CSC ($\mathit{VAL}$, $\mathit{IDX}$, $\mathit{PTR}$)}
 
-    \point[\bfseries][2][Red]{Outer-Product (OP) :} des \textbf{accès indirectes} apparaissent sur la sortie%
+    \point[\bfseries\color{Red}][2][Red]{Outer-Product (OP) :} des \textbf{accès indirectes} apparaissent sur la sortie%
     %
     {%
-        \def\X{-3cm}%
-        \def\Y{-0.2cm}%
+        \def\X{-2.93cm}%
+        \def\Y{-0.38cm}%
         \begin{tikzpicture}[remember picture, overlay]
-            \node [shift={(\X, \Y)}, rotate=0] at (current page.east)
+            \node [shift={(\X, \Y)}, rotate=0] at (current page.east) (A)
                 {%
                     \lbox{Red}{%
-                        \rule{0pt}{3.0\normalbaselineskip}%
-                        \hspace*{0.5cm}%
+                        \rule{0pt}{4.0\normalbaselineskip}%
+                        \hspace*{0.8cm}%
                     }%
                 };
-        \end{tikzpicture}%
-        %
-        \begin{tikzpicture}[remember picture, overlay]
-            \node [shift={(\X, \Y + 1cm)}, rotate=-90] at (current page.east)
+            \node [shift={(\X + 0.5cm, \Y + 1.8cm)}, rotate=0] at (current page.east) (B)
                 {%
-                    \color{Red}\ding{222}%
+                    \bfseries\color{Red}Indirections%
                 };
-        \end{tikzpicture}%
-        %
-        \begin{tikzpicture}[remember picture, overlay]
-            \node [shift={(\X, \Y + 1.5cm)}, rotate=0] at (current page.east)
-                {%
-                    \color{Red}Indirections%
-                };
+            \draw [Stealth-, draw=Red, thick] (A) -- (B);
         \end{tikzpicture}%
     }
 
@@ -105,17 +96,17 @@
 
     \bigskip
 
-    Une réduction sur le vecteur $c$ : $c_{indice} \acc valeur$
+    Une réduction sur le vecteur $c$ : \textcolor{Blue}{$c_{indice} \acc valeur$}
 
-    \point[][2][Red]{Une \textbf{lecture} en mémoire de $c_{indice}$}
+    \point[][2][Red]{Une \textbf{lecture} en mémoire de \textcolor{Blue}{$c_{indice}$}}
 
-    \point[][2][Red]{Une \textbf{accumulation} pour mettre à jour $c_{indice}$ avec $valeur$}
+    \point[][2][Red]{Une \textbf{accumulation} pour mettre à jour \textcolor{Blue}{$c_{indice}$} avec \textcolor{Blue}{$valeur$}}
 
-    \point[][2][Red]{Une \textbf{écriture} en mémoire de $c_{indice}$ mis à jour}
+    \point[][2][Red]{Une \textbf{écriture} en mémoire de \textcolor{Blue}{$c_{indice}$} mis à jour}
 
     \medskip
 
-    Cette opération est noté \textbf{RED} : $\mathit{RED}(indice, valeur)$
+    Cette opération est noté \textbf{\textcolor{Red}{RED}} : \textcolor{Blue}{$\mathit{RED}(indice, valeur)$}
 
     \bigskip
 
@@ -138,91 +129,98 @@
     
 \end{frame}
 
+\subsection{Cache générique versus cache de réduction}
+
 \begin{frame}
     \frametitle{Cache générique}
 
     \textbf{\textcolor{Red}{Comment se comporte une réduction dans un cache générique ?}}
 
-    \bigskip
+    \medskip
 
     \begin{minipage}[t]{0.48\linewidth}
         \raggedright
 
-        \point[\bfseries][0][Red]{Cas de hit :}
+        \arrow[\bfseries][0][Red]{Cas de hit}
 
-        \point[][2]{Lecture du cache \ck}
+        \smallskip
 
-        \point[][2]{Accumulation dans le processeur}
+        \point[][2][Green]{Lecture du cache}[\faPlus]
+
+        \point[][2]{Accumulation dans le processeur}[\faCheckCircleO]
         
-        \point[][2]{Ecriture dans le cache \ck}
+        \point[][2][Green]{Ecriture dans le cache}[\faPlus]
 
         \medskip
 
-        \point[\bfseries][0][Red]{Cas de miss:}
+        \arrow[\bfseries][0][Red]{Cas de miss}
 
-        \point[][2]{Lecture en mémoire et mise à jour du cache \cr}
+        \smallskip
 
-        \point[][2]{Accumulation dans le processeur}
+        \point[][2][Red]{\underbar{Lecture mémoire} et mise à jour du cache}[\faMinus]
 
-        \point[][2]{Ecriture dans le cache \ck}
+        \point[][2]{Accumulation dans le processeur}[\faCheckCircleO]
+
+        \point[][2][Green]{Ecriture dans le cache}[\faPlus]
 
         \medskip
 
-        \point[\bfseries][0][Red]{Cas de miss avec évincement :}
+        \arrow[\bfseries][0][Red]{Cas de miss avec évincement}
 
-        \point[][2]{Ecriture en mémoire de la donnée évincée \cr}
+        \smallskip
 
-        \point[][2]{Lecture en mémoire et mise à jour du cache \cr}
+        \point[][2][Red]{\underbar{Ecriture mémoire} de la donnée évincée}[\faMinus]
 
-        \point[][2]{Accumulation dans le processeur}
+        \point[][2][Red]{\underbar{Lecture mémoire} et mise à jour du cache}[\faMinus]
 
-        \point[][2]{Ecriture dans le cache \ck}
+        \point[][2]{Accumulation dans le processeur}[\faCheckCircleO]
+
+        \point[][2][Green]{Ecriture dans le cache}[\faPlus]
 
     \end{minipage}
     \hfill
     \begin{minipage}[t]{0.48\linewidth}
+        \centering
 
-        \begin{figure}
-            \centering
-            \includegraphics[width=\linewidth]{Figures/PDF/GCvsRedC_00.pdf}
-        \end{figure}
+        \medskip
+
+        \pause[1]%
+        \includegraphics[width=\linewidth]{Figures/PDF/GCvsRedC_GC_0.pdf}
 
     \end{minipage}
 \end{frame}
 
-\subsection{Cache de réduction}
-
 \begin{frame}
     \frametitle{Cache de réduction}
 
-    \begin{columns}
-        \column{0.48\linewidth}
+    \vspace*{-15pt}%
+    \begin{minipage}[t]{0.56577320\linewidth}
+        \centering
 
-        \begin{figure}
-            \centering
-            \includegraphics[width=0.9\linewidth]{Figures/PDF/GCvsRedC_00.pdf}
-        \end{figure}
+        \pause[1]%
+        \includegraphics[width=0.85\linewidth]{Figures/PDF/GCvsRedC_GC_1.pdf}
 
-        \column{0.48\linewidth}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.41422680\linewidth}
+        \centering
 
-        \begin{figure}
-            \centering
-            \includegraphics[width=0.6\linewidth]{Figures/PDF/GCvsRedC_01.pdf}
-        \end{figure}
+        \pause[1]%
+        \includegraphics[width=0.85\linewidth]{Figures/PDF/GCvsRedC_RedC_0.pdf}
 
-    \end{columns}
+    \end{minipage}
 
     \bigskip
 
     \point[\bfseries][0][Red]{Nombre intrinsèque de transactions mémoires}
+    \arrow[]{\parbox[t]{3.5cm}{Cache générique :}} 0 + 1 + 2 = \textbf{\textcolor{Red}{3 \cr}}
     
-    \point[][2][Red]{Cache générique :} 0 + 1 + 2 = \textbf{\textcolor{Red}{3 \cr}}
-    
-    \point[][2][Red]{Cache de réduction :} 0 + 0 + 2 = \textbf{\textcolor{Green}{2 \ck}}
+    \point[\bfseries\color{white}][0]{Nombre intrinsèque de transactions mémoires}
+    \arrow[]{\parbox[t]{3.5cm}{Cache de réduction :}} 0 + 0 + 2 = \textbf{\textcolor{Green}{2 \ck}}
 
-    \medskip
+    \smallskip
 
-    \point[][0][Red]{Les réductions sont \textbf{\og envoyées et oubliées \fg{}} :}
+    \point[][0][Red]{Les réductions sont \textbf{\og envoyées et oubliées \fg{}}} \textcolor{black!50}{(``fire-and-forget'')}
 
     \arrow[][2]{Le processeur \textbf{n'attend pas de réponse}, même à l'évincement}
 
