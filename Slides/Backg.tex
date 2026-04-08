@@ -10,7 +10,7 @@
 \begin{frame}
     \frametitle{Les matrices creuses}
 
-    \underbar{Applications :} Physiques numériques, Intéligence artificielle, Analyse de graphes...
+    \underbar{Applications :} Physique numérique, intelligence artificielle, analyse de graphes...
     %
     \begin{tikzpicture}[remember picture, overlay]
         \node [shift={(-1.2cm, 2.1cm)}, rotate=0] at (current page.east)
@@ -80,7 +80,7 @@
             %
             \begin{tikzpicture}[remember picture, overlay]
                 \node [shift={(\posX + 0.9cm, \posY - 0.6cm)}, rotate=-48] at (current page.east)
-                    { \scriptsize\color{Blue} Graphes / Algèbre linéaire };
+                    { \scriptsize\color{Blue} Graphes / algèbre linéaire };
             \end{tikzpicture}
             %
             \begin{tikzpicture}[remember picture, overlay]
@@ -112,7 +112,7 @@
 
     \point[][2][Red]{Beaucoup de formats spécifiques à des structures de matrices}
 
-    \point[\bfseries][2][Red]{CSR et CSC} \arrow[]{les plus simples et plus utilisées}
+    \point[\bfseries][2][Red]{CSR et CSC} \arrow[]{les plus simples et plus utilisés}
 
     \vspace{1cm}
     \begin{minipage}[t]{0.48\linewidth}
@@ -198,14 +198,14 @@
 
     \medskip
 
-    \textbf{Simple préfetcher linéaire} \arrow[\bfseries\color{Red}]{pas suffisant} pour s'occuper du goulot d'étranglement mémoire
+    \textbf{Simple \textit{prefetcher} linéaire} \arrow[\bfseries\color{Red}]{pas suffisant} pour s'occuper du goulot d'étranglement mémoire
 
 \end{frame}
 
 \subsection{La problématique}
 
 \begin{frame}
-    \frametitle{Les noyaux de caclul (Kernels)}
+    \frametitle{Les noyaux de calcul (Kernels)}
 
     Les matrices creuses sont utilisées dans de \textbf{nombreux kernels} :
 
@@ -237,7 +237,7 @@
             \textbf{\underbar{Algorithmes de base}}
 
             \medskip
-            Des algorithmes plus compexes peuvent être vues comme des combinaisons de ces trois là.
+            Des algorithmes plus complexes peuvent être vus comme des combinaisons de ces trois là.
         }
     }}
 
@@ -290,7 +290,7 @@
 
     \bigskip
 
-    \point[][2][Red]{Méthodes de \textit{tiling}} \arrow[]{$\sim$ algorithmes customisés / pré-traitement} \qquad ($\geqslant1\mathcal{D}$)
+    \point[][2][Red]{Méthodes de \textit{tiling}} \arrow[]{$\sim$ algorithmes customisés / pré-traitements} \qquad ($\geqslant1\mathcal{D}$)
 
 \end{frame}
 
@@ -316,7 +316,7 @@
                 };
             \node [shift={(\X + 1.0cm, \Y + 1.5cm)}, rotate=0] at (current page.east) (B)
                 {%
-                    \bfseries\color{Red}Indirection sur le vecteur d'entré \textit{b}%
+                    \bfseries\color{Red}Indirection sur le vecteur d'entrée \textit{b}%
                 };
             \draw [Stealth-, draw=Red, thick] (A) -- (B);
         \end{tikzpicture}%
@@ -392,13 +392,13 @@
 
     \arrow[][2][Red]{Problème : comment \textbf{distribuer} efficacement les données} \arrow[\bfseries\color{Red}]{scatter}
 
-    \arrow[\bfseries\color{Red}][4]{Réductions} des sommes partielles non-nuls dans $c$ ou $C$ \hfill ($1\mathcal{D}$ ou $2\mathcal{D}$)
+    \arrow[\bfseries\color{Red}][4]{Réductions} des sommes partielles non-nulles dans $c$ ou $C$ \hfill ($1\mathcal{D}$ ou $2\mathcal{D}$)
 
     \medskip
 
     \textbf{Gustavson (Gust)} \arrow[]{accès \og aléatoires \fg{} sur l'entrée et la sortie ($B$ et $C$)}
 
-    \arrow[][2][Red]{Les deux broblèmes de \textbf{\textcolor{Red}{gather}} et \textbf{\textcolor{Red}{scatter}} à la fois}
+    \arrow[][2][Red]{Les deux problèmes de \textbf{\textcolor{Red}{gather}} et \textbf{\textcolor{Red}{scatter}} à la fois}
 
     \arrow[\bfseries\color{Red}][4]{Intersections} avec les \textbf{lignes de \textit{B}} seulement \hfill ($1\mathcal{D}$)
 
