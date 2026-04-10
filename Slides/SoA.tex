@@ -88,7 +88,7 @@
 
     \smallskip
 
-    \point[\bfseries][2][Red]{Kernel :} {\def\c{Orange} \lbox{\c}{Matrice-Matrice} \lbox{\c}{Matrice-Vecteur} \lbox{\c}{Générique}}
+    \point[\bfseries][2][Red]{\textit{Kernel} :} {\def\c{Orange} \lbox{\c}{Matrice-Matrice} \lbox{\c}{Matrice-Vecteur} \lbox{\c}{Générique}}
 
     \smallskip
 
@@ -100,13 +100,13 @@
 
     \smallskip
 
-    \point[\bfseries][2][Red]{Type d'accélérateur :} {\def\c{Cyan} \lbox{\c}{Complet} \lbox{\c}{Assisté par processeur}}
+    \point[\bfseries][2][Red]{Type d'accélérateur :} {\def\c{Cyan} \lbox{\c}{Autonome} \lbox{\c}{Assisté par processeur}}
 
     \smallskip
 
     \point[][2][Red]{Pour les accélérateurs assistés par processeur,} \textbf{position dans la hiérarchie mémoire :}
 
-    {\def\c{Purple}\hspace*{0.6cm} \lbox{\c}{Proche processeur} \lbox{\c}{Proche caches} \lbox{\c}{Esquive caches} \lbox{\c}{Proche mémoire principale}}
+    {\def\c{Purple}\hspace*{0.6cm} \lbox{\c}{Proche processeur} \lbox{\c}{Proche caches} \lbox{\c}{\textit{Bypass} caches} \lbox{\c}{Proche mémoire principale}}
 
     \vspace{0.4cm}
     \dref{ref:GPU}{Thaha Mohammed and Rashid Mehmood. 2022. Performance Enhancement Strategies for Sparse Matrix-Vector Multiplication (SpMV) and Iterative Linear Solvers. (2022), 41.}
@@ -161,8 +161,8 @@
                     vline{2,3,5,8,11,13} = {1-Z}{0.5pt},
                 }
                 %
-                Nom & Année & Autonomie & & {Position dans la hiérarchie mémoire} & & & {Algorithme(s) le(s) plus adapté(s)} & & & {Support matériel pour} & & {Kernels creux adressés} & \\
-                & & Complet & Assisté & Proc. & Caches & Mém. & IP & OP & Gust & Gather & Scatter & MV & MM \\
+                Nom & Année & Autonomie & & {Position dans la hiérarchie mémoire} & & & {Algorithme(s) le(s) plus adapté(s)} & & & {Support matériel pour} & & {\textit{Kernels} creux adressés} & \\
+                & & Auton. & Assisté & Proc. & Caches & Mém. & IP & OP & Gust & Gather & Scatter & MV & MM \\
                 %
                 Coup                     & 2015 &     & \ck &     & \ck &     &     & \ck &     &     & \ck & \ck & \sc \\
                 EIE                      & 2016 & \ck &     &     &     & \sa &     & \ck &     & \ck & \ck & \ck &     \\
@@ -224,7 +224,7 @@
         \smallskip\smallskip
         
         \pause[1]%
-        \arrow[\bfseries\color{Red}]{Diversité} des choix de design, toutes les caractéristiques sont couvertes
+        \arrow[\bfseries\color{Red}]{Diversité} des choix de conception, toutes les caractéristiques sont couvertes
         %
         \begin{tikzpicture}[remember picture, overlay]
             \node [shift={(2.4cm, -1.65cm)}, single arrow, draw=Red!50!white, very thick, fill=Red, opacity=0.3, minimum width = 1cm, single arrow head extend=3pt, minimum height=4.85cm, rotate=-90] at (current page.west)
@@ -332,7 +332,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Design space}
+    \frametitle{Choix de conception}
 
     \begin{minipage}[t]{0.44\linewidth}
         \raggedright
@@ -341,13 +341,13 @@
 
         \smallskip
 
-        \point[\bfseries\color{Red}][0]{Accélérateur complet}
+        \point[\bfseries\color{Red}][0]{Accélérateur autonome}
         
         \point[\bfseries\color{Red}][0]{spécifique, performance}[=]
 
         \smallskip
         
-        \arrow[][2]{Kernel spécifique}[\faCheckCircleO]
+        \arrow[][2]{\textit{Kernel} spécifique}[\faCheckCircleO]
         
         \arrow[][2]{Application spécifique (parfois)}[\faCheckCircleO]
         
@@ -365,7 +365,7 @@
 
         \smallskip
         
-        \arrow[][2][Green]{Pour tous kernels}[\faPlus]
+        \arrow[][2][Green]{Pour tous \textit{kernels}}[\faPlus]
         
         \arrow[][2]{Mémoires existantes}[\faCheckCircleO]
         
@@ -406,19 +406,19 @@
 \begin{frame}
     \frametitle{Quelle est la meilleure solution ?}
     
-    Les accélérateurs matériels dédiés (complets et assistés)
+    Les accélérateurs matériels dédiés (autonomes et assistés)
 
     \point[\bfseries][2][Green]{Répondent efficacement à la problématique du calcul creux}[\ding{51}]
 
     \bigskip
 
-    \point[][2][Red]{Méthodes et choix de design \textbf{divers}}
+    \point[][2][Red]{Méthodes et choix de conception \textbf{divers}}
     \arrow[]{\underbar{Comparaison de performance exhaustive difficile}}
 
     \smallskip
 
     \point[][2][white]{Ce qui resort :}
-    \arrow[\bfseries][0][Red]{Pour les kernels Matrice-Matrice : \textcolor{Red}{Gustavson}}
+    \arrow[\bfseries][0][Red]{Pour les \textit{kernels} Matrice-Matrice : \textcolor{Red}{Gustavson}}
     
     \subpt[][35][Red]{Réduction théorique du traffic par rapport à IP et OP} \cref{ref:HiPEAC}
 
@@ -482,7 +482,7 @@
 
     \bigskip
 
-    \textbf{\textcolor{Mulberry}{Objectif 1 :} Mitiger l'irrégularité des réductions en analysant le comportement des caches de données}
+    \textbf{\textcolor{Mulberry}{Objectif 1 :} Réduire l'impact de l'irrégularité des réductions en analysant le comportement des caches de données}
 
     \medskip
 

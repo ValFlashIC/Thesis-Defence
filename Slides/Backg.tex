@@ -188,7 +188,7 @@
 
     \textbf{Caches} \arrow[\color{Red}]{\textbf{non-adaptés}} aux accès \og aléatoires \fg{}
 
-    \arrow[][2][Red]{Cache remplie de zéros} \hfill \textcolor{black!50}{(lignes de cache remplies à 40\% d'éléments non-nuls)}
+    \arrow[][2][Red]{Cache rempli de zéros} \hfill \textcolor{black!50}{(lignes de cache remplis à 40\% d'éléments non-nuls)}
 
     \arrow[][2][Red]{Nombre de \textit{hits} bas}
 
@@ -207,7 +207,7 @@
 \begin{frame}
     \frametitle{Les noyaux de calcul (Kernels)}
 
-    Les matrices creuses sont utilisées dans de \textbf{nombreux kernels} :
+    Les matrices creuses sont utilisées dans de \textbf{nombreux \textit{kernels}} :
 
     \point[][2][Red]{\parbox[t]{1cm}{$1\mathcal{D}$}} Multiplication \textbf{\textcolor{Red}{Matrice}} creuse-\textbf{\textcolor{Red}{Vecteur}} : SpMV
 
@@ -215,14 +215,14 @@
     %
     \makebox(0,0){\put(0,2.8\normalbaselineskip){%
         $\left.\rule{0pt}{1.1\normalbaselineskip}\right\}$
-        \parbox{0.25\linewidth}{\raggedright \textbf{\underbar{Kernels de base}} utilisés dans la majorité des applications}
+        \parbox{0.25\linewidth}{\raggedright \textbf{\underbar{\textit{Kernels} de base}} utilisés dans la majorité des applications}
     }}
     
     \point[][2][Red]{\parbox[t]{1cm}{$n\mathcal{D}$}} Les \textbf{tenseurs} en général
 
     \bigskip
 
-    Chaque kernel peut être implémenté suivant \textbf{plusieurs algorithmes} :
+    Chaque \textit{kernel} peut être implémenté suivant \textbf{plusieurs algorithmes} :
 
     \point[][2][Red]{\parbox[t]{4.5cm}{\textbf{\textcolor{Red}{Inner-Product}} (IP)}} ($\geqslant1\mathcal{D}$)
 
