@@ -28,9 +28,9 @@
      inkscape:deskcolor="#505050"
      inkscape:document-units="mm"
      showgrid="true"
-     inkscape:zoom="1.0469406"
-     inkscape:cx="311.86104"
-     inkscape:cy="308.99555"
+     inkscape:zoom="1.4805976"
+     inkscape:cx="391.39602"
+     inkscape:cy="352.89805"
      inkscape:window-width="1920"
      inkscape:window-height="1009"
      inkscape:window-x="-8"
@@ -144,8 +144,8 @@
        gradientTransform="translate(417.95344,-79.463184)"
        x1="55.650669"
        y1="169.42152"
-       x2="87.400703"
-       y2="169.42152" />
+       x2="92.692368"
+       y2="169.42151" />
   </defs>
   <g
      inkscape:label="Calque 1"
@@ -4054,8 +4054,8 @@
     <rect
        style="fill:url(#linearGradient2);fill-opacity:1;stroke:#000000;stroke-width:0.705556;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
        id="rect32-3-1-1-1-0-7"
-       width="74.083313"
-       height="9.260416"
+       width="84.666641"
+       height="9.2604179"
        x="452.4375"
        y="84.666664"
        rx="1.3229206"
@@ -4184,14 +4184,14 @@
     <text
        xml:space="preserve"
        style="font-size:7.7611px;line-height:6.30592px;font-family:Sans;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;text-anchor:middle;fill:#ff6666;stroke-width:0.705556;stroke-linecap:round;stroke-linejoin:round"
-       x="489.47916"
+       x="494.77081"
        y="91.28125"
        id="text1-2-0-3"><tspan
          sodipodi:role="line"
          id="tspan1-4-0-0"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Cambria;-inkscape-font-specification:Cambria;fill:#000000;fill-opacity:1;stroke-width:0.705556"
-         x="489.47916"
-         y="91.28125">Accélérateur complet</tspan></text>
+         x="494.77081"
+         y="91.28125">Accélérateur autonome</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:7.7611px;line-height:6.30592px;font-family:Sans;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;text-anchor:middle;fill:#ff6666;stroke-width:0.705556;stroke-linecap:round;stroke-linejoin:round"
@@ -4222,7 +4222,7 @@
        id="text1-2-2-4"><tspan
          sodipodi:role="line"
          id="tspan1-4-3-0"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Cambria;-inkscape-font-specification:Cambria;fill:#000000;fill-opacity:1;stroke-width:0.705556"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Cambria;-inkscape-font-specification:'Cambria Italic';fill:#000000;fill-opacity:1;stroke-width:0.705556"
          x="587.375"
          y="123.03123">Gather</tspan></text>
     <g
@@ -4236,7 +4236,7 @@
          id="text1-2-3-1"><tspan
            sodipodi:role="line"
            id="tspan1-4-80-4"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Cambria;-inkscape-font-specification:Cambria;fill:#000000;fill-opacity:1;stroke-width:0.705556"
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Cambria;-inkscape-font-specification:'Cambria Italic';fill:#000000;fill-opacity:1;stroke-width:0.705556"
            x="127.03149"
            y="44.920937">Scatter</tspan></text>
     </g>
@@ -4332,7 +4332,11 @@
          id="tspan9-4"
          style="stroke-width:0.705556"
          x="489.47916"
-         y="107.15624">Gather et Scatter</tspan></text>
+         y="107.15624"><tspan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Cambria;-inkscape-font-specification:'Cambria Italic'"
+   id="tspan33">Gather</tspan> et <tspan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Cambria;-inkscape-font-specification:'Cambria Italic'"
+   id="tspan34">Scatter</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.7611px;line-height:6.30592px;font-family:Cambria;-inkscape-font-specification:Cambria;text-align:center;letter-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke-width:0.705556;stroke-linecap:round;stroke-linejoin:round"
@@ -4343,7 +4347,9 @@
          id="tspan10-8"
          style="stroke-width:0.705556"
          x="489.47913"
-         y="123.03123">Kernel ?</tspan></text>
+         y="123.03123"><tspan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Cambria;-inkscape-font-specification:'Cambria Italic'"
+   id="tspan31">Kernel</tspan> ?</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.7611px;line-height:6.30592px;font-family:Cambria;-inkscape-font-specification:Cambria;text-align:center;letter-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke-width:0.705556;stroke-linecap:round;stroke-linejoin:round"

@@ -141,7 +141,7 @@
     \begin{minipage}[t]{0.48\linewidth}
         \raggedright
 
-        \arrow[\bfseries][0][Red]{Cas de hit}
+        \arrow[\bfseries][0][Red]{Cas de \textit{hit}}
 
         \smallskip
 
@@ -153,7 +153,7 @@
 
         \medskip
 
-        \arrow[\bfseries][0][Red]{Cas de miss}
+        \arrow[\bfseries][0][Red]{Cas de \textit{miss}}
 
         \smallskip
 
@@ -165,7 +165,7 @@
 
         \medskip
 
-        \arrow[\bfseries][0][Red]{Cas de miss avec évincement}
+        \arrow[\bfseries][0][Red]{Cas de \textit{miss} avec évincement}
 
         \smallskip
 
@@ -194,19 +194,20 @@
     \frametitle{Cache de réduction}
 
     \vspace*{-15pt}%
-    \begin{minipage}[t]{0.56577320\linewidth}
-        \centering
-
-        \pause[1]%
-        \includegraphics[width=0.85\linewidth]{Figures/PDF/GCvsRedC_GC_1.pdf}
-
-    \end{minipage}
-    \hfill
     \begin{minipage}[t]{0.41422680\linewidth}
         \centering
 
         \pause[1]%
+        \parbox[b]{1.6cm}{\raggedleft\bfseries\color{Blue} Cache de réduction\vspace*{1.75cm}}%
         \includegraphics[width=0.85\linewidth]{Figures/PDF/GCvsRedC_RedC_0.pdf}
+
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.56577320\linewidth}
+        \raggedleft
+
+        \pause[1]%
+        \includegraphics[width=0.85\linewidth]{Figures/PDF/GCvsRedC_GC_1.pdf}
 
     \end{minipage}
 

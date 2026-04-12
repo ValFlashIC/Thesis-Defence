@@ -2,14 +2,14 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="205.00006mm"
-   height="154.99998mm"
-   viewBox="0 0 205.00006 154.99999"
+   width="280mm"
+   height="189.99992mm"
+   viewBox="0 0 279.99999 189.99994"
    version="1.1"
    id="svg8"
    inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
    sodipodi:docname="GCvsRedC.svg"
-   inkscape:export-filename="..\PDF\GCvsRedC_RedC_0.pdf"
+   inkscape:export-filename="..\PDF\GCvsRedC_GC_0.pdf"
    inkscape:export-xdpi="333"
    inkscape:export-ydpi="333"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -102,8 +102,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.45254834"
-     inkscape:cx="-288.36698"
-     inkscape:cy="630.87183"
+     inkscape:cx="566.79028"
+     inkscape:cy="78.444659"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -119,8 +119,8 @@
     <inkscape:grid
        type="xygrid"
        id="grid815"
-       originx="-2115"
-       originy="-925.00006"
+       originx="-1825"
+       originy="-1185.0002"
        spacingy="1"
        spacingx="1"
        units="mm"
@@ -142,7 +142,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-2115,-983.87494)">
+     transform="translate(-1825,-1243.875)">
     <rect
        style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
        id="rect39787-5-8-5-7-0-1-7-4-5"
@@ -1603,17 +1603,6 @@
          sodipodi:role="line">Processeur</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87778px;line-height:3.95111px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
-       x="1871"
-       y="1061.8749"
-       id="text87126-7-5-8-0-0-0-9-8"><tspan
-         id="tspan87124-6-4-9-9-1-5-1-3"
-         x="1871"
-         y="1061.8749"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.87778px;line-height:3.95111px;font-family:Cambria;-inkscape-font-specification:'Cambria Bold';text-align:end;text-anchor:end;stroke-width:0.264583"
-         sodipodi:role="line">Cache</tspan></text>
-    <text
-       xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87778px;line-height:8.46667px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="1871"
        y="1103.8749"
@@ -2356,15 +2345,36 @@
          sodipodi:role="line">Processeur</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87778px;line-height:3.95111px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87778px;line-height:8.46667px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="1876"
-       y="1321.8749"
+       y="1317.8749"
        id="text87126-7-5-8-0-0-0-9-8-8"><tspan
          id="tspan87124-6-4-9-9-1-5-1-3-9"
          x="1876"
-         y="1321.8749"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.87778px;line-height:3.95111px;font-family:Cambria;-inkscape-font-specification:'Cambria Bold';text-align:end;text-anchor:end;stroke-width:0.264583"
-         sodipodi:role="line">Cache</tspan></text>
+         y="1317.8749"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.87778px;line-height:8.46667px;font-family:Cambria;-inkscape-font-specification:'Cambria Bold';text-align:end;text-anchor:end;stroke-width:0.264583"
+         sodipodi:role="line">Cache</tspan><tspan
+         x="1876"
+         y="1326.4111"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.87778px;line-height:8.46667px;font-family:Cambria;-inkscape-font-specification:'Cambria Bold';text-align:end;text-anchor:end;stroke-width:0.264583"
+         sodipodi:role="line"
+         id="tspan1">générique</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87778px;line-height:8.46667px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="1871"
+       y="1057.8749"
+       id="text87126-7-5-8-0-0-0-9-8-8-9"><tspan
+         id="tspan87124-6-4-9-9-1-5-1-3-9-8"
+         x="1871"
+         y="1057.8749"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.87778px;line-height:8.46667px;font-family:Cambria;-inkscape-font-specification:'Cambria Bold';text-align:end;text-anchor:end;stroke-width:0.264583"
+         sodipodi:role="line">Cache</tspan><tspan
+         x="1871"
+         y="1066.4111"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.87778px;line-height:8.46667px;font-family:Cambria;-inkscape-font-specification:'Cambria Bold';text-align:end;text-anchor:end;stroke-width:0.264583"
+         sodipodi:role="line"
+         id="tspan1-3">générique</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87778px;line-height:8.46667px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
@@ -3476,5 +3486,14 @@
          cy="728.87494"
          r="5" />
     </g>
+    <rect
+       style="fill:#ffffff;fill-opacity:0.5;fill-rule:nonzero;stroke:none;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
+       id="rect39787-5-8-5-7-0-1-7-4-9"
+       width="279.99976"
+       height="154.99994"
+       x="1820"
+       y="983.87488"
+       ry="5.0000038"
+       rx="5.000011" />
   </g>
 </svg>

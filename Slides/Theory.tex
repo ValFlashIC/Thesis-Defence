@@ -5,39 +5,42 @@
 
 \section[Modèle analytique]{Validation de SpDCache via un modèle analytique}
 
-% \begin{frame}
-%     (Reintro apres red section) (cette section: aspect irrégulier)
+\begin{frame}
+    \frametitle{Modèle analytique}
 
-%     grosse matrice dans le cache -> thrashing (anim?)
+    \textbf{Pour valider SpDCache : \textcolor{Red}{Modèle analytique}} d'un cache de réduction, en language C
 
-%     2 cas triviaux ou cache ok -> petite matrice ou bande horizontal (rappeler relation entre c et cache du spmv)
+    \point[][2][Red]{SpMV en Outer-Product} : $A \times b = c$
 
-%     Pas en pratique
+    \bigskip
 
-%     Matrices creuses, éléments isolés -> Idée naive: cache devient fully associatif !
+    \arrow[\bfseries][0][Red]{Entrées du modèle : \textcolor{Red}{génériques}}
+
+    \point[][2][Red]{\underbar{Matrice :} dimension $M$, taille de la bande \textbf{\textit{\textcolor{Red}{w\textsubscript{B}}}}, densité en-bande \textbf{\textit{\textcolor{Red}{d\textsubscript{IB}}}}, densité hors-bande \textbf{\textit{\textcolor{Red}{d\textsubscript{OB}}}}}
+
+    \point[][2][Red]{\underbar{Cache :} nombre d'ensembles (\textit{sets}) \textbf{\textit{\textcolor{Red}{S}}}, nombre de \textit{ways} \textbf{\textit{\textcolor{Red}{W}}}, taille d'une ligne de cache \textbf{\textit{\textcolor{Red}{l}}}}
+
+    \subpt[][4][Red]{Taille du cache : \textbf{\textit{\textcolor{Red}{s\textsubscript{C}}}} $= S \times W \times l$}
+
+    \medskip
+
+    \arrow[\bfseries][0][Red]{Sortie du modèle :} estimation semi-probabiliste/simulée du \textbf{\textcolor{Red}{traffic mémoire}} du vecteur $c$
     
-%     Mais pas possible, et structure exploitable, de la matrice x \textit{kernel}
-% \end{frame}
+    \point[][2][Red]{Normalisé par le nombre d'éléments non-nuls}
 
-% \begin{frame}
-%     \frametitle{aaa}
+    \subpt[][4][Red]{Interprétation :} \textbf{\textcolor{Red}{Nombre d'éléments transférés en mémoire par réduction (RED)}}
 
-%     Figure, thrashing
+    % \point[][2][Red]{En abscisse des graphiques : le plus bas est le mieux}
 
-%     Pour éviter, et cache fonctionne bien, petite matrice, ou bande horizontale (montrer sur la figure)
+    \bigskip
 
-%     Pas en pratique
+    \textbf{\textcolor{Mulberry}{1. Que se passe t'il visuellement ?}}
 
-%     Mais cas proche existe, bandée (montrer sur la figure)
+    \medskip
 
-%     Si juste bandée, pas ok, change rien
+    \textbf{\textcolor{Mulberry}{2. Résultats sous forme graphique et validation des concepts de SpDCache}}
 
-%     Si parfaitement bandée -> cache ok, moyennant une formule
-
-%     Qu'est ce que ca donne apres étude sur le mem traffic -> 2 ordres de grandeur
-
-%     Idée : isoler une bande diagonale de la matrice -> DRC
-% \end{frame}
+\end{frame}
 
 \begin{frame}[t]
     \frametitle{Multiplication Matrice-Vecteur dans un cache générique}
@@ -45,7 +48,9 @@
     \begin{minipage}[t]{0.42\linewidth}
         \raggedright
 
-        % \pause[1]%
+        \vspace*{-7pt}
+
+        \pause[1]%
         \textbf{Matrice quelconque :}
 
         \point[][2]{Évincements répétés dans le cache}
@@ -56,12 +61,9 @@
 
         \medskip
 
-        % \pause[2]%
-        \textbf{Petite matrice}%
-        % \pause[3]%
-        \textbf{, bande horizontale :}
+        \pause[2]%
+        \textbf{Petite matrice, bande horizontale :}
 
-        % \pause[4]%
         \point[][2]{Tient dans le cache, pas d'évincement}
 
         \smallskip
@@ -72,21 +74,7 @@
 
         \medskip
 
-        % \pause[5]%
-        \textbf{Matrice bandée :}%ici, 2 anims(?) pour montrer ce qu'est une matrice bandée
-
-        \point[][2]{Évincements répétés dans le cache}
-
-        \smallskip
-
-        % \pause[6]%
-        \arrow[][0][Red]{Le cache n'est pas utile}[\parbox[t]{0.3cm}{\hspace*{.5px}\cr}]
-
-        \arrow[][0][Green]{Structure très courante}[\parbox[t]{0.3cm}{\ck}]
-
-        \medskip
-
-        % \pause[7]%
+        \pause[3]
         \textbf{Matrice parfaitement bandée :}
 
         \point[][2]{Nombre d'évincements limité}
@@ -96,147 +84,137 @@
         \arrow[][0][Green]{Le cache est utile}[\parbox[t]{0.3cm}{\ck}]
 
         \arrow[][0][Red]{Structure peu courante}[\parbox[t]{0.3cm}{\hspace*{.5px}\cr}]
+        
+        \medskip
+
+        \pause[4]%
+        \textbf{Matrice bandée :}
+
+        \point[][2]{Évincements répétés dans le cache}
+
+        \smallskip
+
+        \arrow[][0][Red]{Le cache n'est pas utile}[\parbox[t]{0.3cm}{\hspace*{.5px}\cr}]
+
+        \arrow[][0][Green]{Structure très courante}[\parbox[t]{0.3cm}{\ck}]
 
     \end{minipage}
     \hfill
     \begin{minipage}[t]{0.56\linewidth}
 
-        \vspace*{-7pt}
-        \pause[1]%
-        \animategraphics[label=6,loop,controls,autoplay,timeline=timeline6.txt,buttonsize=6pt,buttonfg=0.9,width=0.48\linewidth]{1}{Figures/GIF/StructVSCache_Q/StructVSCache_Q_}{0}{35}
-        \hfill
-        \animategraphics[label=7,loop,controls,autoplay,timeline=timeline7.txt,buttonsize=6pt,buttonfg=0.9,width=0.48\linewidth]{1}{Figures/GIF/StructVSCache_BH/StructVSCache_BH_}{0}{35}
+            \vspace*{1.5cm}
+            \only<1>{
+                \begin{center}
+                    \animategraphics[loop,controls,autoplay,timeline=timeline6.txt,buttonsize=6pt,buttonfg=0.9,width=0.48\linewidth]{1}{Figures/GIF/StructVSCache_Q/StructVSCache_Q_}{0}{35}
+                \end{center}
+            }
 
-        \medskip
+            \only<2>{
+                \begin{center}
+                    \animategraphics[loop,controls,autoplay,timeline=timeline7.txt,buttonsize=6pt,buttonfg=0.9,width=0.48\linewidth]{1}{Figures/GIF/StructVSCache_BH/StructVSCache_BH_}{0}{35}
+                \end{center}
+            }
 
-        \animategraphics[label=8,loop,controls,autoplay,timeline=timeline8.txt,buttonsize=6pt,buttonfg=0.9,width=0.48\linewidth]{1}{Figures/GIF/StructVSCache_B/StructVSCache_B_}{0}{44}
-        \hfill
-        \animategraphics[label=9,loop,controls,autoplay,timeline=timeline9.txt,buttonsize=6pt,buttonfg=0.9,width=0.48\linewidth]{1}{Figures/GIF/StructVSCache_PB/StructVSCache_PB_}{0}{31}
+            \only<3-4>{
+                \animategraphics[loop,controls,autoplay,timeline=timeline9.txt,buttonsize=6pt,buttonfg=0.9,width=0.48\linewidth]{1}{Figures/GIF/StructVSCache_PB/StructVSCache_PB_}{0}{31}
+            }
+            \hfill
+            \only<4>{
+                \animategraphics[loop,controls,autoplay,timeline=timeline8.txt,buttonsize=6pt,buttonfg=0.9,width=0.48\linewidth]{1}{Figures/GIF/StructVSCache_B/StructVSCache_B_}{0}{44}
+            }
 
     \end{minipage}
 
 \end{frame}
 
-% \begin{frame}
-%     Montrer des matrices
-
-%     discuter de leur structures à gros grain et grain fin
-
-%     uniform bandée parfaitement bandée
-
-%     (dcd)
-% \end{frame}
-
 \begin{frame}[t]
     \frametitle{Traffic mémoire théorique avec des matrices bandées}
 
-    \begin{minipage}[t]{0.40\linewidth}
+    \textbf{\textcolor{Red}{Quel est l'impact du hors-bande sur le traffic mémoire ?}}
+
+    \smallskip
+
+    \begin{minipage}[t]{0.48\linewidth}
         \raggedright
+
+        \subpt[\footnotesize][0]{Matrice: bandée}
+
+        \subpt[\footnotesize][0]{Densité en-bande fixe ($d_\mathit{IB} = 10^{-2}$)}
         
-        % Qu'est ce que ca donne apres étude sur le mem traffic -> 2 ordres de grandeur
+        \subpt[\footnotesize][0]{Cache : associatif à ensembles ($W = 4$, $l = 8$)}
 
-        \textbf{Traffic mémoire (vecteur de sortie)}
+        \subpt[\footnotesize][0]{Courbe rouge : le vecteur de sortie $c$ tient dans le cache}
 
-        \tab[\small\itshape]{versus}
-        
-        \textbf{densité hors-bande,}
-        
-        \textbf{pour différentes tailles de cache}
-
-        \smallskip
-
-        \point[\footnotesize][2]{Normalisé par nombre d'éléments non-nuls}
-
-        \point[\footnotesize][2]{Densité en-bande fixe (10\textsuperscript{-2})}
-    
-        \point[\footnotesize][2]{[?] $s_C = S \times W \times l$}
+        \subpt[\footnotesize][0]{Meilleures performances en bas du graphique}
 
         \bigskip
 
-        \arrow[\bfseries\color{Red}]{Réduction de deux ordres de grandeur}
+        \arrow[\bfseries\color{Red}]{Diminution de deux ordres de grandeur}
 
-        \subpt[\color{Red}][2]{\parbox[t]{5mm}{SI}} Matrice parfaitement bandée
+        \subpt[\color{Red}][2]{\parbox[t]{5mm}{SI}} Matrice \textbf{parfaitement bandée}
 
-        \subpt[\color{Red}][2]{\parbox[t]{5mm}{ET}} Largeur de bande ($w_B$) suffisamment petite par rapport à la taille du cache ($s_C$)
+        \subpt[\color{Red}][2]{\parbox[t]{5mm}{ET}} \textbf{Largeur de bande} ($w_B$) suffisamment petite par rapport à la \textbf{taille du cache} ($s_C$)
 
         \medskip
 
-        \tab[]{$s_C \geqslant w_B + taille \, ligne \, de \, cache - 1$}
+        \tab[]{$s_C \geqslant w_B + l - 1$}
 
     \end{minipage}
     \hfill
-    \begin{minipage}[t]{0.56\linewidth}
+    \begin{minipage}[t]{0.48\linewidth}
 
+        \vspace*{-7pt}
         \pause[1]%
-        \includegraphics[width=\linewidth]{Figures/PDF/graph1_25.11.28.pdf}
-        % \includegraphics<2->[width=\linewidth]{Figures/PDF/LogoUGA.pdf}
-
-        (graph avec courbes qui apparaissent au bon moment)
+        \includegraphics[width=\linewidth]{Figures/PDF/graph1_Defence_26.04.12.pdf}
 
     \end{minipage}
 
-    % \pause[2]%
-    \bigskip%
-    % \arrow[\bfseries\color{Red}]{On sélectionne une bande diagonale de la matrice, qu'on traite avec un cache set-associatif}
-    \arrow[\bfseries\color{Red}]{DRC efficace : séléction de la bande diagonale de la matrice, dont la largeur dépend de la taille du DRC}
+    \medskip
 
-    % \pause[1]%
-    % \begin{tikzpicture}[remember picture, overlay]
-    %     \node [shift={(-1cm, -1.3cm)}, rotate=5] at (current page.north east)
-    %         { \includegraphics[width=0.08\linewidth]{Figures/PDF/Sticker_C.pdf} };
-    % \end{tikzpicture}
+    \arrow[\bfseries\color{Red}]{DRC efficace : séléction de la bande diagonale de la matrice, dont la largeur dépend de la taille du DRC}
 
 \end{frame}
 
 \begin{frame}
     \frametitle{Que faire du reste, hors de la bande ?}
 
-    \begin{minipage}[t]{0.40\linewidth}
+    \textbf{\textcolor{Red}{Que faire du reste, hors de la bande ?}}
+
+    \smallskip
+
+    \begin{minipage}[t]{0.48\linewidth}
         \raggedright
 
-        \textbf{Granularité : \textcolor{Red}{Éléments isolés}}
-        
-        \point[][2][Red]{Incompatible avec les lignes de cache}
-        
-        \arrow[][0][Red]{\underbar{Pas de ligne de cache} :}
-        
-        \subpt[][8][Red]{64o (8 mots) $\rightarrow$ 8o (1 mot)}
+        \subpt[\footnotesize][0]{Matrice: bande à zéro, seulement le hors-bande}
 
-        \medskip
+        \subpt[\footnotesize][0]{Meilleures performances en bas du graphique}
 
-        \textbf{Absence de structure claire}
-        
-        \point[][2][Red]{Nombre de \textit{hits} bas}
-        
-        \arrow[][0][Red]{Pour augmenter la quantité de \textit{hits} dans un espace de cache modeste :}
-        
-        \subpt[][8][Red]{\underbar{Cache complètement associatif}}
+        \bigskip
 
-        \medskip
+        \arrow[\bfseries\color{Red}]{Diminution d'un ordre de grandeur}
 
-        \textbf{Transactions mémoires inadaptées}
+        \subpt[\color{Red}][2]{\parbox[t]{5mm}{SI}} \textbf{Transactions mémoires adaptées} aux éléments isolés
         
-        \point[][2][Red]{Lectures et écritures sur 64o (8 mots)}
-        
-        \arrow[][0][Red]{Transactions mémoires \og par éléments \fg{}}
+        \subpt[\bfseries][8]{RMW} sur 8 octets (1 mot)
 
-        \subpt[][8][Red]{\underbar{RMW sur 8o (1 mot)}}
+        \subpt[\color{Red}][2]{\parbox[t]{5mm}{ET}} Cache \textbf{complètement associatif}, granularité élémentaire
+
+        \subpt[][8]{Augmente le taux de remplissage du cache, et donc de \textit{hits}}
 
     \end{minipage}
     \hfill
-    \begin{minipage}[t]{0.56\linewidth}
+    \begin{minipage}[t]{0.48\linewidth}
 
+        \vspace*{-7pt}
         \pause[1]%
         \includegraphics[width=\linewidth]{Figures/PDF/graph3_25.12.15.pdf}
-        % \includegraphics<2->[width=\linewidth]{Figures/PDF/LogoUGA.pdf}
 
-        (graph avec courbes qui apparaissent au bon moment)
+        <retirer sC = 256>
 
     \end{minipage}
 
-    % \pause[2]%
-    \bigskip%
-    % \arrow[\bfseries\color{Red}]{On traite les éléments hors-bande de la matrice avec un cache \og par élément \fg{}, complètement associatif, avec des transactions mémoires \og par élément \fg{} (RMW)}
+    \medskip
+
     \arrow[\bfseries\color{Red}]{SRT efficace : éléments isolés (hors-bande) de la matrice traités \og par élément \fg{}, dans la SRT et au niveau des transactions mémoires}
 
 \end{frame}

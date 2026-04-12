@@ -3,35 +3,24 @@
 % Section: Evaluation
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section[Evaluations]{Evaluations et Performances de SpDCache}
-
-% \begin{frame}
-%     RTL e(pas python)
-
-%     Trafic mémoire
-
-%     Config 25/50/25
-
-%     Puis accélération
-%     (Perf peu impressionnante à cause du setup minimaliste, mais une aubène pour ma thèse car permet d'analyser : on a des cas compute bound, ce qui n'arrive pas en pratique)
-
-%     Répartition des matrices sur l'échelle dcd
-% \end{frame}
+\section[Evaluations]{Evaluations et performances de SpDCache}
 
 \begin{frame}
-    \frametitle{Environnement}
+    \frametitle{Environnement pour l'évaluation}
 
-    \textbf{\textcolor{Red}{Environnement RTL}}
+    \textbf{\textcolor{Red}{Environnement RTL}} (suite à un modèle Python)
 
     \point[\bfseries][2][Red]{\parbox[t]{4cm}{C\oe{}ur :}} CVA6 (RISC-V) -- Scalaire, exécution dans l'ordre
 
     \point[\bfseries][2][Red]{\parbox[t]{4cm}{Cache L1 :}} SpDCache (\textit{mode réduction} activable à l'exécution)
 
-    \point[\bfseries][2][Red]{\parbox[t]{4cm}{Mémoire principale :}} RAM simulée
+    \point[\bfseries][2][Red]{\parbox[t]{4cm}{Mémoire principale :}} RAM à latence fixe de 64 cycles
 
-    \bigskip
+    \smallskip
 
-    <schéma simple de l'env>
+    \textbf{\textcolor{Red}{Base RTL :}} HPDCache~\cref{ref:HPDcache}, cache de données haute performance, libre accès (OpenHW Group)
+
+    \point[][2][Red]{Ajout de logique de contrôle, d'accumulateurs, et de la logique des régions}
 
     \bigskip
 
@@ -43,7 +32,7 @@
 
     \point[][2][Red]{Configuration des régions :} \textbf{25/50/25\%} \hfill \textcolor{black!60}{(GRC/DRC/SRT, \% de la taille totale du cache)}
 
-    \point[][2][Red]{Comparaison avec un cache générique et un cache de réduction}
+    \point[][2][Red]{Comparaison avec un cache générique (GC) et un cache de réduction (RedC)}
 
     \bigskip
 
@@ -52,6 +41,10 @@
     \point[\bfseries][2][Red]{Traffic mémoire} entre SpDCache et mémoire principale
 
     \point[\bfseries][2][Red]{Accélération} en fonction de la structure à grain fin des matrices
+
+    \vspace*{12pt}
+    \dref{ref:HPDcache}{%
+    César Fuguet. 2023. HPDcache: Open-Source High-Performance L1 Data Cache for RISC-V Cores. In Proceedings of the 20th ACM International Conference on Computing Frontiers (CF '23). Association for Computing Machinery, New York, NY, USA, 377-378.}
 
 \end{frame}
 

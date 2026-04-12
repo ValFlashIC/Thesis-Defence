@@ -3,30 +3,7 @@
 % Section: SpDCache
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section[SpDCache]{SpDCache : Fonctionnement et Architecture Matérielle}
-
-% \begin{frame}
-%     Fonctionnement de SpDCache et Techniques HW
-
-%     Faire le lien : deux régions annoncées, plus région générique
-
-%     Macro Architecture
-
-%     Expliquer comment les deux régions sont gérées
-
-%     Quelques points d'implémentation RTL (partition du cache au moins)
-
-%     Slide sur flexibilité, config, RISCV, opensource(?)
-% \end{frame}
-
-% \begin{frame}
-%     \frametitle{SpDCache}
-
-%     4 slides spdcache de ASAP
-
-%     % Quelques détails sur l'implem RTL
-
-% \end{frame}
+\section[SpDCache]{SpDCache : fonctionnement et architecture matérielle}
 
 \begin{frame}
     \frametitle{Les matrices bandées}
@@ -37,9 +14,11 @@
 
     \arrow[][0][Red]{Une structure de matrice fréquente :} la \textbf{\textcolor{Red}{structure bandée}}
 
-    \point[][2][Red]{Une \textbf{région dense} autour de la diagonale :} \textbf{\textcolor{Red}{en-bande}}
+    \point[][2][Red]{Structure naturelle dans les \underbar{systèmes linéaires}}
+        
+    \arrow[][6]{Corrélation élevée des composantes proches}
 
-    \point[][2][Red]{Une \textbf{région creuse} ailleurs :} \textbf{\textcolor{Red}{hors-bande}}
+    \point[][2][Red]{\underbar{Techniques de diagonalisation} des matrices}
 
     \bigskip
 
@@ -88,9 +67,21 @@
     
     \bigskip
 
-    \begin{minipage}[t]{0.40\linewidth}
+    \begin{minipage}[t]{0.56\linewidth}
         \raggedright
 
+        \pause[1]%
+        \arrow[\bfseries\color{Red}][0]{Matrice bandée :}
+
+        \point[][2][Red]{\textbf{Région dense} autour de la diagonale :} \textbf{\textcolor{Red}{en-bande}}
+
+        \point[][2][Red]{\textbf{Région creuse} ailleurs :} \textbf{\textcolor{Red}{hors-bande}}
+
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.40\linewidth}
+        \raggedright
+        
         \pause[1]%
         \arrow[\bfseries][0][Red]{Densités}
 
@@ -99,22 +90,21 @@
         \point[][2][Red]{\parbox[t]{2cm}{Hors-bande :}} $\sim$ 10\textsuperscript{-4} (de 0 à 10\textsuperscript{-2})
 
     \end{minipage}
-    \hfill
-    \begin{minipage}[t]{0.56\linewidth}
-        \raggedright
-        
-        \pause[1]%
-        \point[][2][Red]{Structure naturelle dans les \underbar{systèmes linéaires}}
-        
-        \arrow[][6]{Corrélation élevée des composantes proches}
 
-        \point[][2][Red]{\underbar{Techniques de diagonalisation} des matrices}
+    \smallskip
 
-    \end{minipage}
+    \arrow[\bfseries\color{Red}][0]{Parfaitement bandée} : hors-bande à zéro
 
-    \bigskip
+\end{frame}
 
-    \point[\bfseries\color{Red}][0]{Parfaitement bandée} : hors-bande à zéro
+\begin{frame}
+    \frametitle{Objectifs de SpDCache}
+
+    C'est quoi l'Objectif
+
+    et l'Approche
+
+    description breve
 
 \end{frame}
 
@@ -181,7 +171,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Architecture de SpDCache}
+    \frametitle{Circulation des données dans SpDCache}
 
     \begin{minipage}[t]{0.48\linewidth}
         \raggedright
@@ -225,18 +215,6 @@
         \pause[1]%
         \includegraphics[width=0.9\linewidth]{Figures/PDF/SpDC_MacroArchi.pdf}
 
-        % <figure de spdcache + direction des transactions (globales) de A,b à c>
-
-        % A, b dans GRC
-
-        % Dans processeur : En ou hors bande de A ? / Axb -> c
-
-        % RED (c Axb reg) vers L1
-
-        % Selon reg, DRC ou SRT
-
-        % Evincements vers mémoire, soit ligne wise soit RMW
-
     \end{minipage}
 
 \end{frame}
@@ -251,7 +229,7 @@
 
         \medskip
 
-        \textbf{\textcolor{Red}{Hit / Miss}}
+        \textbf{\textcolor{Red}{\textit{Hit} / \textit{Miss}}}
 
         \point[\bfseries][2][Red]{0} transaction mémoire
 
@@ -265,7 +243,7 @@
 
         \medskip
 
-        \textbf{\textcolor{Red}{Miss avec évincement dans le DRC}}
+        \textbf{\textcolor{Red}{\textit{Miss} avec évincement dans le DRC}}
 
         \point[\bfseries][2][Red]{2} transactions mémoires (lignes)
 
@@ -273,7 +251,7 @@
 
         \medskip
 
-        \textbf{\textcolor{Red}{Miss avec évincement dans la SRT}}
+        \textbf{\textcolor{Red}{\textit{Miss} avec évincement dans la SRT}}
 
         \point[\bfseries][2][Red]{1} transaction mémoire (\textbf{élément})
 
@@ -283,7 +261,9 @@
 
         \subpt[][6][Red]{RMW} (lecture-accumulation-écriture)
 
-        \subpt[][6][Red]{AMOs AXI-4}
+        \subpt[][6][Red]{AMOs inspiré de AXI-4 \cref{}}
+
+        ADD ref
 
     \end{minipage}
     \hfill
@@ -296,39 +276,3 @@
     \end{minipage}
 
 \end{frame}
-
-% \begin{frame}
-%     \frametitle{La redirection des sets du cache}
-
-%     Objectifs :
-
-%     \point{3 régions indépendantes (toutes les adresses peuvent mapper sur chacunes des trois régions)}
-
-%     \point{N'utiliser que la mémoire cache disponible}
-
-%     \point{Changer dynamiquement de taille de région}
-
-%     <figure set redirect>
-
-%     adresse (-> set\_global) + region => set\_region
-
-%     Mux set global, set region en fct mode <schéma>
-    
-% \end{frame}
-
-% \begin{frame}
-%     \frametitle{La région complétement associative}
-
-%     CAM -> retient les adresses (comme champs TAG)
-
-%     Ligne de cache -> 8 éléments sur des adresses quelconques
-
-%     CAM 1024 entrées max
-
-%     \bigskip
-
-%     On s'assure de décoréler évincements et mise à jour du cache -> table d'accumulation
-
-%     Permet de ne pas bloquer la pipeline du cache pendant évincement, lecture acc écriture (on profite de la propriété des REDs)
-    
-% \end{frame}
