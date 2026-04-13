@@ -5,6 +5,8 @@
 
 \section[SpDCache]{SpDCache : fonctionnement et architecture matérielle}
 
+\subsection{Matrices bandées et concept}
+
 \begin{frame}
     \frametitle{Les matrices bandées}
 
@@ -100,11 +102,50 @@
 \begin{frame}
     \frametitle{Objectifs de SpDCache}
 
-    C'est quoi l'Objectif
+    \textbf{\textcolor{Red}{Sur quels concepts s'articule la conception de SpDCache ?}}
 
-    et l'Approche
+    \bigskip
 
-    description breve
+    \arrow[][0][Red]{En ce basant sur la structure bandée}
+
+    \point[\bfseries][2][Red]{Éviter les accès \og aléatoire \fg{} dans la bande} \arrow[]{région dense}
+
+    \point[\bfseries][2][Red]{Traiter les accès \og aléatoire \fg{} hors-bande}, avec du matériel dédié \arrow[]{région creuse}
+
+    \bigskip
+
+    \arrow[\bfseries\color{Red}]{SpDCache :}
+    
+    \smallskip
+
+    \point[][2][Red]{Cache de réduction}, \textcolor{Red}{ET}
+
+    \smallskip
+
+    \point[][2][Red]{Mémoire cache divisée en \textbf{plusieurs régions}}
+
+    \subpt[\bfseries][6][Red]{Région mémoire adaptée aux données denses}
+
+    \subpt[\bfseries][6][Red]{Région mémoire adaptée aux données creuses}
+
+    \smallskip
+
+    \point[][2][Red]{Chaque région : configuration de cache adaptée}
+    %
+    \begin{tikzpicture}[remember picture, overlay]
+        \node [shift={(-3.0cm, -1.0cm)}] at (current page.east)
+            { 
+                \includegraphics[scale=0.4]{Figures/PDF/LogoUGA.pdf}
+            };
+    \end{tikzpicture}
+
+    % <figure avec deux matrices band/hors bande découpé>
+
+    \bigskip
+
+    \point[][2][Red]{Fonctionnalités \textbf{ajoutées} à un cache générique}
+
+    \arrow[\bfseries\color{Red}][4][Red]{Pas d'ajout de mémoire} : utilisation de la mémoire cache existante
 
 \end{frame}
 
@@ -126,7 +167,7 @@
 
         \smallskip
 
-        \arrow[][0][Red]{Partage de la mémoire cache en \textbf{trois régions} :}
+        \arrow[][0][Red]{Partage de la mémoire cache en \textbf{3 régions} :}
 
         \smallskip
 
@@ -169,6 +210,8 @@
     \end{minipage}
 
 \end{frame}
+
+\subsection{Fonctionnement de SpDCache}
 
 \begin{frame}
     \frametitle{Circulation des données dans SpDCache}

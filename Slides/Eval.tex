@@ -5,6 +5,8 @@
 
 \section[Evaluations]{Evaluations et performances de SpDCache}
 
+\subsection{Environnement pour l'évaluation}
+
 \begin{frame}
     \frametitle{Environnement pour l'évaluation}
 
@@ -18,7 +20,7 @@
 
     \smallskip
 
-    \textbf{\textcolor{Red}{Base RTL :}} HPDCache~\cref{ref:HPDcache}, cache de données haute performance, libre accès (OpenHW Group)
+    \textbf{\textcolor{Red}{Base RTL :}} \textbf{HPDCache}~\cref{ref:HPDcache}, cache de données haute performance, \textbf{libre accès} (OpenHW Group)
 
     \point[][2][Red]{Ajout de logique de contrôle, d'accumulateurs, et de la logique des régions}
 
@@ -48,8 +50,10 @@
 
 \end{frame}
 
+\subsection{Analyses des performances}
+
 \begin{frame}
-    \frametitle{Traffic mémoire}
+    \frametitle{Résulats de performances : traffic mémoire}
 
     \begin{minipage}[t]{\linewidth}
         \centering
@@ -68,7 +72,7 @@
 
     \medskip
 
-    \arrow[\bfseries][0][Red]{Réduction significative du traffic mémoire}
+    \arrow[\bfseries\color{Green}]{Réduction significative du traffic mémoire}
 
     \bigskip
 
@@ -85,7 +89,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Accélération}
+    \frametitle{Résultats de performances : accélération}
 
     \begin{minipage}[t]{\linewidth}
         \centering
@@ -128,7 +132,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Accélération}
+    \frametitle{Deux groupes de performances selon les matrices}
 
     \begin{minipage}[t]{\linewidth}
         \centering

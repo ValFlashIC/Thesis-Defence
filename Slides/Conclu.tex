@@ -9,46 +9,78 @@
     \frametitle{Conclusion}
 
     \textbf{\textcolor{Mulberry}{Objectif 1 :} Réduire l'impact de l’irrégularité des réductions en analysant le comportement des caches de données}
+
+    \smallskip
     
-    \arrow[\bfseries\color{Red}][2]{Cache de réduction :} réduction effectuée dans le cache
+    \arrow[\bfseries\color{Red}][2]{SpDCache}
+
+    \point[][6][Red]{Cache de réduction}
     
-    \arrow[\bfseries\color{Red}][2]{Analyse des caches} en fonction des structures gros grain des matrices
+    \point[\bfseries][6][Red]{Régions mémoires} du cache pour les régions \textbf{denses} et \textbf{creuses} des matrices
 
-    \arrow[\bfseries\color{Red}][2]{SpDCache :} des régions mémoires du cache pour les régions denses et creuses des matrices
+    \point[][6][Red]{Architecture \textbf{peu coûteuse} et \textbf{flexible}}
 
-    \bigskip
-
-    \textbf{\textcolor{Mulberry}{Objectif 2 :} Comprendre le rôle des structures des matrices dans les performances}
+    \point[\bfseries][6][Red]{Implémentation matérielle} (RTL)
 
     \subpt[][10][Green]{\parbox[t]{3cm}{Traffic mémoire :}} \textbf{\textcolor{Green}{3.9$\times$}}
 
     \subpt[][10][Green]{\parbox[t]{3cm}{Accélération :}} \textbf{\textcolor{Green}{10\%}}
+    
+    \bigskip
+    
+    \textbf{\textcolor{Mulberry}{Objectif 2 :} Comprendre le rôle des structures des matrices dans les performances}
+
+    \smallskip
+
+    \arrow[\bfseries\color{Red}][2]{Modèle analytique}
+    
+    \point[\bfseries][6][Red]{Analyse des caches} en fonction des structures gros grain des matrices
+
+    \subpt[][10][Red]{Analyse détaillée des \textbf{matrices bandées}}
+
+    \smallskip
 
     \arrow[\bfseries\color{Red}][2]{Analyse des performances} en fonction des matrices
 
-    \arrow[\bfseries\color{Red}][2]{Critère de classification} des matrices
-
-    \point[][6][Red]{Comportements des performances :} SpMV limité par le calcul ou la mémoire
-
-    <axer sur les contributions>
+    \point[\bfseries][6][Red]{Critère de classification} des matrices
     
 \end{frame}
 
 \begin{frame}
     \frametitle{Perspectives}
 
-    \textbf{\textcolor{Mulberry}{Perspectives}}
+    \textbf{\textcolor{Mulberry}{Perspectives}} Travaux à faire
 
-    \point[][2][Red]{Mono-c\oe{}ur, un niveau de cache} \arrow[]{Question du passage à l'échelle}
-
-    \arrow[][6][Red]{\underbar{Multi-c\oe{}ur, multi-niveau} :} seulement conceptualisé
+    \smallskip
 
     \point[][2][Red]{De nombreuses \underbar{optimisations} à faire sur l'implémentation RTL}
 
-    \point[][2][Red]{\'Etude de l'utilisation avec d'\underbar{autres \textit{kernels}} (ex. : SpMSpM)}
+    - Calcul des régions en matériel pour alléger le coût processeur
 
-    <FIXME>
+    - Support du calcul flottant
+
+    - Cohérence de cache complète
     
+    \smallskip
+
+    \point[][2][Red]{Étude de l'utilisation avec d'\underbar{autres \textit{kernels}} (ex. : SpMSpM)}
+
+    \smallskip
+
+    Niveau logiciel
+
+    - Librairie de kernels optimisés pour SpDCache (extension de SparseBLAS [])
+
+    \smallskip
+
+    \point[][2][Red]{Mono-c\oe{}ur, un niveau de cache} \arrow[]{Question du passage à l'échelle}
+
+    \arrow[][6][Red]{\underbar{Multi-c\oe{}ur, multi-niveau} :} conceptualisé
+
+    \smallskip
+
+    Étudier SpDCache dans un environnement haute performance
+
 \end{frame}
 
 \begin{frame}[plain]

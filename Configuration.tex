@@ -2,10 +2,13 @@
 % Configuration
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\RequirePackage{silence}
+\WarningFilter{latex}{Writing or overwriting file}
+
 \usepackage{appendixnumberbeamer}
+\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{textcomp}
-% \usepackage[square,numbers,sort&compress]{natbib}
 \usepackage[french]{babel}
 \usepackage{setspace}
 \usepackage{bookman}
@@ -23,13 +26,11 @@
 \usetikzlibrary{fit,shapes.arrows,arrows.meta,shadows.blur}
 \usepackage[most]{tcolorbox}
 \usepackage{tabularray}
-% \usepackage{listings}
 \usepackage{stackengine}
 \usepackage{calligra}
 \usepackage{fontawesome}
 \usepackage{animate}
 \usepackage{pifont}
-\usepackage{filecontents}
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -73,7 +74,7 @@
 \makeatother
 
 \NewDocumentCommand{\bulletPoint}{O{\small} O{1} o m O{$\bullet$}}{%
-	{#1\myrepeat{#2}{\ }{\IfNoValueF{#3}{\color{#3}}#5}\ #4}%
+	{#1\myrepeat{#2}{\textnormal{\ }}{\IfNoValueF{#3}{\color{#3}}#5}\textnormal{\ }#4}%
 }
 
 \NewDocumentCommand{\arrow}{O{\small} O{0} o m O{\ding{220}}}{\bulletPoint[#1][#2][#3]{#4}[#5]} % {\normalfont\faArrowRight}
@@ -89,8 +90,8 @@
 	\ #5}%
 }
 
-\def\ck{\textcolor{Green}{\faCheck}}
-\def\cr{\textcolor{Red}{\faClose}}
+\def\ck{\textcolor{Green}{\textnormal{\faCheck}}}
+\def\cr{\textcolor{Red}{\textnormal{\faClose}}}
 
 \newcounter{refcnt}
 \setcounter{refcnt}{0}

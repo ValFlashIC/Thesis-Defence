@@ -60,7 +60,7 @@
 
         \smallskip
 
-        \arrow[][0][Red]{Focus sur les matrices à \textbf{\textcolor{Red}{très basse densité}}} \textcolor{Blue}{(bleu)}
+        \arrow[][0][Red]{Focus sur les matrices à \textbf{\textcolor{Red}{très basse densité}}} \textcolor{Blue}{(\textit{bleu})}
 
     \end{minipage}
     \hfill
@@ -376,6 +376,8 @@
 \begin{frame}
     \frametitle{Résumé}
 
+    \pause[1]
+
     \textbf{Inner-Product (IP)} \arrow[]{accès \og aléatoires \fg{} sur l'entrée ($b$ ou $B$)}
     
     \textbf{\textcolor{white}{Inner-Product (IP)}} \arrow[]{accès = lecture}
@@ -385,6 +387,8 @@
     \arrow[\bfseries\color{Red}][4]{Intersections} des éléments non-nuls de $A$ avec ceux de $b$ ou $B$ \hfill ($1\mathcal{D}$ ou $2\mathcal{D}$)
 
     \medskip
+
+    \pause[2]
 
     \textbf{Outer-Product (OP)} \arrow[]{accès \og aléatoires \fg{} sur la sortie ($c$ ou $C$)}
 
@@ -396,6 +400,8 @@
 
     \medskip
 
+    \pause[3]
+
     \textbf{Gustavson (Gust)} \arrow[]{accès \og aléatoires \fg{} sur l'entrée et la sortie ($B$ et $C$)}
 
     \arrow[][2][Red]{Les deux problèmes de \textbf{\textcolor{Red}{gather}} et \textbf{\textcolor{Red}{scatter}} à la fois}
@@ -406,10 +412,13 @@
 
     \bigskip
 
+    \pause[5]
+
     \textbf{Problématique initiale}
 
     \arrow[\bfseries\color{Mulberry}]{Dans le contexte du calcul matriciel, comment adresser efficacement les problématiques d'intersections (gather) et/ou de réductions (scatter) lorsque les données subissent des accès \og aléatoires \fg{} ?}
     %
+    \pause[4]%
     \begin{tikzpicture}[remember picture, overlay]
         \node [shift={(8cm, -1.45cm)}, rotate=0] at (current page.west)
             {%

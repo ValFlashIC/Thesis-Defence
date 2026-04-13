@@ -5,6 +5,8 @@
 
 \section[Modèle analytique]{Validation de SpDCache via un modèle analytique}
 
+\subsection{Modèle et visualisation}
+
 \begin{frame}
     \frametitle{Modèle analytique}
 
@@ -32,7 +34,7 @@
 
     % \point[][2][Red]{En abscisse des graphiques : le plus bas est le mieux}
 
-    \bigskip
+    \bigskip\bigskip
 
     \textbf{\textcolor{Mulberry}{1. Que se passe t'il visuellement ?}}
 
@@ -77,7 +79,7 @@
         \pause[3]
         \textbf{Matrice parfaitement bandée :}
 
-        \point[][2]{Nombre d'évincements limité}
+        \point[][2]{Peu d'évincements}
 
         \smallskip
 
@@ -102,30 +104,42 @@
     \hfill
     \begin{minipage}[t]{0.56\linewidth}
 
+            \pause[1]
             \vspace*{1.5cm}
-            \only<1>{
-                \begin{center}
-                    \animategraphics[loop,controls,autoplay,timeline=timeline6.txt,buttonsize=6pt,buttonfg=0.9,width=0.48\linewidth]{1}{Figures/GIF/StructVSCache_Q/StructVSCache_Q_}{0}{35}
-                \end{center}
-            }
 
-            \only<2>{
-                \begin{center}
-                    \animategraphics[loop,controls,autoplay,timeline=timeline7.txt,buttonsize=6pt,buttonfg=0.9,width=0.48\linewidth]{1}{Figures/GIF/StructVSCache_BH/StructVSCache_BH_}{0}{35}
-                \end{center}
-            }
+            \begin{minipage}[t][4.5cm][t]{\linewidth}
+                \only<1>{
+                    \begin{center}
+                        \animategraphics[loop,controls,autoplay,timeline=timeline6.txt,buttonsize=6pt,buttonfg=0.9,width=0.48\linewidth]{1}{Figures/GIF/StructVSCache_Q/StructVSCache_Q_}{0}{35}
+                    \end{center}
+                }
 
-            \only<3-4>{
-                \animategraphics[loop,controls,autoplay,timeline=timeline9.txt,buttonsize=6pt,buttonfg=0.9,width=0.48\linewidth]{1}{Figures/GIF/StructVSCache_PB/StructVSCache_PB_}{0}{31}
-            }
-            \hfill
-            \only<4>{
-                \animategraphics[loop,controls,autoplay,timeline=timeline8.txt,buttonsize=6pt,buttonfg=0.9,width=0.48\linewidth]{1}{Figures/GIF/StructVSCache_B/StructVSCache_B_}{0}{44}
-            }
+                \only<2>{
+                    \begin{center}
+                        \animategraphics[loop,controls,autoplay,timeline=timeline7.txt,buttonsize=6pt,buttonfg=0.9,width=0.48\linewidth]{1}{Figures/GIF/StructVSCache_BH/StructVSCache_BH_}{0}{35}
+                    \end{center}
+                }
+
+                \only<3-4>{
+                    \animategraphics[loop,controls,autoplay,timeline=timeline9.txt,buttonsize=6pt,buttonfg=0.9,width=0.48\linewidth]{1}{Figures/GIF/StructVSCache_PB/StructVSCache_PB_}{0}{31}
+                    \hfill
+                }
+                \only<4>{
+                    \animategraphics[loop,controls,autoplay,timeline=timeline8.txt,buttonsize=6pt,buttonfg=0.9,width=0.48\linewidth]{1}{Figures/GIF/StructVSCache_B/StructVSCache_B_}{0}{44}
+                }
+            \end{minipage}
+
+            \small\itshape
+
+            \tab[\bfseries\color{Dandelion}][6]{Jaune} : la donnée n'a pas été réutilisée \,\cr
+
+            \tab[\bfseries\color{green!65!black}][6]{Vert} : la donnée a été réutilisée (au moins un \textit{hit}) \,\ck
 
     \end{minipage}
 
 \end{frame}
+
+\subsection{Analyses et validation}
 
 \begin{frame}[t]
     \frametitle{Traffic mémoire théorique avec des matrices bandées}
@@ -143,7 +157,7 @@
         
         \subpt[\footnotesize][0]{Cache : associatif à ensembles ($W = 4$, $l = 8$)}
 
-        \subpt[\footnotesize][0]{Courbe rouge : le vecteur de sortie $c$ tient dans le cache}
+        \subpt[\footnotesize][0]{Courbe $S = 32$ (\textit{rouge}) : le vecteur $c$ tient dans le cache}
 
         \subpt[\footnotesize][0]{Meilleures performances en bas du graphique}
 
@@ -153,11 +167,13 @@
 
         \subpt[\color{Red}][2]{\parbox[t]{5mm}{SI}} Matrice \textbf{parfaitement bandée}
 
-        \subpt[\color{Red}][2]{\parbox[t]{5mm}{ET}} \textbf{Largeur de bande} ($w_B$) suffisamment petite par rapport à la \textbf{taille du cache} ($s_C$)
+        \subpt[\color{Red}][2]{\parbox[t]{5mm}{ET}} \textbf{Largeur de bande} ($w_B$) plus petite que
+
+        \subpt[\color{white}][2]{\parbox[t]{5mm}{ET}} la \textbf{taille du cache} ($s_C$)
 
         \medskip
 
-        \tab[]{$s_C \geqslant w_B + l - 1$}
+        \subpt[][14]{$s_C \geqslant w_B + l - 1$}
 
     \end{minipage}
     \hfill
@@ -171,12 +187,14 @@
 
     \medskip
 
-    \arrow[\bfseries\color{Red}]{DRC efficace : séléction de la bande diagonale de la matrice, dont la largeur dépend de la taille du DRC}
+    \arrow[\bfseries\color{Red}]{DRC efficace : séléction de la bande diagonale de la matrice, dont la largeur dépend de}
+
+    \arrow[\bfseries\color{white}]{DRC efficace :} \textbf{\textcolor{Red}{la taille du DRC}}
 
 \end{frame}
 
-\begin{frame}
-    \frametitle{Que faire du reste, hors de la bande ?}
+\begin{frame}[t]
+    \frametitle{Traffic mémoire théorique sur le hors-bande}
 
     \textbf{\textcolor{Red}{Que faire du reste, hors de la bande ?}}
 
@@ -193,13 +211,19 @@
 
         \arrow[\bfseries\color{Red}]{Diminution d'un ordre de grandeur}
 
-        \subpt[\color{Red}][2]{\parbox[t]{5mm}{SI}} \textbf{Transactions mémoires adaptées} aux éléments isolés
+        \subpt[\color{Red}][2]{\parbox[t]{5mm}{SI}} \textbf{Transactions mémoires adaptées} aux
+
+        \subpt[\color{white}][2]{\parbox[t]{5mm}{SI}} éléments isolés
         
-        \subpt[\bfseries][8]{RMW} sur 8 octets (1 mot)
+        \subpt[\bfseries][14]{RMW} sur 8 octets (1 mot)
 
-        \subpt[\color{Red}][2]{\parbox[t]{5mm}{ET}} Cache \textbf{complètement associatif}, granularité élémentaire
+        \subpt[\color{Red}][2]{\parbox[t]{5mm}{ET}} Cache \textbf{complètement associatif},
 
-        \subpt[][8]{Augmente le taux de remplissage du cache, et donc de \textit{hits}}
+        \subpt[\color{white}][2]{\parbox[t]{5mm}{ET}} \textbf{granularité élémentaire}
+
+        \subpt[][14]{Augmente le taux de remplissage}
+
+        \subpt[][14][white]{du cache, et donc le taux de \textit{hits}}
 
     \end{minipage}
     \hfill
@@ -215,14 +239,14 @@
 
     \medskip
 
-    \arrow[\bfseries\color{Red}]{SRT efficace : éléments isolés (hors-bande) de la matrice traités \og par élément \fg{}, dans la SRT et au niveau des transactions mémoires}
+    \arrow[\bfseries\color{Red}]{SRT efficace : éléments isolés (hors-bande) de la matrice traités \og par élément \fg{}, dans la}
+
+    \arrow[\bfseries\color{white}]{SRT efficace :} \textbf{\textcolor{Red}{SRT et au niveau des transactions mémoires}}
 
 \end{frame}
 
 \begin{frame}
-    \frametitle{Conclusion}
-
-    % Conclusion un peu globale : SpDCache permet d'adresser le problème des réductions aléatoires en utilisant intelligemment l'espace mémoire disponible ("bloquer" la région la plus dense / gérer les éléments isolés)
+    \frametitle{Validation du concept de SpDCache}
 
     \textbf{\textcolor{Red}{SpDCache :} cache de réduction séparé en plusieurs régions}
 
