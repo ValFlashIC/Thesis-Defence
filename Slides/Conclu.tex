@@ -49,37 +49,37 @@
 \begin{frame}
     \frametitle{Perspectives}
 
-    \textbf{\textcolor{Mulberry}{Perspectives}} Travaux à faire
+    \point[\bfseries][0][Red]{Optimisations} de l'implémentation RTL
 
-    \smallskip
-
-    \point[][2][Red]{De nombreuses \underbar{optimisations} à faire sur l'implémentation RTL}
-
-    - Calcul des régions en matériel pour alléger le coût processeur
-
-    - Support du calcul flottant
-
-    - Cohérence de cache complète
+    \arrow[][2][Red]{Support du calcul flottant}
     
-    \smallskip
+    \arrow[][2][Red]{Calcul des régions en matériel pour alléger le coût processeur}
 
-    \point[][2][Red]{Étude de l'utilisation avec d'\underbar{autres \textit{kernels}} (ex. : SpMSpM)}
+    \arrow[][2][Red]{Cohérence de cache entre région générique et régions de réduction}
 
-    \smallskip
+    \bigskip
 
-    Niveau logiciel
+    \point[\bfseries][0][Red]{Passage à l'échelle}
 
-    - Librairie de kernels optimisés pour SpDCache (extension de SparseBLAS [])
+    \arrow[][2][Red]{Multi-c\oe{}ur, multi-niveau} \textcolor{black!50}{(conceptualisé mais non testé)}
+    
+    \bigskip
 
-    \smallskip
+    \point[][0][Red]{Étude d'\textbf{autres \textit{kernels}}}
 
-    \point[][2][Red]{Mono-c\oe{}ur, un niveau de cache} \arrow[]{Question du passage à l'échelle}
+    \arrow[][2][Red]{Example du SpMSpM en Gustavson} \textcolor{black!50}{(conceptualisé mais non testé)}
 
-    \arrow[][6][Red]{\underbar{Multi-c\oe{}ur, multi-niveau} :} conceptualisé
+    \bigskip
 
-    \smallskip
+    \point[][0][Red]{Mise au propre côté \textbf{logiciel}}
 
-    Étudier SpDCache dans un environnement haute performance
+    \arrow[][2][Red]{Librairie de \textit{kernels} optimisés pour SpDCache}
+    
+    \subpt[][6][Red]{Ex. : extension de la librairie \href{https://github.com/SparseBLAS}{SparseBLAS}}
+
+    \bigskip
+
+    \point[][0][Red]{Évaluer SpDCache dans un \textbf{environnement haute performance}}
 
 \end{frame}
 
