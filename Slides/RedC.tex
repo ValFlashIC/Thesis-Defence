@@ -12,7 +12,7 @@
 
     Exemple de \textbf{\textcolor{Red}{SpMV}} : $A \times b = c$, avec $A$ de taille $(M, N)$.
 
-    \point[\color{Blue}][2][Red]{$\forall (i, j) \in \ldb 0, M-1 \rdb \times \ldb 0, N-1 \rdb, \; c_i = c_i + A_{i, j} \times b_j$}
+    \point[\color{Blue}][2][Red]{$\forall (i, j) \in \ldb 0, M-1 \rdb \times \ldb 0, N-1 \rdb, \; c_i \gets c_i + A_{i, j} \times b_j$}
 
     \point[][2][Red]{$A$ est stockée au format creux CSC ($\mathit{VAL}$, $\mathit{IDX}$, $\mathit{PTR}$)}
 
@@ -89,52 +89,12 @@
 
 \end{frame}
 
-\begin{frame}
-    \frametitle{Réductions}
-
-    \textbf{\textcolor{Red}{Qu'est-ce qu'une réduction ?}}
-
-    \bigskip
-
-    Une réduction sur le vecteur $c$ : \textcolor{Blue}{$c_{indice} \acc valeur$}
-
-    \point[][2][Red]{Une \textbf{lecture} en mémoire de \textcolor{Blue}{$c_{indice}$}}
-
-    \point[][2][Red]{Une \textbf{accumulation} pour mettre à jour \textcolor{Blue}{$c_{indice}$} avec \textcolor{Blue}{$valeur$}}
-
-    \point[][2][Red]{Une \textbf{écriture} en mémoire de \textcolor{Blue}{$c_{indice}$} mis à jour}
-
-    \medskip
-
-    Cette opération est notée \textbf{\textcolor{Red}{RED}} : \textcolor{Blue}{$\mathit{RED}(indice, valeur)$}
-
-    \bigskip
-
-    \textbf{Cache générique :} pas de support particulier pour les opérations de réduction
-
-    \bigskip
-
-    \arrow[\bfseries\color{Red}][0][Red]{Cache de réduction} (ex. : \cref{ref:PHI} \cref{ref:SortCache})
-
-    \point[][4][Red]{Supporte une \textbf{nouvelle instruction RED} : $\mathit{RED}(adresse, valeur)$}
-
-    \point[][4][Red]{L'opération de réduction est \textbf{traitée dans le cache}}
-
-    \arrow[][8]{Possède une \textbf{unité de calcul}}
-
-    \vspace*{0.5cm}
-    \dref{ref:PHI}{A. Mukkara, N. Beckmann, and D. Sanchez. 2019. PHI: Architectural Support for Synchronization- and Bandwidth-Efficient Commutative Scatter Updates. In Proceedings of the 52nd Annual IEEE/ACM International Symposium on Microarchitecture (MICRO-52). Association for Computing Machinery, New York, NY, USA, 1009–1022.}
-    \vspace{3pt}
-    \dref{ref:SortCache}{S. Srikanth, A. Jain, T. M. Conte, E. P. Debenedictis, and J. Cook. 2021. SortCache: Intelligent Cache Management for Accelerating Sparse Data Workloads. ACM Trans. Archit. Code Optim.18, 4, Article 56 (sep 2021), 24 pages.}
-    
-\end{frame}
-
 \subsection{Cache générique versus cache de réduction}
 
-\begin{frame}
-    \frametitle{Cache générique}
+\begin{frame}[t]
+    \frametitle{Comment se comporte une réduction dans un cache générique ?}
 
-    \textbf{\textcolor{Red}{Comment se comporte une réduction dans un cache générique ?}}
+    \textbf{\textcolor{Red}{Réduction :}} lecture + accumulation + écriture \arrow[\color{Blue}][0][black]{$c_{indice} \gets c_{indice} + valeur$}
 
     \medskip
 
@@ -180,26 +140,28 @@
     \end{minipage}
     \hfill
     \begin{minipage}[t]{0.48\linewidth}
-        \centering
+        \raggedleft
 
         \medskip
 
         \pause[1]%
-        \includegraphics[width=\linewidth]{Figures/PDF/GCvsRedC_GC_0.pdf}
+        \includegraphics[width=0.95\linewidth]{Figures/PDF/GCvsRedC_GC_0.pdf}
 
     \end{minipage}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]
     \frametitle{Cache de réduction}
 
-    \vspace*{-15pt}%
+    \textbf{\textcolor{Red}{Réduction :}} lecture + accumulation + écriture \arrow[\color{Blue}][0][black]{$\mathit{RED}(adresse, valeur)$}
+
+    \vspace*{-5pt}%
     \begin{minipage}[t]{0.41422680\linewidth}
         \centering
 
         \pause[1]%
         \parbox[b]{1.6cm}{\raggedleft\bfseries\color{Blue} Cache de réduction\vspace*{1.75cm}}%
-        \includegraphics[width=0.85\linewidth]{Figures/PDF/GCvsRedC_RedC_0.pdf}
+        \includegraphics[width=0.83\linewidth]{Figures/PDF/GCvsRedC_RedC_0.pdf}
 
     \end{minipage}
     \hfill
@@ -207,11 +169,11 @@
         \raggedleft
 
         \pause[1]%
-        \includegraphics[width=0.85\linewidth]{Figures/PDF/GCvsRedC_GC_1.pdf}
+        \includegraphics[width=0.83\linewidth]{Figures/PDF/GCvsRedC_GC_1.pdf}
 
     \end{minipage}
 
-    \bigskip
+    \medskip
 
     \point[\bfseries][0][Red]{Nombre intrinsèque de transactions mémoires}
     \arrow[]{\parbox[t]{3.5cm}{Cache générique :}} 0 + 1 + 2 = \textbf{\textcolor{Red}{3 \cr}}
@@ -219,13 +181,11 @@
     \point[\bfseries\color{white}][0]{Nombre intrinsèque de transactions mémoires}
     \arrow[]{\parbox[t]{3.5cm}{Cache de réduction :}} 0 + 0 + 2 = \textbf{\textcolor{Green}{2 \ck}}
 
-    \smallskip
-
     \point[][0][Red]{Les réductions sont \textbf{\og envoyées et oubliées \fg{}}} \textcolor{black!50}{(``fire-and-forget'')}
 
     \arrow[][2]{Le processeur \textbf{n'attend pas de réponse}, même à l'évincement}
 
-    \bigskip
+    \medskip
 
     \textbf{\textcolor{Red}{SpDCache :} cache de réduction}
     

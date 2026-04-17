@@ -240,7 +240,7 @@
             \begin{tikzpicture}[remember picture, overlay]
                 \node [shift={(\X, \Y)}, rotate=0] at (current page.west)
                     {%
-                        \lbox[standard jigsaw,opacityframe=1.,opacityback=0.]{Orange}{%
+                        \lbox[standard jigsaw,opacityframe=1.,opacityback=0.]{Cyan}{%
                             \rule{0pt}{\H}%
                             \hspace*{\Wa}%
                         }%
@@ -250,7 +250,7 @@
             \begin{tikzpicture}[remember picture, overlay]
                 \node [shift={(\X + 1.67cm, \Y)}, rotate=0] at (current page.west)
                     {%
-                        \lbox[standard jigsaw,opacityframe=1.,opacityback=0.]{Green}{%
+                        \lbox[standard jigsaw,opacityframe=1.,opacityback=0.]{Purple}{%
                             \rule{0pt}{\H}%
                             \hspace*{\Wb}%
                         }%
@@ -260,7 +260,7 @@
             \begin{tikzpicture}[remember picture, overlay]
                 \node [shift={(\X + 3.66cm, \Y)}, rotate=0] at (current page.west)
                     {%
-                        \lbox[standard jigsaw,opacityframe=1.,opacityback=0.]{Blue}{%
+                        \lbox[standard jigsaw,opacityframe=1.,opacityback=0.]{Green}{%
                             \rule{0pt}{\H}%
                             \hspace*{\Wb}%
                         }%
@@ -270,7 +270,7 @@
             \begin{tikzpicture}[remember picture, overlay]
                 \node [shift={(\X + 5.32cm, \Y)}, rotate=0] at (current page.west)
                     {%
-                        \lbox[standard jigsaw,opacityframe=1.,opacityback=0.]{Cyan}{%
+                        \lbox[standard jigsaw,opacityframe=1.,opacityback=0.]{Blue}{%
                             \rule{0pt}{\H}%
                             \hspace*{\Wa}%
                         }%
@@ -280,7 +280,7 @@
             \begin{tikzpicture}[remember picture, overlay]
                 \node [shift={(\X + 6.65cm, \Y)}, rotate=0] at (current page.west)
                     {%
-                        \lbox[standard jigsaw,opacityframe=1.,opacityback=0.]{Purple}{%
+                        \lbox[standard jigsaw,opacityframe=1.,opacityback=0.]{Orange}{%
                             \rule{0pt}{\H}%
                             \hspace*{\Wa}%
                         }%
@@ -472,14 +472,6 @@
 
     \arrow[][2][Red]{Au niveau des \textbf{caches de données}}
 
-    \bigskip\bigskip
-
-    \textbf{\textcolor{Red}{Approche :}}
-
-    \smallskip
-    
-    \arrow[\bfseries][0][Red]{SpDCache :} Cache de données spécialisé qui adresse les réductions \og aléatoires \fg{}
-
     \bigskip
 
     \textbf{\textcolor{Mulberry}{Objectif 1 :} Réduire l'impact de l'irrégularité des réductions en analysant le comportement des caches de données}
@@ -487,5 +479,13 @@
     \medskip
 
     \textbf{\textcolor{Mulberry}{Objectif 2 :} Comprendre le rôle des structures des matrices dans les performances}
+
+    \bigskip
+
+    \textbf{\textcolor{Red}{Approche :}}
+
+    \smallskip
+    
+    \arrow[\bfseries][0][Red]{SpDCache :} Cache de données spécialisé qui adresse les réductions \og aléatoires \fg{}
 
 \end{frame}
