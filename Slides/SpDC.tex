@@ -133,9 +133,13 @@
     \point[][2][Red]{Chaque région : configuration de cache adaptée}
     %
     \begin{tikzpicture}[remember picture, overlay]
-        \node [shift={(-3.0cm, -1.0cm)}] at (current page.east)
+        \node [shift={(-5.0cm, -1.5cm)}] at (current page.east) (A)
             { 
-                \includegraphics[scale=0.4]{Figures/PDF/LogoUGA.pdf}
+                \includegraphics[scale=0.6]{Figures/PDF/BandedM_IB.pdf}
+            };
+        \node [shift={(3.0cm, -0.2cm)}] at (A)
+            { 
+                \includegraphics[scale=0.6]{Figures/PDF/BandedM_OB.pdf}
             };
     \end{tikzpicture}
 
@@ -155,10 +159,12 @@
     \begin{minipage}[t]{0.48\linewidth}
         \raggedright
 
+        \pause[1]%
         Par rapport à un cache générique :
 
         \smallskip
 
+        \pause[2]%
         \arrow[][0][Red]{Ajout du \textbf{mode réduction}}
 
         \smallskip
@@ -167,6 +173,7 @@
 
         \smallskip
 
+        \pause[3]%
         \arrow[][0][Red]{Partage de la mémoire cache en \textbf{3 régions} :}
 
         \smallskip
@@ -203,9 +210,12 @@
     \hfill
     \begin{minipage}[t]{0.48\linewidth}
         \centering
-        
+    
+        \vspace*{-7pt}
         \pause[1]%
-        \includegraphics[width=\linewidth]{Figures/Others/24.07.26_MatrixAndDataCachePartition_06.png}
+        \includegraphics<1>[width=\linewidth]{Figures/PDF/ModifsOverGC_0.pdf}
+        \includegraphics<2>[width=\linewidth]{Figures/PDF/ModifsOverGC_1.pdf}
+        \includegraphics<3>[width=\linewidth]{Figures/PDF/ModifsOverGC_2.pdf}
 
     \end{minipage}
 
@@ -256,7 +266,13 @@
 
         \vspace*{-7pt}
         \pause[1]%
-        \includegraphics[width=0.9\linewidth]{Figures/PDF/SpDC_MacroArchi.pdf}
+        \includegraphics<1>[width=0.9\linewidth]{Figures/PDF/SpDC_MacroArchi_0.pdf}
+        \includegraphics<2>[width=0.9\linewidth]{Figures/PDF/SpDC_MacroArchi_1.pdf}
+        \includegraphics<3>[width=0.9\linewidth]{Figures/PDF/SpDC_MacroArchi_2.pdf}
+        \includegraphics<4>[width=0.9\linewidth]{Figures/PDF/SpDC_MacroArchi_3.pdf}
+        \includegraphics<5>[width=0.9\linewidth]{Figures/PDF/SpDC_MacroArchi_4.pdf}
+        \includegraphics<6>[width=0.9\linewidth]{Figures/PDF/SpDC_MacroArchi_5.pdf}
+        \includegraphics<7>[width=0.9\linewidth]{Figures/PDF/SpDC_MacroArchi_6.pdf}
 
     \end{minipage}
 
