@@ -22,7 +22,7 @@
 
     \point[\bfseries][6][Red]{Implémentation matérielle} (RTL)
 
-    \subpt[][10][Green]{\parbox[t]{3cm}{Traffic mémoire :}} \textbf{\textcolor{Green}{3.9$\times$}}
+    \subpt[][10][Green]{\parbox[t]{3cm}{trafic mémoire :}} \textbf{\textcolor{Green}{3.9$\times$}}
 
     \subpt[][10][Green]{\parbox[t]{3cm}{Accélération :}} \textbf{\textcolor{Green}{10\%}}
     
@@ -83,36 +83,80 @@
 
 \end{frame}
 
+{
+    % \setbeamersize{text margin left=1cm, text margin right=1cm}
+    \setbeamertemplate{background canvas}{
+        \begin{tikzpicture}[remember picture, overlay]
+            % \shade[top color=gray!85,bottom color=gray!85,middle color=white]
+            \shade[right color=\maincolor!80!Yellow!30!white, left color=white, middle color=white]
+            ([shift={(3.0cm,-0.0cm)}]current page.north west)
+                rectangle
+            ([shift={(-0.0cm,0.0cm)}]current page.south east);
+        \end{tikzpicture}
+    }
+
 \begin{frame}[plain]
 
-    Valentin Isaac-{-}Chassande
+    \medskip
 
-    valentin.isaacchassande@univ-grenoble-alpes.fr
+    \begin{minipage}[t]{0.74\linewidth}
+        \raggedright
 
-    QRcode linkedin ?
+        \smallskip
 
-    \bigskip
+        {\bfseries\color{Red}\Huge Valentin Isaac-{-}Chassande}
 
-    Publications
+        \textit{valentin.isaacchassande@univ-grenoble-alpes.fr}
 
-    \point[][2]{ACM TACO}
+        \textit{ORCID : 0009-0007-9842-5777}
 
-    \point[][2]{ASAP}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.24\linewidth}
+        \raggedleft
 
-    Brevet
+        \pause[1]%
+        \rotatebox{90}{\small\textit{\textbf{LinkedIn}}}
+        \includegraphics[width=0.40\linewidth]{Figures/Others/LinkedIn QRCode.png}
 
-    \point[][2]{...}
+    \end{minipage}
 
-    Présentations et conférences
+    \bigskip\smallskip
 
-    \point[][2]{ASAP 2024}
+    \textbf{\textcolor{Red}{Publications}}
 
-    \point[][2]{HiPEAC 2026}
+    {\setstretch{0.5}
 
-    \point[][2]{COMPAS ..}
+    \vspace*{3.5pt}
 
-    SpDCache en libre accès
+    \point[\bfseries][2][Red]{ACM TACO} : {\itshape\color{Blue}\small V. Isaac-{-}Chassande, A. Evans, Y. Durand, and F. Rousseau. 2024. Dedicated Hardware Accelerators for Processing of Sparse Matrices and Vectors: A Survey. ACM Trans. Archit. Code Optim. 21, 2, Article 27 (June 2024), 26 pages.}
 
-    \point[][2]{...}
+    \vspace*{2.5pt}
+
+    \point[\bfseries][2][Red]{ASAP} : {\itshape\color{Blue}\small V. Isaac-{-}Chassande, A. Evans, Y. Durand, and F. Rousseau. 2024. SpDCache: Region-Based Reduction Cache for Outer-Product Sparse Matrix Kernels. 2024 IEEE 35th International Conference on Application-specific Systems, Architectures and Processors (ASAP), Hong Kong, Hong Kong, pp. 3-7.}
+
+    \vspace*{2.5pt}
+
+    \point[\bfseries][2][Red]{Brevet} : {\itshape\color{Blue}\small V. Isaac-{-}Chassande, A. Evans, and Y. Durand. 2025. Dispositif de calcul informatique à mémoire cache optimisée pour le calcul matriciel. Commissariat à l'Energie Atomique et aux Energies Alternatives, N° EP4650972, FR3162293 (Nov. 2025).}
+
+    }
+
+    \smallskip
+
+    \textbf{\textcolor{Red}{Présentations et conférences}}
+
+    \point[\bfseries][2][Red]{COMPAS 2024} : Poster et présentation, à Annecy, France.
+    
+    \point[\bfseries][2][Red]{ASAP 2024} : Présentation, à Hong Kong, Hong Kong.
+    
+    \point[\bfseries][2][Red]{HiPEAC 2026} : Présentation, à Barcelone, Espagne.
+
+    \smallskip
+
+    \textbf{\textcolor{Red}{SpDCache en libre accès}}
+
+    \point[\bfseries][2][Red]{GitLab CEA}
     
 \end{frame}
+
+}

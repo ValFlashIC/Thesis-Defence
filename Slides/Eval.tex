@@ -40,7 +40,7 @@
 
     \textbf{\textcolor{Red}{Performances}}
 
-    \point[\bfseries][2][Red]{Traffic mémoire} entre SpDCache et mémoire principale
+    \point[\bfseries][2][Red]{trafic mémoire} entre SpDCache et mémoire principale
 
     \point[\bfseries][2][Red]{Accélération} en fonction de la structure à grain fin des matrices
 
@@ -52,35 +52,36 @@
 
 \subsection{Analyses des performances}
 
-\begin{frame}
-    \frametitle{Résulats de performances : traffic mémoire}
+\begin{frame}[t]
+    \frametitle{Résulats de performances : trafic mémoire}
 
     \begin{minipage}[t]{\linewidth}
         \centering
 
-        \includegraphics[width=0.6\linewidth]{Figures/PDF/OutMemTrafficFromRTL.pdf}
+        \vspace*{-18pt}%
+        \includegraphics[width=0.7\linewidth]{Figures/PDF/OutMemTrafficFromRTL_Defence.pdf}
 
     \end{minipage}
     
     \smallskip
 
-    \textbf{Traffic mémoire total moyen :}
+    \textbf{trafic mémoire total moyen :}
     
     \point[\bfseries\color{Green}][2]{3.9$\times$} par rapport à un cache générique
 
     \point[\bfseries\color{Green}][2]{2.8$\times$} par rapport à un cache de réduction
 
+    \smallskip
+
+    \arrow[\bfseries\color{Green}]{Réduction significative du trafic mémoire}
+
     \medskip
-
-    \arrow[\bfseries\color{Green}]{Réduction significative du traffic mémoire}
-
-    \bigskip
 
     \underbar{Avec d'autres configurations des régions :} variations de \textbf{+\!/\!-\,20\% maximum}
 
     \arrow[\bfseries\color{Red}][2]{25/50/25\% :} performant, simple à réaliser en matériel
 
-    \bigskip
+    \medskip
 
     \textbf{\underbar{Remarque :}} Deux groupes de performances selon les matrices
 
@@ -88,13 +89,14 @@
 
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]
     \frametitle{Résultats de performances : accélération}
 
     \begin{minipage}[t]{\linewidth}
         \centering
 
-        \includegraphics[width=0.6\linewidth]{Figures/PDF/Speedups.pdf}
+        \vspace*{-18pt}%
+        \includegraphics[width=0.7\linewidth]{Figures/PDF/Speedups_Defence.pdf}
 
     \end{minipage}
     
@@ -106,7 +108,7 @@
 
     \point[\bfseries\color{Green}][2]{10\%} par rapport à un cache de réduction
 
-    \bigskip
+    \medskip
 
     \textbf{\underbar{Remarque :}}
     
@@ -118,26 +120,27 @@
 
     \arrow[\bfseries][0][Red]{Classifier les matrices} suivant un nouveau critère, \textbf{\textit{d\textsubscript{cd}}}
 
-    \bigskip
+    \medskip
 
     \textbf{\textit{d\textsubscript{cd}} :} Densité moyenne de sections non-nulles de la matrice
     
     \point[][2][Red]{Sections :} Taille d'une ligne de cache
     %
     \begin{tikzpicture}[remember picture, overlay]
-        \node [shift={(-3cm, -3cm)}, rotate=0] at (current page.east)
-            { \includegraphics[width=0.4\linewidth]{Figures/PDF/dcdVisu.pdf} };
+        \node [shift={(-4.2cm, -0.85cm)}, rotate=0] at (current page.east)
+            { \includegraphics[width=0.45\linewidth]{Figures/PDF/dcdVisu.pdf} };
     \end{tikzpicture}
 
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]
     \frametitle{Deux groupes de performances selon les matrices}
 
     \begin{minipage}[t]{\linewidth}
         \centering
 
-        \includegraphics[width=0.6\linewidth]{Figures/PDF/Speedups.pdf}
+        \vspace*{-18pt}%
+        \includegraphics[width=0.7\linewidth]{Figures/PDF/Speedups_Defence_WithGroups.pdf}
 
     \end{minipage}
     
@@ -145,32 +148,24 @@
 
     \textbf{Groupe 1 :} matrice à \textbf{\textit{d\textsubscript{cd}} basse}
 
-    \smallskip
-
     \point[][2][Red]{Lignes de cache creuses, beaucoup d'évincements consécutifs}
     
     \arrow[\bfseries][6][Red]{SpMV \textcolor{Red}{limité par la mémoire}}
 
-    \smallskip
-
     \arrow[\bfseries][2][Green]{Accélération moyenne du groupe 1 : \textcolor{Green}{20\%}} par rapport à un cache générique
 
-    \arrow[\bfseries\color{Green}][6]{Réduction du traffic = accélération}
+    \arrow[\bfseries\color{Green}][6]{Réduction du trafic = accélération}
     
-    \bigskip
+    \medskip
 
     \textbf{Groupe 2 :} matrice à \textbf{\textit{d\textsubscript{cd}} haute}
-
-    \smallskip
 
     \point[][2][Red]{Lignes de cache denses, peu d'évincements consécutifs}
     
     \arrow[\bfseries][6][Red]{SpMV \textcolor{Red}{limité par le calcul}}
 
-    \smallskip
-
     \arrow[\bfseries][2][Orange]{Accélération moyenne du groupe 2 : \textcolor{Orange}{0\%}} par rapport à un cache générique
 
-    \arrow[\bfseries\color{Orange}][6]{Réduction du traffic = pas d'impact}
+    \arrow[\bfseries\color{Orange}][6]{Réduction du trafic = pas d'impact}
 
 \end{frame}
