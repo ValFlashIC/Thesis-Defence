@@ -153,8 +153,10 @@
 
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]
     \frametitle{SpDCache : le concept}
+
+    \vspace*{-7pt}
 
     \begin{minipage}[t]{0.48\linewidth}
         \raggedright
@@ -211,7 +213,6 @@
     \begin{minipage}[t]{0.48\linewidth}
         \centering
     
-        \vspace*{-7pt}
         \pause[1]%
         \includegraphics<1>[width=\linewidth]{Figures/PDF/ModifsOverGC_0.pdf}
         \includegraphics<2>[width=\linewidth]{Figures/PDF/ModifsOverGC_1.pdf}
@@ -264,14 +265,14 @@
     \begin{minipage}[t]{0.48\linewidth}
         \centering
 
-        \vspace*{-7pt}
         \pause[1]%
-        \includegraphics<1>[width=0.9\linewidth]{Figures/PDF/SpDC_MacroArchi_0.pdf}
-        \includegraphics<2>[width=0.9\linewidth]{Figures/PDF/SpDC_MacroArchi_1.pdf}
-        \includegraphics<3>[width=0.9\linewidth]{Figures/PDF/SpDC_MacroArchi_2.pdf}
-        \includegraphics<4>[width=0.9\linewidth]{Figures/PDF/SpDC_MacroArchi_3.pdf}
-        \includegraphics<5>[width=0.9\linewidth]{Figures/PDF/SpDC_MacroArchi_4.pdf}
-        \includegraphics<6>[width=0.9\linewidth]{Figures/PDF/SpDC_MacroArchi_5.pdf}
+        \vspace*{-7pt}
+        \includegraphics<1>[width=0.9\linewidth]{Figures/PDF/SpDC_MacroArchi_0.pdf}%
+        \includegraphics<2>[width=0.9\linewidth]{Figures/PDF/SpDC_MacroArchi_1.pdf}%
+        \includegraphics<3>[width=0.9\linewidth]{Figures/PDF/SpDC_MacroArchi_2.pdf}%
+        \includegraphics<4>[width=0.9\linewidth]{Figures/PDF/SpDC_MacroArchi_3.pdf}%
+        \includegraphics<5>[width=0.9\linewidth]{Figures/PDF/SpDC_MacroArchi_4.pdf}%
+        \includegraphics<6>[width=0.9\linewidth]{Figures/PDF/SpDC_MacroArchi_5.pdf}%
         \includegraphics<7>[width=0.9\linewidth]{Figures/PDF/SpDC_MacroArchi_6.pdf}
 
     \end{minipage}
@@ -281,57 +282,72 @@
 \begin{frame}
     \frametitle{Fonctionnement de SpDCache}
 
-    \begin{minipage}[t]{0.48\linewidth}
+    \begin{minipage}[t]{0.38\linewidth}
         \raggedright
 
-        Transactions RED \arrow[\bfseries\color{Red}]{\og envoyées et oubliées \fg{}}
+        \pause[2]%
+        \textbf{RED} \arrow[\bfseries\color{Red}]{\og envoyées et oubliées \fg{}}
 
-        \medskip
+        \smallskip
 
         \textbf{\textcolor{Red}{\textit{Hit} / \textit{Miss}}}
 
         \point[\bfseries][2][Red]{0} transaction mémoire
 
-        \point[][2][Red]{Insertion ou accumulation dans le cache}
+        \point[][2][Red]{Insertion ou accumulation}
+    
+        \point[\bfseries][2][white]{dans le cache}
 
-        \medskip
+        \smallskip
 
-        Transferts entre DRC et SRT
+        \textbf{Transferts} entre DRC et SRT
         
         \arrow[\bfseries\color{Red}][2]{pas de duplication}
 
-        \medskip
+        \smallskip
 
+        \pause[7]%
         \textbf{\textcolor{Red}{\textit{Miss} avec évincement dans le DRC}}
 
-        \point[\bfseries][2][Red]{2} transactions mémoires (lignes)
+        \point[\bfseries][2][Red]{2} transactions mémoires (\textbf{lignes})
 
-        \point[][2][Red]{Accumulation dans le cache}
+        \point[][2][Red]{Accumulations dans le cache}
 
-        \medskip
+        \smallskip
 
+        \pause[8]%
         \textbf{\textcolor{Red}{\textit{Miss} avec évincement dans la SRT}}
 
         \point[\bfseries][2][Red]{1} transaction mémoire (\textbf{élément})
 
         \point[\bfseries][2][Red]{\og Envoyé et oublié \fg{}}
 
-        \point[][2][Red]{Accumulation en mémoire principale}
+        \point[][2][Red]{Accumulation en mémoire}
 
-        \subpt[][6][Red]{RMW} (lecture-accumulation-écriture)
+        \subpt[][6][Red]{RMW} (lecture-acc.-écriture)
 
-        \subpt[][6][Red]{AMOs inspiré de AXI-4 \cref{}}
-
-        ADD ref
+        \subpt[][6][Red]{(F)AMOs inspiré de AXI-4 \cref{ref:FAMO}}
 
     \end{minipage}
     \hfill
-    \begin{minipage}[t]{0.48\linewidth}
+    \begin{minipage}[t]{0.60\linewidth}
         \centering
 
         \pause[1]%
-        \includegraphics[width=\linewidth]{Figures/PDF/SpDC_behavior.pdf}
+        \includegraphics<1>[width=\linewidth]{Figures/PDF/SpDC_Behavior_0.pdf}
+        \includegraphics<2>[width=\linewidth]{Figures/PDF/SpDC_Behavior_1.pdf}
+        \includegraphics<3>[width=\linewidth]{Figures/PDF/SpDC_Behavior_2.pdf}
+        \includegraphics<4>[width=\linewidth]{Figures/PDF/SpDC_Behavior_3.pdf}
+        \includegraphics<5>[width=\linewidth]{Figures/PDF/SpDC_Behavior_4.pdf}
+        \includegraphics<6>[width=\linewidth]{Figures/PDF/SpDC_Behavior_5.pdf}
+        \includegraphics<7>[width=\linewidth]{Figures/PDF/SpDC_Behavior_6.pdf}
+        \includegraphics<8>[width=\linewidth]{Figures/PDF/SpDC_Behavior_7.pdf}
+        \includegraphics<9>[width=\linewidth]{Figures/PDF/SpDC_Behavior_8.pdf}
 
     \end{minipage}
+
+    \pause[8]%
+    \vspace*{5pt}
+    \dref{ref:FAMO}{V. Soria-Pardos, A. Armejach, D. Suárez, D. Martinot, A. Grasset and M. Moretó. 2025. FLAMA: Architecting Floating-Point Atomic Memory Operations for Heterogeneous HPC Systems. 2025 28th Euromicro Conference on Digital System Design (DSD), Salerno, Italy, pp. 435-442.}
 
 \end{frame}
