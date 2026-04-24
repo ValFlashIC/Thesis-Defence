@@ -7,20 +7,13 @@
 
 \subsection{Matrices creuses et indirections}
 
+\refStep{ref:Spada}
+
 \begin{frame}
     \frametitle{Les matrices creuses}
 
+    \pause[1]%
     \underbar{Applications :} Physique numérique, intelligence artificielle, analyse de graphes...
-    %
-    % \begin{tikzpicture}[remember picture, overlay]
-    %     \node [shift={(-1.2cm, 2.1cm)}, rotate=0] at (current page.east)
-    %         { \includegraphics[width=0.17\linewidth]{Figures/Others/24.09.29_Graph_analytics_2.jpg} };
-    % \end{tikzpicture}
-    % %
-    % \begin{tikzpicture}[remember picture, overlay]
-    %     \node [shift={(-1.6cm, 0cm)}, rotate=0] at (current page.east)
-    %         { \includegraphics[width=0.18\linewidth]{Figures/Others/24.09.29_Computational_physics_1.jpg} };
-    % \end{tikzpicture}
     %
     \begin{tikzpicture}[remember picture, overlay]
         \node [shift={(-3.2cm, 0.8cm)}, rotate=0] at (current page.east) (A)
@@ -75,6 +68,7 @@
         \includegraphics[width=0.4\linewidth]{Figures/Others/25.01.21_spada_graph.PNG}
         %
         {%
+            \pause[1]%
             \def\posX{-8cm}%
             \def\posY{-1cm}%
             \begin{tikzpicture}[remember picture, overlay]
@@ -92,6 +86,7 @@
                     { \scriptsize Source  \cref{ref:Spada} };
             \end{tikzpicture}
             %
+            \pause[2]%
             \begin{tikzpicture}[remember picture, overlay]
                 \node [shift={(\posX + 0.7cm, \posY - 0.8cm)}, rotate=-48] at (current page.east)
                     {%
@@ -104,8 +99,9 @@
         }
     \end{minipage}
 
+    \pause[1]%
     \vspace{0.5cm}
-    \dref{ref:Spada}{Zhiyao Li, Jiaxiang Li, Taijie Chen, Dimin Niu, Hongzhong Zheng, Yuan Xie, and Mingyu Gao. 2023. Spada: Accelerating Sparse Matrix Multiplication with Adaptive Dataflow. ASPLOS 2023. Association for Computing Machinery, 747-761.}
+    \drefX{ref:Spada}{Zhiyao Li, Jiaxiang Li, Taijie Chen, Dimin Niu, Hongzhong Zheng, Yuan Xie, and Mingyu Gao. 2023. Spada: Accelerating Sparse Matrix Multiplication with Adaptive Dataflow. ASPLOS 2023. Association for Computing Machinery, 747-761.}
 
 \end{frame}
 
@@ -153,9 +149,9 @@
 
     \smallskip
 
-    \arrow[\bfseries\color{Green}][2]{Empreinte mémoire réduite}[\faPlus\,] de $\mathcal{O}(n^2)$ à $\mathcal{O}(n)$ \arrow[]{une nécessité}
+    \arrow[\bfseries\color{Green}][2]{Empreinte mémoire réduite}[\textnormal{\faPlus}\,] de $\mathcal{O}(n^2)$ à $\mathcal{O}(n)$ \arrow[]{une nécessité}
 
-    \arrow[\bfseries\color{Red}][2]{Utilisation de métadonnées}[\faMinus\,] \arrow[]{Transactions mémoires vers des \textbf{adresses non-consécutives}}
+    \arrow[\bfseries\color{Red}][2]{Utilisation de métadonnées}[\textnormal{\faMinus}\,] \arrow[]{Transactions mémoires vers des \textbf{adresses non-consécutives}}
 
     \medskip
     \begin{center}
@@ -226,6 +222,7 @@
 
     \bigskip
 
+    \pause[2]%
     Chaque \textit{kernel} peut être implémenté suivant \textbf{plusieurs algorithmes} :
 
     \point[][2][Red]{\parbox[t]{4.5cm}{\textbf{\textcolor{Red}{Inner-Product}} (IP)}} ($\geqslant1\mathcal{D}$)
@@ -301,6 +298,7 @@
 \begin{frame}
     \frametitle{Les indirections dans les kernels creux}
 
+    \pause[1]%
     \textbf{\textcolor{Red}{Où apparaissent les indirections ?}}
 
     \bigskip
@@ -308,6 +306,7 @@
     \textbf{\textcolor{Red}{SpMV :}} $A \times b = c$, avec $A$ de taille $(M, N)$%
     %
     {%
+        \pause[2]%
         \def\X{-6.8cm}%
         \def\Y{0.38cm}%
         \begin{tikzpicture}[remember picture, overlay]
@@ -327,6 +326,7 @@
     }
     %
     {%
+        \pause[2]%
         \def\X{-8.6cm}%
         \def\Y{-0.2cm}%
         \begin{tikzpicture}[remember picture, overlay]
@@ -345,6 +345,7 @@
         \end{tikzpicture}%
     }
 
+    \pause[1]%
     \medskip
 
     \point[][2][Red]{\parbox[t]{6cm}{Dense :}} \parbox[t]{3cm}{$c_i \acc A_{i, j} \times b_j$} \hfill \textcolor{black!50}{($\forall (i, j) \in \ldb 0, M-1 \rdb \times \ldb 0, N-1 \rdb$)}
@@ -359,6 +360,7 @@
 
     \bigskip\bigskip
 
+    \pause[3]%
     \textbf{\textcolor{Red}{SpMM, SpMSpM :}} $A \times B = C$
 
     \medskip

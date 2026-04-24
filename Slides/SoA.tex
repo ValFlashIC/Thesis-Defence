@@ -7,9 +7,12 @@
 
 \subsection{Accélérateurs matériels dédiés}
 
+\refStep{ref:GPU}
+
 \begin{frame}
     \frametitle{Accélérateurs matériels dédiés}
 
+    \pause[1]%
     {%
     \def\X{6cm}%
     \def\Y{2.35cm}%
@@ -83,7 +86,8 @@
     }
 
     \bigskip\bigskip\bigskip\smallskip
-    
+
+    \pause[2]%
     \textbf{\textcolor{Red}{Plusieurs caractéristiques}}
 
     \smallskip
@@ -109,13 +113,14 @@
     {\def\c{Purple}\hspace*{0.6cm} \lbox{\c}{Proche processeur} \lbox{\c}{Proche caches} \lbox{\c}{\textit{Bypass} caches} \lbox{\c}{Proche mémoire principale}}
 
     \vspace{0.4cm}
-    \dref{ref:GPU}{Thaha Mohammed and Rashid Mehmood. 2022. Performance Enhancement Strategies for Sparse Matrix-Vector Multiplication (SpMV) and Iterative Linear Solvers. (2022), 41.}
+    \drefX{ref:GPU}{Thaha Mohammed and Rashid Mehmood. 2022. Performance Enhancement Strategies for Sparse Matrix-Vector Multiplication (SpMV) and Iterative Linear Solvers. (2022), 41.}
 
 \end{frame}
 
 \begin{frame}
     \frametitle{Diversité des accélérateurs existants}
     
+    \pause[1]%
     Sous-ensemble sur \textbf{\textcolor{Red}{43 accélérateurs}} étudiés entre 2015 et 2025.
 
     \vspace*{-5pt}
@@ -223,14 +228,16 @@
 
         \smallskip\smallskip
         
-        \pause[1]%
+        \pause[4]%
         \arrow[\bfseries\color{Red}]{Diversité} des choix de conception, toutes les caractéristiques sont couvertes
         %
+        \pause[2]%
         \begin{tikzpicture}[remember picture, overlay]
-            \node [shift={(2.4cm, -1.65cm)}, single arrow, draw=Red!50!white, very thick, fill=Red, opacity=0.3, minimum width = 1cm, single arrow head extend=3pt, minimum height=4.85cm, rotate=-90] at (current page.west)
+            \node [shift={(2.4cm, -1.65cm)}, single arrow, draw=Red, very thick, fill=Red, opacity=0.3, minimum width = 1cm, single arrow head extend=3pt, minimum height=4.85cm, rotate=-90] at (current page.west)
                 {}; % length of arrow
         \end{tikzpicture}%
         %
+        \pause[3]%
         {%
             \def\X{3.39cm}%
             \def\Y{1.60cm}%
@@ -287,6 +294,7 @@
                     };
             \end{tikzpicture}%
             %
+            \pause[1]%
             \begin{tikzpicture}[remember picture, overlay]
                 \node [shift={(\X - 1.8cm, \Y + 0.5cm)}, rotate=0] at (current page.west)
                     {%
@@ -297,6 +305,7 @@
             \end{tikzpicture}%
         }
 
+        \pause[4]%
         \vspace*{0.75cm}
 
         \qquad\makebox(0,0){\put(0,0.0\normalbaselineskip){%
@@ -331,16 +340,23 @@
 
 \end{frame}
 
+\refStep{ref:HiPEAC}
+
 \begin{frame}
     \frametitle{Choix de conception}
 
-    \begin{minipage}[t]{0.44\linewidth}
+    \vspace*{-7pt}
+    \def\H{6.5cm}
+
+    \begin{minipage}[t][\H]{0.44\linewidth}
         \raggedright
 
+        \pause[1]%
         \textbf{\textcolor{Mulberry}{Comment choisir une architecture ?}}
 
         \smallskip
 
+        \pause[2]%
         \point[\bfseries\color{Red}][0]{Accélérateur autonome}
         
         \point[\bfseries\color{Red}][0]{spécifique, performance}[=]
@@ -359,6 +375,7 @@
 
         \smallskip
 
+        \pause[3]%
         \point[\bfseries\color{Red}][0]{Assisté par processeur}
         
         \point[\bfseries\color{Red}][0]{flexible, faible coût}[=]
@@ -379,20 +396,22 @@
 
     \end{minipage}
     \hfill
-    \begin{minipage}[t]{0.54\linewidth}
+    \begin{minipage}[t][\H]{0.54\linewidth}
         \centering
 
-        \vspace*{-7pt}
         \pause[1]%
-        \includegraphics[width=\linewidth]{Figures/PDF/SoA_AnalysisForDesigners.pdf}
+        \includegraphics<1>[width=\linewidth]{Figures/PDF/SoA_AnalysisForDesigners_0.pdf}
+        \includegraphics<2>[width=\linewidth]{Figures/PDF/SoA_AnalysisForDesigners_1.pdf}
+        \includegraphics<3>[width=\linewidth]{Figures/PDF/SoA_AnalysisForDesigners_2.pdf}
 
     \end{minipage}
 
+    \pause[1]%
     \vspace{0.2cm}
-    \dref{ref:HiPEAC}{Valentin Isaac-{-}Chassande, Adrian Evans, Yves Durand, and Frédéric Rousseau. 2024. Dedicated Hardware Accelerators for Processing of Sparse Matrices and Vectors: A Survey. ACM Trans. Archit. Code Optim. 21, 2, Article 27 (June 2024), 26 pages.
+    \drefX{ref:HiPEAC}{Valentin Isaac-{-}Chassande, Adrian Evans, Yves Durand, and Frédéric Rousseau. 2024. Dedicated Hardware Accelerators for Processing of Sparse Matrices and Vectors: A Survey. ACM Trans. Archit. Code Optim. 21, 2, Article 27 (June 2024), 26 pages.
     %
     \begin{tikzpicture}[remember picture, overlay]
-        \node [shift={(-3.8cm, 2.75cm)}, rotate=0] at (current page.east)
+        \node [shift={(-3.8cm, 2.80cm)}, rotate=0] at (current page.east)
             {%
                 {\itshape\scriptsize Contribution \cref{ref:HiPEAC}}%
             };

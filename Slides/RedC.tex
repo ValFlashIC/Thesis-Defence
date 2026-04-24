@@ -19,8 +19,9 @@
     \point[\bfseries\color{Red}][2][Red]{Outer-Product (OP) :} des \textbf{accès indirectes} apparaissent sur la sortie%
     %
     {%
+        \pause[3]%
         \def\X{-2.93cm}%
-        \def\Y{-0.38cm}%
+        \def\Y{-0.37cm}%
         \begin{tikzpicture}[remember picture, overlay]
             \node [shift={(\X, \Y)}, rotate=0] at (current page.east) (A)
                 {%
@@ -37,30 +38,34 @@
         \end{tikzpicture}%
     }
 
-    \medskip
+    \pause[1]%
+    \smallskip
 
-    \begin{minipage}[t]{0.30766667\linewidth}
+    \def\H{3.2cm}
+    \begin{minipage}[t][\H]{0.30766667\linewidth}
         \centering
-
+        
         \pause[1]%
-        \animategraphics[label=4,loop,controls,autoplay,timeline=timeline4.txt,buttonsize=6pt,buttonfg=0.9,width=\linewidth]{2}{Figures/GIF/MV_CSC/MV_CSC_}{0}{9}
+        \animategraphics[loop,controls,autoplay,timeline=timeline4.txt,buttonsize=6pt,buttonfg=0.9,width=\linewidth]{2}{Figures/GIF/MV_CSC/MV_CSC_}{0}{9}
 
     \end{minipage}
     \hfill
-    \begin{minipage}[t]{0.40233333\linewidth}
+    \begin{minipage}[t][\H]{0.40233333\linewidth}
         \centering
 
-        \pause[1]%
-        \animategraphics[label=5,loop,controls,autoplay,timeline=timeline5.txt,buttonsize=6pt,buttonfg=0.9,width=\linewidth]{2}{Figures/GIF/SpMV_CSC/SpMV_CSC_}{0}{4}
+        \pause[2]%
+        \only<2->{
+            \animategraphics[loop,controls,autoplay,timeline=timeline5.txt,buttonsize=6pt,buttonfg=0.9,width=\linewidth]{2}{Figures/GIF/SpMV_CSC/SpMV_CSC_}{0}{4}
+        }
 
     \end{minipage}
     \hfill
-    \begin{minipage}[t]{0.20\linewidth}
+    \begin{minipage}[t][\H]{0.20\linewidth}
         \raggedleft
 
+        \pause[2]%
         \vspace*{12pt}
 
-        \pause[1]%
         \parbox[t]{2.6cm}{$c_{\mathit{IDX}_0} \acc \mathit{VAL}_0 \times b_0$} \ding{172}
 
         \smallskip
@@ -77,7 +82,8 @@
 
     \end{minipage}
 
-    \bigskip
+    \pause[2]%
+    \medskip
 
     \arrow[]{Avec le \textbf{SpMV} en \textbf{Outer-Product}, \textcolor{Red}{\textbf{les accès \og aléatoires \fg{} se produisent sur le vecteur de sortie \textit{\textbf{c}}}}, au moment d'accumuler la \textbf{somme partielle} $A_{i,j} \times b_j$ avec $c_i$.}
 
@@ -101,6 +107,7 @@
     \begin{minipage}[t]{0.48\linewidth}
         \raggedright
 
+        \pause[2]%
         \arrow[\bfseries][0][Red]{Cas de \textit{hit}}
 
         \smallskip
@@ -109,10 +116,11 @@
 
         \point[][2]{Accumulation dans le processeur}[\faCheckCircleO]
         
-        \point[][2][Green]{Ecriture dans le cache}[\faPlus]
+        \point[][2][Green]{Écriture dans le cache}[\faPlus]
 
         \medskip
 
+        \pause[3]%
         \arrow[\bfseries][0][Red]{Cas de \textit{miss}}
 
         \smallskip
@@ -121,21 +129,22 @@
 
         \point[][2]{Accumulation dans le processeur}[\faCheckCircleO]
 
-        \point[][2][Green]{Ecriture dans le cache}[\faPlus]
+        \point[][2][Green]{Écriture dans le cache}[\faPlus]
 
         \medskip
 
+        \pause[4]%
         \arrow[\bfseries][0][Red]{Cas de \textit{miss} avec évincement}
 
         \smallskip
 
-        \point[][2][Red]{\underbar{Ecriture mémoire} de la donnée évincée}[\faMinus]
+        \point[][2][Red]{\underbar{Écriture mémoire} de la donnée évincée}[\faMinus]
 
         \point[][2][Red]{\underbar{Lecture mémoire} et mise à jour du cache}[\faMinus]
 
         \point[][2]{Accumulation dans le processeur}[\faCheckCircleO]
 
-        \point[][2][Green]{Ecriture dans le cache}[\faPlus]
+        \point[][2][Green]{Écriture dans le cache}[\faPlus]
 
     \end{minipage}
     \hfill
@@ -145,7 +154,10 @@
         \medskip
 
         \pause[1]%
-        \includegraphics[width=0.95\linewidth]{Figures/PDF/GCvsRedC_GC_0.pdf}
+        \includegraphics<1>[width=0.95\linewidth]{Figures/PDF/GCvsRedC_GC_0_0.pdf}%
+        \includegraphics<2>[width=0.95\linewidth]{Figures/PDF/GCvsRedC_GC_0_1.pdf}%
+        \includegraphics<3>[width=0.95\linewidth]{Figures/PDF/GCvsRedC_GC_0_2.pdf}%
+        \includegraphics<4>[width=0.95\linewidth]{Figures/PDF/GCvsRedC_GC_0_3.pdf}%
 
     \end{minipage}
 \end{frame}

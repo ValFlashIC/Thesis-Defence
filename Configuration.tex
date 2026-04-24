@@ -100,11 +100,22 @@
 	\label{#1}\par%
 	[\therefcnt]%
 }
+\newcommand{\refNbX}[1]{%
+	\par%
+	[\therefcnt]%
+}
 \newcommand{\cref}[1]{%
 	\textit{[\ref{#1}]}%
 }
 \newcommand{\dref}[2]{%
 	{\scriptsize\begin{spacing}{0.5}\refNb{#1} #2\end{spacing}}%
+}
+\newcommand{\drefX}[2]{%
+	{\scriptsize\begin{spacing}{0.5}\refNbX{#1} #2\end{spacing}}%
+}
+\newcommand{\refStep}[1]{%
+	\refstepcounter{refcnt}%
+	\label{#1}%
 }
 
 \def\ldb{[\!\![}

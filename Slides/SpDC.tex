@@ -230,6 +230,7 @@
     \begin{minipage}[t]{0.48\linewidth}
         \raggedright
 
+        \pause[2]%
         \arrow[\bfseries][0][Red]{SpDCache}[1.]
 
         \point[][2][Red]{Lecture de $A$ et $b$} \arrow[]{GRC}
@@ -240,6 +241,7 @@
 
         \bigskip
 
+        \pause[3]%
         \arrow[\bfseries][0][Red]{Processeur}[2.]
 
         \point[][2][Red]{\parbox[t]{3.5cm}{Somme partielle :}} $\mathit{sp} = A_{i,j} \times b_j$
@@ -252,6 +254,7 @@
 
         \bigskip
 
+        \pause[5]%
         \arrow[\bfseries][0][Red]{SpDCache}[3.]
 
         \point[][2][Red]{Insertion ou accumulation}
@@ -273,11 +276,24 @@
         \includegraphics<4>[width=0.9\linewidth]{Figures/PDF/SpDC_MacroArchi_3.pdf}%
         \includegraphics<5>[width=0.9\linewidth]{Figures/PDF/SpDC_MacroArchi_4.pdf}%
         \includegraphics<6>[width=0.9\linewidth]{Figures/PDF/SpDC_MacroArchi_5.pdf}%
-        \includegraphics<7>[width=0.9\linewidth]{Figures/PDF/SpDC_MacroArchi_6.pdf}
+        \includegraphics<7->[width=0.9\linewidth]{Figures/PDF/SpDC_MacroArchi_6.pdf}%
+        %
+        \pause[8]%
+        \begin{tikzpicture}[remember picture, overlay]
+            \node [shift={(-3.25cm, -1.0cm)}, rotate=0] at (current page.east)
+                {%
+                    \lbox[standard jigsaw,opacityframe=1.,opacityback=0.]{Red}{%
+                        \rule{0pt}{80pt}%
+                        \hspace*{4.2cm}%
+                    }%
+                };
+        \end{tikzpicture}%
 
     \end{minipage}
 
 \end{frame}
+
+\refStep{ref:FAMO}
 
 \begin{frame}
     \frametitle{Fonctionnement de SpDCache}
@@ -348,6 +364,6 @@
 
     \pause[8]%
     \vspace*{5pt}
-    \dref{ref:FAMO}{V. Soria-Pardos, A. Armejach, D. Suárez, D. Martinot, A. Grasset and M. Moretó. 2025. FLAMA: Architecting Floating-Point Atomic Memory Operations for Heterogeneous HPC Systems. 2025 28th Euromicro Conference on Digital System Design (DSD), Salerno, Italy, pp. 435-442.}
+    \drefX{ref:FAMO}{V. Soria-Pardos, A. Armejach, D. Suárez, D. Martinot, A. Grasset and M. Moretó. 2025. FLAMA: Architecting Floating-Point Atomic Memory Operations for Heterogeneous HPC Systems. 2025 28th Euromicro Conference on Digital System Design (DSD), Salerno, Italy, pp. 435-442.}
 
 \end{frame}
