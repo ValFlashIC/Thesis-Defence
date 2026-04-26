@@ -5,45 +5,443 @@
 
 \appendix
 
-\section*{Backup}
+\section*{Appendices}
+
+\subsection{Contexte}
 
 \begin{frame}
-    backup slides :
+    \frametitle{Analyse théorique des algorithmes avec SpMSpM}
 
-    Exploration des paramètres (Python)
+    \centering
 
-    BaCSC
+    \includegraphics[width=0.5\linewidth]{Figures/PDF/AnalyticalModel_SpMSpM.pdf}
+    
+\end{frame}
 
-    Toutes les perfs
+\begin{frame}
+    \frametitle{Comparaison des algorithmes (tableau)}
 
-    Perf Python
+    \vspace*{-7pt}
+    \begin{table}
+        \begin{tblr}{
+                width = {\linewidth},
+                colspec = {X[-1,c] X[-1,c] *{3}{X[j]}}, % rowspec
+                rows = {m, font=\small},
+                colsep = {4pt},
+                row{1-Z} = {rowsep=1pt, black!2},
+                row{1} = {c, font=\bfseries\small, black!5},
+                column{1-2} = {font=\bfseries\small},
+                cell{2}{1} = {r=2}{c},
+                cell{4-Z}{1} = {c=2}{c},
+                cell{5}{3} = {c=2}{l},
+                cell{2}{Z} = {c},
+                hspan = {minimal},
+                % hlines, vlines,
+                % rulesep = {-1pt},
+                hline{1,Z} = {2pt}, % Z for last
+                hline{2} = {1pt},
+                hline{3} = {2-Z}{0.5pt},
+                hline{4-Y} = {0.5pt},
+                vline{3} = {2-Z}{0.5pt},
+            }
+            &
+            &
+            IP &
+            OP &
+            Gust \\
+            %
+            {Access \\ Count} &
+            MV &
+            {\textbf{\textit{A}:} once \\ \textbf{\textit{b}:} $nnz(A)$ ($\sim M \times$) \\ \textbf{\textit{c}:} once} &
+            {\textbf{\textit{A}:} once \\ \textbf{\textit{b}:} once \\ \textbf{\textit{c}:} $nnz(A)$ ($\sim K \times$)} &
+            \emph{N/A} \\
+            %
+            &
+            MM &
+            {\textbf{\textit{A}:} $N \times$ \\ \textbf{\textit{B}:} $M \times$ \\ \textbf{\textit{C}:} once} &
+            {\textbf{\textit{A}:} once \\ \textbf{\textit{B}:} $M \times d(A) \times$ \\ \textbf{\textit{C}:} $nnz(A) \times \overline{nnz_r}(B)$ ($\sim K \times$)} &
+            {\textbf{\textit{A}:} once \\ \textbf{\textit{B}:} $M \times d(A) \times$ \\ \textbf{\textit{C}:} $nnz(A) \times \overline{nnz_r}(B)$} \\
+            %
+            {Sequential \\ Accesses} &
+            &
+            Accesses to $A$ and $C$ &
+            Accesses to $A$ and $B$ &
+            {Accesses to $A$ and $C$ \\ Accesses to $B$-rows} \\
+            %
+            {Input \\ Format} &
+            &
+            Accesses to $A$ and $B$ benefit from alternate formats (CSR and CSC) &
+            &
+            Allows consistent format for $A$ and $B$ \\
+            %
+            {Parallelism \\ Opportunity} &
+            &
+            Possible with \textit{tiling} &
+            Generation of POs over \textit{common rank} of $A$ and $B$ &
+            Reading $A$-rows and updating $C$-rows \\
+            %
+            {Reuse \\ Opportunity} &
+            &
+            Potentially $B$, but limited by its size &
+            An $A$-column or $B$-row while computing POs &
+            A set of $B$-rows, based on non-zero elements of $A$-rows \\
+            %
+            Challenges &
+            &
+            Intersection search between non-zero elements in $A$ and $B$ &
+            Storage for POs or in-place \emph{merge} and \emph{reduce} &
+            \emph{Merge} and \emph{reduce} of PO-rows \\
+        \end{tblr}
+    \end{table}
+    
+\end{frame}
 
-    Algo Gust SpMSpM
+\subsection{État-de-l'art}
 
-    Analyses théoriques des algos de SpMSpM / SpMV
+\begin{frame}
+    \frametitle{Example d'accélérateur : Gamma}
 
-    1 ou 2 tableaux comparant les algos de façon détaillé (voir manuscrit)
+    \begin{minipage}[t]{0.48\linewidth}
+        \centering
 
-    Ajouter exemple d'accélérateurs du SoA ? (Gamma et PHI)
+        \includegraphics[width=0.8\linewidth]{Figures/PDF/SoA_AcceleratorsArchis_Gamma.pdf}
 
-    Quelques slides sur le RTL
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\linewidth}
+        \centering
 
-    Les comparaisons de modèles
+        \includegraphics[width=0.8\linewidth]{Figures/PDF/SoA_AcceleratorsArchis_Gamma_DF.pdf}
 
-    Les autres graphes de l'analyse théorique
+    \end{minipage}
+    
+\end{frame}
 
-    Algo IP et OP en creux
+\begin{frame}
+    \frametitle{Example d'accélérateur : PHI}
 
-    Comparaison dimensionnement
+    \begin{minipage}[t]{0.48\linewidth}
+        \centering
 
-    Multicoeur
+        \includegraphics[width=0.7\linewidth]{Figures/PDF/SoA_AcceleratorsArchis_PHI.pdf}
 
-    Tiling
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\linewidth}
+        \centering
 
-    SpDC avec SpMSpM
+        \includegraphics[width=0.8\linewidth]{Figures/PDF/SoA_AcceleratorsArchis_PHI_DF.pdf}
 
-    Questions des rapporteurs (Q1 Josseline à préparer / Q3 -> + BLAS)
+    \end{minipage}
+    
+\end{frame}
 
-    Vitesse des modèles
+\subsection{Performances}
 
+\begin{frame}
+    \frametitle{Performances des simulations Python}
+
+    \vspace*{-7pt}
+    \begin{table}
+        \centering
+        \begin{tblr}{
+                width = {\linewidth},
+                colspec = {*{1}{X[2.5,c]} *{9}{X[c]}}, % rowspec
+                rows = {m, font=\small},
+                colsep = {1pt},
+                column{1} = {l, font=\bfseries\small},
+                row{1-W} = {rowsep=1pt, black!2},
+                row{1-2} = {c, font=\bfseries\small, black!5},
+                row{3} = {c, black!5},
+                row{3} = {font=\itshape\small},
+                row{4} = {abovesep=2pt},
+                row{X-Z} = {rowsep=-2pt},
+                row{X} = {abovesep=2pt},
+                row{Z} = {belowsep=2pt},
+                cell{1}{2,5,8} = {c=3}{font=\bfseries\small},
+                cell{2}{3} = {c=2}{},
+                cell{4}{2,3} = {font=\bfseries\small},
+                cell{X-Z}{1} = {c=10}{l, font=\itshape\small},
+                hspan = {minimal},
+                % hlines, vlines,
+                % rulesep = {-1pt},
+                hline{1,W} = {2pt}, % Z for last
+                hline{4,6,8,10} = {1pt},
+                hline{Z} = {1pt, dashed},
+                vline{2,5,8} = {1-X}{0.5pt},
+            }
+            %
+            & {Output Memory \\ Traffic} & & & {Evicted Cache \\ Line Utilization} & & & {Cache Memory \\ Utilization (\%)} \\
+            %
+            & RedC & SpDC & & GC & RedC & SpDC & GC & RedC & SpDC \\
+            & \%/GC & \%/GC & \% RMW & Avg & Avg & Avg & Avg & Avg & Avg \\
+            %
+            Geometric Mean             & 89.2 & \hspace{0.9mm} 24.5 \!\!\! \hyperlink{fn0}{$^\mathrm{a}$} & 40.5 & 3.60 & 3.56 & \hspace{0.9mm} 7.21 \!\!\! \hyperlink{fn1}{$^\mathrm{b}$} & 36.4 & 45.8 & \hspace{0.9mm} 75.2 \!\!\! \hyperlink{fn2}{$^\mathrm{c}$} \\
+            Standard Deviation         & 29.8 & 20.9 & 33.8 & 2.45 & 2.77 & 2.08 & 10.9 & 32.3 & 18.6 \\
+            Minimum                    & 28.5 & 7.00 & 0.00 & 1.06 & 1.00 & 4.36 & 16.6 & 11.9 & 30.0 \\
+            Maximum                    & 172  & 98.4 & 100  & 8.00 & 8.00 & 8.00 & 49.6 & 97.5 & 98.9 \\
+            First Quartile             & 76.0 & 11.4 & 35.9 & 1.76 & 1.73 & 6.03 & 28.4 & 22.0 & 65.5 \\
+            Third Quartile             & 115  & 46.6 & 91.7 & 6.60 & 7.65 & 8.00 & 48.6 & 88.8 & 93.9 \\
+            Outperform GC              & 45.8 & 100  & \O   & \O   & 45.8 & 91.7 & \O   & 64.6 & 100  \\
+            Outperform RedC            & \O   & 93.8 & \O   & \O   & \O   & 85.4 & \O   & \O   & 77.1 \\
+            %
+            \hypertarget{fn0}{$^\mathrm{a}$Decrease by 4.1$\times$ compared to GC, and 3.6$\times$ compared to RedC.} \\
+            %
+            \hypertarget{fn1}{$^\mathrm{b}$Increase by 2.0$\times$ compared to GC, and 2.0$\times$ compared to RedC.} \\
+            %
+            \hypertarget{fn2}{$^\mathrm{c}$Increase by 2.1$\times$ compared to GC, and 1.6$\times$ compared to RedC.}
+        \end{tblr}
+    \end{table}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Dimensionnement des régions et comparaison avec PHI}
+
+    \vspace*{-7pt}
+    \begin{table}
+        \centering
+        \def\upG{{\scriptsize\textcolor{Green}{\ding{115}}}}
+        \def\upR{{\scriptsize\textcolor{Red}{\ding{115}}}}
+        \def\dwG{{\scriptsize\textcolor{Green}{\ding{116}}}}
+        \def\dwR{{\scriptsize\textcolor{Red}{\ding{116}}}}
+        \def\cst{{\scriptsize\textcolor{YellowOrange}{\ding{110}}}}
+        \begin{tblr}{
+                width = {\linewidth},
+                colspec = {X[1.7,c] X[0.5,c] X[0.8,c] *{11}{X[c]}}, % rowspec
+                rows = {m, font=\small},
+                colsep = {1pt},
+                column{1-3} = {colsep=0pt},
+                column{1} = {leftsep=1pt},
+                column{3} = {rightsep=1pt},
+                row{1-Y} = {rowsep=2pt, black!2},
+                row{1} = {c, font=\bfseries\small, black!5},
+                column{1} = {l},
+                row{2-4} = {c, black!5},
+                row{2-4} = {font=\itshape\small},
+                row{2-4} = {rowsep=0pt},
+                row{6,9,11,13} = {abovesep=0pt},
+                row{5,8,10,12} = {belowsep=0pt},
+                row{Z} = {font=\itshape\scriptsize, rowsep=0pt},
+                cell{2-4}{4,5,8,9} = {font=\bfseries\itshape\small},
+                cell{1}{5} = {c=3}{},
+                cell{1}{9} = {c=6}{},
+                cell{2}{2} = {r=3}{c},
+                cell{2-4}{1} = {r},
+                cell{2}{8} = {r=3}{c},
+                cell{5,8,10,12}{1} = {r=2}{},
+                cell{5-13}{1} = {c=3}{},
+                cell{1}{1} = {r=2}{},
+                hspan = {minimal},
+                % hlines, vlines,
+                % rulesep = {-1pt},
+                hline{1,Y} = {2pt}, % Z for last
+                hline{5} = {1pt},
+                hline{Z} = {1pt, dashed},
+                vline{4,5,8,9} = {1-Y}{0.5pt},
+            }
+            %
+            GMeans (48 mat.) & & & GC & RedC & & & PHI & SpDC & & & & & \\
+            %
+            & \rotatebox[y=2pt]{90}{\textit{sets}} & GRC\; & 128 & 32 & 8   & 4   & \rotatebox[y=2pt]{90}{128} & 32 & 8   & 8   & 4  & 4   & 4 \\
+            &                                      & DRC\; & \O  & 96 & 120 & 124 &                            & 64 & 104 & 112 & 92 & 116 & 122 \\
+            &                                      & SRT\; & \O  & \O & \O  & \O  &                            & 32 & 16  & 8   & 32 & 8   & 2 \\
+            %
+            \textbf{Output Memory Traffic} (\% over GC)      & & & 100  & 89.2 & 81.6 & 80.3 & 50.4 & 24.5 & 24.3 & 25.5 & 23.2 & 25.3 & 32.0 \\
+            & & & \cst1.0 & \dwG1.1 & \dwG1.2 & \dwG1.3 & \dwG2.0 & \dwG4.1 & \dwG4.1 & \dwG3.9 & \dwG4.3 & \dwG4.0 & \dwG3.1 \\
+            \textbf{Ratio of RMWs in Memory Traffic} (\%)    & & & \O   & \O   & \O   & \O   & \O   & 40.5 & 35.7 & 36.5 & 36.5 & 36.2 & 41.1 \\
+            \textbf{Total Memory Traffic} (\% over GC)       & & & 100  & 93.9 & 91.9 & 93.2 & 98.8 & 56.1 & 56.6 & 56.9 & 57.7 & 58.2 & 59.2 \\
+            & & & \cst1.0 & \dwG1.1 & \dwG1.1 & \dwG1.1 & \cst1.0 & \dwG1.8 & \dwG1.8 & \dwG1.8 & \dwG1.7 & \dwG1.7 & \dwG1.7 \\
+            \textbf{Evicted Cache Line Utilization} (max: 8) & & & 3.60 & 3.56 & 3.66 & 3.67 & 5.00 & 7.21 & 7.21 & 7.23 & 7.22 & 7.22 & 7.25 \\
+            & & & \cst1.0 & \cst1.0 & \cst1.0 & \cst1.0 & \upG1.4 & \upG2.0 & \upG2.0 & \upG2.0 & \upG2.0 & \upG2.0 & \upG2.0 \\
+            \textbf{Cache Memory Utilization} (\%)           & & & 36.4 & 45.8 & 47.0 & 47.1 & 30.6 & 75.2 & 68.3 & 65.0 & 72.5 & 65.1 & 60.9 \\
+            & & & \cst1.0 & \upG1.3 & \upG1.3 & \upG1.3 & \dwR0.8 & \upG2.1 & \upG1.9 & \upG1.8 & \upG2.0 & \upG1.8 & \upG1.7 \\
+            %
+            Column \no & & & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11
+        \end{tblr}
+    \end{table}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Format creux personalisé : BaCSC}
+
+    \centering
+
+    \includegraphics[width=\linewidth]{Figures/PDF/SpFormats_BaCSC.pdf}
+
+\end{frame}
+
+\subsection{RTL et modèles}
+
+\begin{frame}
+    \frametitle{Conception RTL : Architecture}
+
+    \begin{minipage}[t]{0.48\linewidth}
+        \raggedright
+
+        \textbf{Noir :} HPDcache (non modifié)
+
+        \textbf{Bleu :} Modifications par rapport à HPDcache
+
+        \textbf{Rouge :} Ajouts par rapport à HPDcache
+
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\linewidth}
+        \centering
+
+        \vspace*{-7pt}
+        \pause[1]%
+        \includegraphics[width=0.72\linewidth]{Figures/PDF/SpDC_MicroArchi.pdf}
+
+    \end{minipage}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Conception RTL : Redirection des ensembles (sets)}
+
+    \centering
+
+    \includegraphics[width=\linewidth]{Figures/PDF/SpDC_SetsRedirection.pdf}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Comparaison des modèles}
+
+    \begin{minipage}[t]{0.40\linewidth}
+        \raggedright
+
+        Trois modèles :
+
+        \point[][2][Red]{Modèle analytique (C) :} $\sim$10\textsuperscript{5} $nnz/s$
+        
+        \point[][2][Red]{Modèle Python :} $\sim$10\textsuperscript{3} $nnz/s$
+
+        \point[][2][Red]{Modèle RTL :} $\sim$10 $nnz/s$
+
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.58\linewidth}
+        \centering
+
+        \vspace*{-7pt}
+        \pause[1]%
+        \includegraphics[width=\linewidth]{Figures/PDF/graph11_25.12.02.pdf}
+
+    \end{minipage}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Analyse théorique : trafic mémoire en fonction de la densité en-bande}
+
+    \centering
+
+    \includegraphics[width=0.8\linewidth]{Figures/PDF/graph12_25.12.15.pdf}
+    
+\end{frame}
+
+\subsection{Passage à l'échelle}
+
+\begin{frame}
+    \frametitle{Tiling}
+
+    \textit{Tiling} = combinaison des algorithmes IP et OP
+    
+    \arrow[][2]{besoin de traiter des réductions et des intersections}
+
+    \bigskip
+
+    \centering
+
+    \includegraphics[width=0.5\linewidth]{Figures/PDF/TilingExample.pdf}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{SpDCache en multic\oe{}ur}
+
+    \begin{minipage}[t]{0.7\linewidth}
+        \raggedright
+
+        Partage de la matrice en blocs verticals
+
+        \arrow[][2]{\textit{tiling} simple, pratique pour le format CSC}
+
+        \smallskip
+
+        Trois largeurs de bande pour trois niveaux de cache
+
+        \arrow[][2]{Chaque SpDCache traite une largeur incluant la précédente}
+
+        \smallskip
+
+        Dernier niveau de cache (LLC) = \textit{merger}
+
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.28\linewidth}
+        \centering
+
+        \vspace*{-7pt}
+        \pause[1]%
+        \includegraphics[width=\linewidth]{Figures/PDF/MultiCore_SpDC.pdf}
+
+    \end{minipage}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{SpDCache avec un kernel SpMSpM}
+
+    SpMSpM à l'itération $j$ = SpMSpV (multiplication matrice creuse-vecteur creux)
+
+    \bigskip
+
+    \centering
+
+    \includegraphics[width=\linewidth]{Figures/PDF/SpMSpM_SpDC.pdf}
+    
+\end{frame}
+
+\subsection{Autres}
+
+\begin{frame}
+    \frametitle{Questions}
+
+    \textbf{Intégration de SpDCache}
+
+    \point[][2][Red]{Dans une hiérarchie mémoire classique (CPU)}
+    
+    \subpt[][4][Red]{Stack 2.5D/3D, exemple : AMD 3D V-Cache\texttrademark}
+
+    \subpt[][4][Red]{Intégration légère, SpDCache peut être configuré en mode cache générique}
+
+    \point[][2][Red]{Dans un GPU ou un accélérateur dédié}
+
+    \bigskip
+
+    \textbf{Intégration logicielle}
+    
+    \point[][2][Red]{Création d'une librairie de \textit{kernels} optimisés compatibles avec SpDCache}
+
+    \subpt[][4][Red]{Extension de la librairie SparseBLAS}
+
+    \subpt[][4][Red]{Côté matériel, seul la taille du cache doit être connu : information récupérable via logiciel}
+
+    \bigskip
+
+    \textbf{Comparaison avec PHI}
+    
+    \point[][2][Red]{On utilise des matrices de tous types}
+    
+    \arrow[][4][Red]{SpDCache fonctionne aussi pour du non-bandée (matrice uniforme par exemple)}
+
+    \point[][2][Red]{PHI ne se compare qu'à 6 matrices, dont une seulement en SpMV}
+    
+    \arrow[][4][Red]{On a étendu leur évaluation}
+    
 \end{frame}
