@@ -108,9 +108,9 @@
 
     \arrow[][0][Red]{En ce basant sur la structure bandée}
 
-    \point[\bfseries][2][Red]{Éviter les accès \og aléatoire \fg{} dans la bande} \arrow[]{région dense}
+    \point[\bfseries][2][Red]{Éviter les accès \og aléatoires \fg{} en-bande} \arrow[]{région dense}
 
-    \point[\bfseries][2][Red]{Traiter les accès \og aléatoire \fg{} hors-bande}, avec du matériel dédié \arrow[]{région creuse}
+    \point[\bfseries][2][Red]{Traiter les accès \og aléatoires \fg{} hors-bande}, avec du matériel dédié \arrow[]{région creuse}
 
     \bigskip
 
@@ -180,6 +180,12 @@
 
         \smallskip
 
+        \point[\bfseries][2][Red]{GRC}
+
+        \subpt[][4][Red]{Lectures génériques de $A$ et $b$}
+
+        \smallskip
+
         \point[\bfseries][2][Red]{DRC} pour la région dense, en-bande
 
         \subpt[][4][Red]{Vecteur $c$ uniquement}
@@ -201,12 +207,6 @@
         \subpt[][4][Red]{Granularité d'un élément}
 
         \subpt[][4][Red]{Complètement associatif}
-
-        \smallskip
-
-        \point[\bfseries][2][Red]{GRC}
-
-        \subpt[][4][Red]{Lectures génériques de $A$ et $b$}
 
     \end{minipage}
     \hfill
