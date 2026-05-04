@@ -20,7 +20,7 @@
 
     \point[][2][Red]{\underbar{Matrice :} dimension $M$, taille de la bande \textbf{\textit{\textcolor{Red}{w\textsubscript{B}}}}, densité en-bande \textbf{\textit{\textcolor{Red}{d\textsubscript{IB}}}}, densité hors-bande \textbf{\textit{\textcolor{Red}{d\textsubscript{OB}}}}}
 
-    \point[][2][Red]{\underbar{Cache :} nombre d'ensembles (\textit{sets}) \textbf{\textit{\textcolor{Red}{S}}}, nombre de \textit{ways} \textbf{\textit{\textcolor{Red}{W}}}, taille d'une ligne de cache \textbf{\textit{\textcolor{Red}{l}}}}
+    \point[][2][Red]{\underbar{Cache :} nombre d'ensembles (\textit{sets}) \textbf{\textit{\textcolor{Red}{S}}}, nombre de voies \textbf{\textit{\textcolor{Red}{W}}}, taille d'une ligne de cache \textbf{\textit{\textcolor{Red}{l}}}}
 
     \subpt[][4][Red]{Taille du cache : \textbf{\textit{\textcolor{Red}{s\textsubscript{C}}}} $= S \times W \times l$}
 
@@ -31,8 +31,6 @@
     \point[][2][Red]{Normalisé par le nombre d'éléments non-nuls}
 
     \subpt[][4][Red]{Interprétation :} \textbf{\textcolor{Red}{Nombre d'éléments transférés en mémoire par réduction (RED)}}
-
-    % \point[][2][Red]{En abscisse des graphiques : le plus bas est le mieux}
 
     \bigskip\bigskip
 
@@ -191,9 +189,9 @@
     \pause[2]%
     \medskip
 
-    \textbf{\textcolor{Red}{DRC}} \arrow[\bfseries\color{Green}]{\og Aléatoire \fg{} \ck} \textbf{: sélection de la bande diagonale de la matrice, dont la largeur}
+    \textbf{\textcolor{Red}{DRC (région dense)}} \arrow[\bfseries\color{Green}]{\og Aléatoire \fg{} \ck} \textbf{: sélection de la bande diagonale de la matrice, dont la}
 
-    \textbf{\textcolor{white}{DRC}} \arrow[\bfseries\color{white}]{\og Aléatoire \fg{} \textnormal{\faCheck} :} \textbf{dépend de la taille du DRC}
+    \textbf{\textcolor{white}{DRC (région dense)}} \arrow[][0][white]{} \textbf{largeur dépend de la taille du DRC}
 
 \end{frame}
 
@@ -245,9 +243,9 @@
     \pause[2]%
     \medskip
 
-    \textbf{\textcolor{Red}{SRT}} \arrow[\bfseries\color{Green}]{\og Aléatoire \fg{} \ck} \textbf{: éléments isolés (hors-bande) de la matrice traités \og par élément \fg{},}
+    \textbf{\textcolor{Red}{SRT (région creuse)}} \arrow[\bfseries\color{Green}]{\og Aléatoire \fg{} \ck} \textbf{: éléments isolés (hors-bande) de la matrice traités}
 
-    \textbf{\textcolor{white}{DRC}} \arrow[\bfseries\color{white}]{\og Aléatoire \fg{} \textnormal{\faCheck} :} \textbf{dans la SRT et au niveau des transactions mémoires}
+    \textbf{\textcolor{white}{SRT (région creuse)}} \arrow[][0][white]{} \textbf{\og par élément \fg{}, dans la SRT et au niveau des transactions mémoires}
 
 \end{frame}
 
@@ -294,6 +292,6 @@
 
     \medskip
 
-    \textbf{\textcolor{Mulberry}{Qu'en est-il de la structure à grain fin des matrice ?}}
+    \textbf{\textcolor{Mulberry}{Qu'en est-il de la structure à grain fin des matrices ?}}
 
 \end{frame}

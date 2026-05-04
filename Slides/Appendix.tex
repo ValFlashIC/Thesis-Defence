@@ -101,7 +101,7 @@
 \subsection{État-de-l'art}
 
 \begin{frame}
-    \frametitle{Example d'accélérateur : Gamma}
+    \frametitle{Exemple d'accélérateur : Gamma}
 
     \begin{minipage}[t]{0.48\linewidth}
         \centering
@@ -120,7 +120,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Example d'accélérateur : PHI}
+    \frametitle{Exemple d'accélérateur : PHI}
 
     \begin{minipage}[t]{0.48\linewidth}
         \centering
@@ -272,6 +272,62 @@
 
     \includegraphics[width=\linewidth]{Figures/PDF/SpFormats_BaCSC.pdf}
 
+\end{frame}
+
+\begin{frame}
+    \frametitle{Répartition des matrices selon d\textsubscript{cd}}
+
+    \begin{center}
+        <insérer graphe>
+        % \includegraphics[width=\linewidth]{Figures/PDF/SpFormats_BaCSC.pdf}
+    \end{center}
+
+    \point[][0][Red]{Groupe 1 :} < 20\% = environ un élément par ligne de cache (de taille $l = 8$)
+
+    \subpt[][2][Red]{21 matrices sur 62}
+
+    \point[][0][Red]{Groupe 2 :} > 20\% = plus d'un élément par ligne de cache (de taille $l = 8$)
+
+    \subpt[][2][Red]{41 matrices sur 62}
+
+    \smallskip
+
+    CVA6 \arrow[]{1 élément à la fois} \arrow[]{20\%}
+
+    Hypothèse : c\oe{}ur/cache superscalaire \arrow[]{plusieurs éléments traités en parallèle} \arrow[]{> 20\%}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Surface ajoutée}
+
+    \textbf{Étude préliminaire du surcoût en surface :}
+
+    \smallskip
+
+    \point[][2][Red]{Technologie :} GF22FDX (22nm)
+
+    \point[][2][Red]{Outil :} Synopsis DC\texttrademark
+
+    \medskip
+
+    \subpt[][2][Red]{HPDcache :} 0.99 mm\textsuperscript{2}
+
+    \subpt[][2][Red]{SpDCache :} 1.3 mm\textsuperscript{2}
+
+    \smallskip
+
+    \arrow[][4][Red]{Surcoût en surface de SpDCache par rapport à HPDcache :} 31\%
+
+    \subpt[][8][Red]{Plus bas que ce que prédit la loi de Pollack ($< 3.9^2 = 1500\%$) \cref{ref:area}}
+
+    \bigskip
+
+    Pas de résultat en fréquence de fonctionnement
+
+    \vspace{1cm}%
+    \dref{ref:area}{Shekhar Borkar. 2007. Thousand core chips: a technology perspective. In Proceedings of the 44th Annual Design Automation Conference (San Diego, California) (DAC’07). Association for Computing Machinery, New York, NY, USA, 746–749.}
+    
 \end{frame}
 
 \subsection{RTL et modèles}
